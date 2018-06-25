@@ -1,0 +1,12 @@
+{
+    "collectors": [
+        {
+            "class": "nimble.trust.engine.collector.reputation.ReputationCollector",
+            "endpoint": "http://132.231.11.217:8080/popularioty-api"
+        },
+        {
+            "class": "nimble.trust.engine.collector.monitoring.MonitoringCollector",
+            "endpoint": "http://monitoringapi.com"
+        }
+    ]
+}

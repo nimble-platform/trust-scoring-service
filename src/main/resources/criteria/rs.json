@@ -1,0 +1,127 @@
+{
+  "uri" : "http://localhost/requests#TrustCriteria_73aba3ec-6c7e-446b-81c5-510cb40a0ba0",
+  "label" : null,
+  "comment" : null,
+  "agent" : null,
+  "context" : null,
+  "attributes" : [ {
+    "uri" : "http://localhost/requests#TrustProfile_530af3c7-709d-49ba-80bf-c203334c360e",
+    "label" : null,
+    "comment" : null,
+    "importance" : 1.0,
+    "value" : "http://www.compose-project.eu/ns/web-of-things/trust#high",
+    "minValue" : "null",
+    "maxValue" : "null",
+    "valueDatatype" : {
+      "uri" : "http://www.compose-project.eu/ns/web-of-things/trust#ReputationScale",
+      "javaClass" : null
+    },
+    "typesAll" : [ {
+      "uri" : "http://www.compose-project.eu/ns/web-of-things/trust#Reputation",
+      "label" : null,
+      "comment" : null,
+      "typesAll" : [ ]
+    } ]
+  }, {
+    "uri" : "http://localhost/requests#TrustProfile_60c4bb68-619f-453e-b11a-f61d8e0bd6e1",
+    "label" : null,
+    "comment" : null,
+    "importance" : 1.0,
+    "value" : "0.5",
+    "minValue" : "null",
+    "maxValue" : "null",
+    "valueDatatype" : {
+      "uri" : "http://www.w3.org/2001/XMLSchema#double",
+      "javaClass" : "java.lang.Double"
+    },
+    "typesAll" : [ {
+      "uri" : "http://www.compose-project.eu/ns/web-of-things/trust#QoSAttribute",
+      "label" : null,
+      "comment" : null,
+      "typesAll" : [ ]
+    } ]
+  }, {
+    "uri" : "http://localhost/requests#SecurityAttribute_56bba482-6bcb-4c9a-894c-c105b2fede18",
+    "label" : null,
+    "comment" : null,
+    "importance" : 1.0,
+    "value" : null,
+    "minValue" : null,
+    "maxValue" : null,
+    "valueDatatype" : {
+      "uri" : "http://www.compose-project.eu/ns/web-of-things/security/profiles#USDLSecType",
+      "javaClass" : null
+    },
+    "implementedBy" : [ {
+      "uri" : "http://localhost/requests#SecurityMechanism_df1a39cb-aa51-42f0-9459-7f7f284ec580",
+      "label" : null,
+      "comment" : null,
+      "realizedByTechnology" : [ {
+        "uri" : "http://www.compose-project.eu/ns/web-of-things/security/profiles#OAuth",
+        "label" : null,
+        "comment" : null,
+        "typesAll" : [ ]
+      } ],
+      "typesAll" : [ {
+        "uri" : "http://www.linked-usdl.org/ns/usdl-sec#Token",
+        "label" : null,
+        "comment" : null,
+        "typesAll" : [ ]
+      } ]
+    } ],
+    "securityGoals" : [ {
+      "uri" : "http://www.linked-usdl.org/ns/usdl-sec#Confidentiality",
+      "label" : null,
+      "comment" : null,
+      "typesAll" : [ ]
+    } ],
+    "typesAll" : [ {
+      "uri" : "http://www.compose-project.eu/ns/web-of-things/trust#SecurityGuarantee",
+      "label" : null,
+      "comment" : null,
+      "typesAll" : [ ]
+    } ]
+  }, {
+    "uri" : "http://localhost/requests#SecurityAttribute_d34b54c8-4dd1-4fb8-bc49-9a2db9075edf",
+    "label" : null,
+    "comment" : null,
+    "importance" : 1.0,
+    "value" : null,
+    "minValue" : null,
+    "maxValue" : null,
+    "valueDatatype" : {
+      "uri" : "http://www.compose-project.eu/ns/web-of-things/security/profiles#USDLSecType",
+      "javaClass" : null
+    },
+    "implementedBy" : [ {
+      "uri" : "http://localhost/requests#SecurityMechanism_735e7592-3c69-4476-828a-bfc91b511f80",
+      "label" : null,
+      "comment" : null,
+      "realizedByTechnology" : [ {
+        "uri" : "http://www.compose-project.eu/ns/web-of-things/security/profiles#HTTPBasicAuth",
+        "label" : null,
+        "comment" : null,
+        "typesAll" : [ ]
+      } ],
+      "typesAll" : [ {
+        "uri" : "http://www.linked-usdl.org/ns/usdl-sec#Token",
+        "label" : null,
+        "comment" : null,
+        "typesAll" : [ ]
+      } ]
+    } ],
+    "securityGoals" : [ {
+      "uri" : "http://www.linked-usdl.org/ns/usdl-sec#Authentication",
+      "label" : null,
+      "comment" : null,
+      "typesAll" : [ ]
+    } ],
+    "typesAll" : [ {
+      "uri" : "http://www.compose-project.eu/ns/web-of-things/trust#SecurityGuarantee",
+      "label" : null,
+      "comment" : null,
+      "typesAll" : [ ]
+    } ]
+  } ],
+  "typesAll" : [ ]
+}

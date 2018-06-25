@@ -1,0 +1,119 @@
+# Example OpenAPI spec using YAML
+# Be aware that YAML has indentation based scoping.
+# https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md
+# Generate client & server code stubs using http://editor.swagger.io/#/
+swagger: '2.0'
+
+# This is your document metadata
+info:
+  version: "0.0.1"
+  title: Simple Example API
+
+# Describe your paths here
+paths:
+  # This is the version path endpoint.
+  /version:
+    # This is a HTTP operation (GET)
+    get:
+      # Describe this verb here. Note: you can use markdown
+      description: |
+        get the name and version string
+      produces:
+      - application/json
+      responses:
+        # Response code
+        200:
+          description: Successful response
+          schema:
+            $ref: '#/definitions/Version'
+            
+   # This is the trust scoring and ranking path endpoint.
+  /trust/score:
+    post:
+      description: get trust score and rank
+      produces:
+      - application/json
+      operationId: "scoring"
+      parameters:
+        - in: "body"
+          name: "body"
+          description: "trust request in a json format"
+          required: true
+          schema:
+                type: string
+      responses:
+        # Response code
+        200:
+          description: Successful response
+          schema:
+                type: string
+                
+  /trust/compositions/score:
+    post:
+      description: get trust score and rank compositions
+      produces:
+      - application/json
+      operationId: "scoringCompositions"
+      parameters:
+        - in: "body"
+          name: "body"
+          description: "trust request in a json format"
+          required: true
+          schema:
+                type: string
+      responses:
+        # Response code
+        200:
+          description: Successful response
+          schema:
+                type: string
+
+  /trust/filter/threshold:            
+      post:
+            description: trust filtering
+            produces:
+            - application/json
+            operationId: "filteringByThreshold"
+            parameters:
+              - in: "body"
+                name: "body"
+                description: "trust filter request in a json format"
+                required: true
+                schema:
+                      type: string
+            responses:
+              # Response code
+              200:
+                description: Successful response
+                schema:
+                      type: string
+
+  /trust/filter/exclusion:            
+      post:
+            description: trust filtering by missing properties
+            produces:
+            - application/json
+            operationId: "filterByCriteriaNotMeet"
+            parameters:
+              - in: "body"
+                name: "body"
+                description: "trust filter request in a json format"
+                required: true
+                schema:
+                      type: string
+            responses:
+              # Response code
+              200:
+                description: Successful response
+                schema:
+                      type: string    
+    
+definitions:
+  Version:
+    title: Version Object
+    type: object
+    properties:
+      serviceId:
+        type: string
+      version:
+        type: string

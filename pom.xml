@@ -1,0 +1,471 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+         
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>eu.nimble.services</groupId>
+    <artifactId>trust-service</artifactId>
+    <version>0.0.1</version>
+    <name>Nimble Trust Scoring and Ranking Microservice</name>
+    <packaging>jar</packaging>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <java.version>1.8</java.version>
+        <maven.compiler.source>${java.version}</maven.compiler.source>
+        <maven.compiler.target>${java.version}</maven.compiler.target>
+        <logback.version>1.1.6
+        </logback.version> <!-- Version was set back due to bug: http://jira.qos.ch/browse/LOGBACK-1158 -->
+        <timestamp>${maven.build.timestamp}</timestamp>
+        <maven.build.timestamp.format>yyyy-MM-dd HH:mm</maven.build.timestamp.format>
+        <springfox.version>2.5.0</springfox.version>
+        <default.package>nimble.trust</default.package>
+        <swagger.api.src>src/main/resources/api.yml</swagger.api.src>
+    </properties>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>1.4.1.RELEASE</version>
+    </parent>
+    
+    <developers>
+        <developer>
+            <id>vujasm</id>
+            <name>Marko at Innova</name>
+        </developer>
+    </developers>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>Camden.RELEASE</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+    
+     <dependencies>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-eureka</artifactId>
+             <exclusions>
+                <exclusion>
+                    <groupId>javax.ws.rs</groupId>
+                    <artifactId>jsr311-api</artifactId>
+                </exclusion>
+                <!--<exclusion>-->
+                <!--<groupId>com.sun.jersey</groupId>-->
+                <!--<artifactId>jersey-core</artifactId>-->
+                <!--</exclusion>-->
+                <!--<exclusion>-->
+                <!--<groupId>com.sun.jersey</groupId>-->
+                <!--<artifactId>jersey-client</artifactId>-->
+                <!--</exclusion>-->
+                <!--<exclusion>-->
+                <!--<groupId>com.sun.jersey.contribs</groupId>-->
+                <!--<artifactId>jersey-apache-client4</artifactId>-->
+                <!--</exclusion>-->
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-hystrix</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-config</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-feign</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-sleuth</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>net.logstash.logback</groupId>
+            <artifactId>logstash-logback-encoder</artifactId>
+            <version>4.7</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-tomcat</artifactId>
+            <!-- <version>1.4.2.RELEASE</version> -->
+        </dependency>
+
+
+
+        <!--SpringFox dependencies -->
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+            <version>${springfox.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+            <version>${springfox.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-joda</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>joda-time</groupId>
+            <artifactId>joda-time</artifactId>
+        </dependency>
+        
+         <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+        </dependency>
+        
+        <dependency>
+            <groupId>eu.nimble.core.common</groupId>
+            <artifactId>utility</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>eu.nimble.core.common</groupId>
+            <artifactId>rest-client</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+    
+    
+    <!-- BEFORE -->
+
+
+		<dependency>
+			<groupId>org.apache.maven</groupId>
+			<artifactId>maven-plugin-api</artifactId>
+			<version>2.0</version>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<!-- <version>3.8.1</version> -->
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<!-- <version>2.2.3</version> -->
+		</dependency>
+		<dependency>
+			<groupId>xml-apis</groupId>
+			<artifactId>xml-apis</artifactId>
+			<!-- <version>1.4.01</version> -->
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>xerces</groupId>
+			<artifactId>xercesImpl</artifactId>
+			<version>2.9.1</version>
+		</dependency>
+
+
+
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+			<!-- <version>4.2.3</version> -->
+		</dependency>
+
+		<dependency>
+			<groupId>org.glassfish.jersey.core</groupId>
+			<artifactId>jersey-client</artifactId>
+			<version>2.15</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.glassfish.jersey.core</groupId>
+			<artifactId>jersey-common</artifactId>
+			<version>2.15</version>
+		</dependency>
+
+
+		<!-- MODEL -->
+		<dependency>
+			<groupId>org.apache.jena</groupId>
+			<artifactId>apache-jena-libs</artifactId>
+			<version>2.11.0</version>
+			<type>pom</type>
+			<exclusions>
+				<exclusion>
+					<groupId>xerces</groupId>
+					<artifactId>xercesImpl</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>log4j</groupId>
+					<artifactId>log4j</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.slf4j</groupId>
+					<artifactId>slf4j-log4j12</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.jgrapht</groupId>
+			<artifactId>jgrapht-core</artifactId>
+			<version>0.9.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jgrapht</groupId>
+			<artifactId>jgrapht-ext</artifactId>
+			<version>0.9.1</version>
+		</dependency>
+
+		<!-- KNOWL BASE -->
+
+		<dependency>
+			<groupId>com.google.inject</groupId>
+			<artifactId>guice</artifactId>
+			<version>3.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.google.inject.extensions</groupId>
+			<artifactId>guice-assistedinject</artifactId>
+			<version>3.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.google.inject.extensions</groupId>
+			<artifactId>guice-multibindings</artifactId>
+			<version>3.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<!-- <version>5.1.6</version> -->
+		</dependency>
+<!-- 
+		<dependency>
+			<groupId>d2rq-all</groupId>
+			<artifactId>d2rq</artifactId>
+			<version>0.8.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>d2rq-all</groupId>
+			<artifactId>icu4j</artifactId>
+			<version>3.4.4</version>
+		</dependency>
+
+		<dependency>
+			<groupId>d2rq-all</groupId>
+			<artifactId>jena-arq</artifactId>
+			<version>2.9.0-incubating</version>
+		</dependency>
+
+		<dependency>
+			<groupId>d2rq-all</groupId>
+			<artifactId>jena-core</artifactId>
+			<version>2.7.0-incubating</version>
+		</dependency>
+
+		<dependency>
+			<groupId>d2rq-all</groupId>
+			<artifactId>jena-iri</artifactId>
+			<version>0.9.0-incubating</version>
+		</dependency> -->
+
+		<!-- END BASE -->
+
+
+		<!-- SERVICE -->
+
+		<dependency>
+			<groupId>javax.ws.rs</groupId>
+			<artifactId>javax.ws.rs-api</artifactId>
+			<version>2.0.1</version>
+		</dependency>
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<!-- <version>14.0.1</version> -->
+		</dependency>
+
+
+		<!-- <dependency>
+			<groupId>com.github.sharispe</groupId>
+			<artifactId>slib-dist</artifactId>
+			<version>0.9-all-jar</version>
+			 <scope>system</scope>
+     	`	<systemPath>${project.basedir}/lib/slib-dist-0.9-all-jar.jar</systemPath>
+		</dependency>
+		 -->
+		
+		
+		<!-- https://mvnrepository.com/artifact/com.github.sharispe/slib-sml -->
+	 <dependency>
+	    <groupId>com.github.sharispe</groupId>
+	    <artifactId>slib-sml</artifactId>
+	    <version>0.9.1</version>
+	    <exclusions>
+	    	<exclusion>
+	    		<groupId>org.slf4j</groupId>
+	    		<artifactId>slf4j-log4j12</artifactId>
+	    	</exclusion>
+	    </exclusions>
+	</dependency>		
+
+
+		<!-- SERVICE -->
+
+	</dependencies>
+
+
+  <build>
+        <finalName>${project.artifactId}</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <mainClass>nimble.trust.application.TrustApplication</mainClass>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>io.swagger</groupId>
+                <artifactId>swagger-codegen-maven-plugin</artifactId>
+                <version>2.2.1</version>
+                <executions>
+                    <execution>
+                        <id>code</id>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <inputSpec>${swagger.api.src}</inputSpec>
+                            <language>spring</language>
+                            <output>${project.build.directory}/generated-sources/java</output>
+                            <modelPackage>${default.package}.swagger.model</modelPackage>
+                            <apiPackage>${default.package}.swagger.api</apiPackage>
+                            <invokerPackage>${default.package}.swagger.invoker</invokerPackage>
+                            <configOptions>
+                                <interfaceOnly>true</interfaceOnly>
+                            </configOptions>
+                        </configuration>
+                        
+                    </execution>
+                    <execution>
+                        <id>doc</id>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <inputSpec>${swagger.api.src}</inputSpec>
+                            <language>html</language>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <excludes>
+                    <exclude>**/*.java</exclude>
+                </excludes>
+            </resource>
+            <resource>
+                <directory>${project.build.directory}/generated-sources/java/src/main/java</directory>
+                <excludes>
+                    <exclude>**/*.java</exclude>
+                </excludes>
+            </resource>
+        </resources>
+    </build>
+
+    <profiles>
+        <profile>
+            <id>docker</id>
+            <properties>
+                <docker.plugin.version>0.4.13</docker.plugin.version>
+                <docker.image.prefix>nimbleplatform</docker.image.prefix>
+            </properties>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>com.spotify</groupId>
+                        <artifactId>docker-maven-plugin</artifactId>
+                        <version>${docker.plugin.version}</version>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>build</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                        <configuration>
+                            <imageName>${docker.image.prefix}/${project.artifactId}</imageName>
+                            <dockerDirectory>${project.basedir}/src/main/docker</dockerDirectory>
+                            <buildArgs>
+                                <finalName>${project.build.finalName}.jar</finalName>
+                            </buildArgs>
+                            <resources>
+                                <resource>
+                                    <targetPath>/</targetPath>
+                                    <directory>${project.build.directory}</directory>
+                                    <include>${project.build.finalName}.jar</include>
+                                </resource>
+                                <resource>
+                                    <targetPath>/</targetPath>
+                                    <directory>${project.basedir}/src/main/docker</directory>
+                                    <include>entrypoint.sh</include>
+                                </resource>
+                            </resources>
+                            <imageTags>
+                                <imageTag>${project.version}</imageTag>
+                                <imageTag>latest</imageTag>
+                            </imageTags>
+                            <serverId>docker-hub</serverId>
+                            <registryUrl>https://index.docker.io/v1/</registryUrl>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+            <dependencies>
+                <dependency>
+                    <groupId>com.spotify</groupId>
+                    <artifactId>docker-maven-plugin</artifactId>
+                    <version>${docker.plugin.version}</version>
+                </dependency>
+            </dependencies>
+        </profile>
+    </profiles>
+
+</project>
