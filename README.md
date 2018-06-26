@@ -1,7 +1,7 @@
 # Trust scoring and ranking service
 **ServiceID**: trust-service
 
-Trust scoring and ranking service in the NIMBLE Microservice Infrastructure.
+Trust computation service in the NIMBLE Microservice Infrastructure.
 
 A prototype implementation of a NIMBLE trust computation service. The service will be able to compute a trust score for NIMBLE entities (products, services, companies) by evaluating their trust-related characteristics in regards to the trust expectations (criteria) of a particular B2B context. 
 
