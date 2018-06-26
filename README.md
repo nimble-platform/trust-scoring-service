@@ -16,7 +16,7 @@ Base configuration can be found at src/main/resources/application.properties and
 and injected during startup.
 
 For database configuration, you will need to set your username and password directly in the BridgeDB java class.
-However, we plan to refactor this part very soon and to provide database configuration in the  bootstrap.yml, application.properties as suggested by Spring Boot framework.
+However, we plan to refactor this part very soon and to provide database configuration in the  bootstrap.yml, application.properties as suggested by Spring Boot framework. Currently, service uses mySQL but we will migrate it to Postgres.
 
 ## Swagger
 
