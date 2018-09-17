@@ -1,0 +1,5 @@
+version: '3'
+
+services:
+  trust-service:
+    image: nimbleplatform/trust-service:latest

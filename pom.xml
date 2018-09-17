@@ -2,7 +2,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-         
+
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>eu.nimble.services</groupId>
@@ -24,6 +24,7 @@
         <springfox.version>2.5.0</springfox.version>
         <default.package>nimble.trust</default.package>
         <swagger.api.src>src/main/resources/api.yml</swagger.api.src>
+        <dockerImageTag>${project.version}</dockerImageTag>
     </properties>
 
     <parent>
@@ -31,7 +32,7 @@
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>1.4.1.RELEASE</version>
     </parent>
-    
+
     <developers>
         <developer>
             <id>vujasm</id>
@@ -50,12 +51,12 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
-    
-     <dependencies>
+
+    <dependencies>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-eureka</artifactId>
-             <exclusions>
+            <exclusions>
                 <exclusion>
                     <groupId>javax.ws.rs</groupId>
                     <artifactId>jsr311-api</artifactId>
@@ -103,7 +104,6 @@
         </dependency>
 
 
-
         <!--SpringFox dependencies -->
         <dependency>
             <groupId>io.springfox</groupId>
@@ -124,12 +124,12 @@
             <groupId>joda-time</groupId>
             <artifactId>joda-time</artifactId>
         </dependency>
-        
-         <dependency>
+
+        <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
         </dependency>
-        
+
         <dependency>
             <groupId>eu.nimble.core.common</groupId>
             <artifactId>utility</artifactId>
@@ -140,152 +140,151 @@
             <artifactId>rest-client</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
-    
-    
-    <!-- BEFORE -->
 
 
-		<dependency>
-			<groupId>org.apache.maven</groupId>
-			<artifactId>maven-plugin-api</artifactId>
-			<version>2.0</version>
-		</dependency>
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<!-- <version>3.8.1</version> -->
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-databind</artifactId>
-			<!-- <version>2.2.3</version> -->
-		</dependency>
-		<dependency>
-			<groupId>xml-apis</groupId>
-			<artifactId>xml-apis</artifactId>
-			<!-- <version>1.4.01</version> -->
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>xerces</groupId>
-			<artifactId>xercesImpl</artifactId>
-			<version>2.9.1</version>
-		</dependency>
+        <!-- BEFORE -->
 
 
-
-		<dependency>
-			<groupId>org.apache.httpcomponents</groupId>
-			<artifactId>httpclient</artifactId>
-			<!-- <version>4.2.3</version> -->
-		</dependency>
-
-		<dependency>
-			<groupId>org.glassfish.jersey.core</groupId>
-			<artifactId>jersey-client</artifactId>
-			<version>2.15</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.glassfish.jersey.core</groupId>
-			<artifactId>jersey-common</artifactId>
-			<version>2.15</version>
-		</dependency>
-
-
-		<!-- MODEL -->
-		<dependency>
-			<groupId>org.apache.jena</groupId>
-			<artifactId>apache-jena-libs</artifactId>
-			<version>2.11.0</version>
-			<type>pom</type>
-			<exclusions>
-				<exclusion>
-					<groupId>xerces</groupId>
-					<artifactId>xercesImpl</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>log4j</groupId>
-					<artifactId>log4j</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>org.slf4j</groupId>
-					<artifactId>slf4j-log4j12</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-		<dependency>
-			<groupId>org.jgrapht</groupId>
-			<artifactId>jgrapht-core</artifactId>
-			<version>0.9.1</version>
-		</dependency>
-		<dependency>
-			<groupId>org.jgrapht</groupId>
-			<artifactId>jgrapht-ext</artifactId>
-			<version>0.9.1</version>
-		</dependency>
-
-		<!-- KNOWL BASE -->
-
-		<dependency>
-			<groupId>com.google.inject</groupId>
-			<artifactId>guice</artifactId>
-			<version>3.0</version>
-		</dependency>
-
-		<dependency>
-			<groupId>com.google.inject.extensions</groupId>
-			<artifactId>guice-assistedinject</artifactId>
-			<version>3.0</version>
-		</dependency>
-
-		<dependency>
-			<groupId>com.google.inject.extensions</groupId>
-			<artifactId>guice-multibindings</artifactId>
-			<version>3.0</version>
-		</dependency>
-
-		<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
-			<!-- <version>5.1.6</version> -->
-		</dependency>
+        <dependency>
+            <groupId>org.apache.maven</groupId>
+            <artifactId>maven-plugin-api</artifactId>
+            <version>2.0</version>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <!-- <version>3.8.1</version> -->
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <!-- <version>2.2.3</version> -->
+        </dependency>
+        <dependency>
+            <groupId>xml-apis</groupId>
+            <artifactId>xml-apis</artifactId>
+            <!-- <version>1.4.01</version> -->
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>xerces</groupId>
+            <artifactId>xercesImpl</artifactId>
+            <version>2.9.1</version>
+        </dependency>
 
 
-		<!-- SERVICE -->
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <!-- <version>4.2.3</version> -->
+        </dependency>
 
-		<dependency>
-			<groupId>javax.ws.rs</groupId>
-			<artifactId>javax.ws.rs-api</artifactId>
-			<version>2.0.1</version>
-		</dependency>
-		<dependency>
-			<groupId>com.google.guava</groupId>
-			<artifactId>guava</artifactId>
-			<!-- <version>14.0.1</version> -->
-		</dependency>
-		
-	<!-- https://mvnrepository.com/artifact/com.github.sharispe/slib-sml -->
-	 <dependency>
-	    <groupId>com.github.sharispe</groupId>
-	    <artifactId>slib-sml</artifactId>
-	    <version>0.9.1</version>
-	    <exclusions>
-	    	<exclusion>
-	    		<groupId>org.slf4j</groupId>
-	    		<artifactId>slf4j-log4j12</artifactId>
-	    	</exclusion>
-	    </exclusions>
-	</dependency>		
+        <dependency>
+            <groupId>org.glassfish.jersey.core</groupId>
+            <artifactId>jersey-client</artifactId>
+            <version>2.15</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.glassfish.jersey.core</groupId>
+            <artifactId>jersey-common</artifactId>
+            <version>2.15</version>
+        </dependency>
 
 
-		<!-- SERVICE -->
+        <!-- MODEL -->
+        <dependency>
+            <groupId>org.apache.jena</groupId>
+            <artifactId>apache-jena-libs</artifactId>
+            <version>2.11.0</version>
+            <type>pom</type>
+            <exclusions>
+                <exclusion>
+                    <groupId>xerces</groupId>
+                    <artifactId>xercesImpl</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>log4j</groupId>
+                    <artifactId>log4j</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-log4j12</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.jgrapht</groupId>
+            <artifactId>jgrapht-core</artifactId>
+            <version>0.9.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jgrapht</groupId>
+            <artifactId>jgrapht-ext</artifactId>
+            <version>0.9.1</version>
+        </dependency>
 
-	</dependencies>
+        <!-- KNOWL BASE -->
+
+        <dependency>
+            <groupId>com.google.inject</groupId>
+            <artifactId>guice</artifactId>
+            <version>3.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.inject.extensions</groupId>
+            <artifactId>guice-assistedinject</artifactId>
+            <version>3.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.inject.extensions</groupId>
+            <artifactId>guice-multibindings</artifactId>
+            <version>3.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <!-- <version>5.1.6</version> -->
+        </dependency>
 
 
-  <build>
+        <!-- SERVICE -->
+
+        <dependency>
+            <groupId>javax.ws.rs</groupId>
+            <artifactId>javax.ws.rs-api</artifactId>
+            <version>2.0.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <!-- <version>14.0.1</version> -->
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/com.github.sharispe/slib-sml -->
+        <dependency>
+            <groupId>com.github.sharispe</groupId>
+            <artifactId>slib-sml</artifactId>
+            <version>0.9.1</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-log4j12</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+
+        <!-- SERVICE -->
+
+    </dependencies>
+
+
+    <build>
         <finalName>${project.artifactId}</finalName>
         <plugins>
             <plugin>
@@ -324,7 +323,7 @@
                                 <interfaceOnly>true</interfaceOnly>
                             </configOptions>
                         </configuration>
-                        
+
                     </execution>
                     <execution>
                         <id>doc</id>
@@ -394,8 +393,7 @@
                                 </resource>
                             </resources>
                             <imageTags>
-                                <imageTag>${project.version}</imageTag>
-                                <imageTag>latest</imageTag>
+                                <imageTag>${dockerImageTag}</imageTag>
                             </imageTags>
                             <serverId>docker-hub</serverId>
                             <registryUrl>https://index.docker.io/v1/</registryUrl>
