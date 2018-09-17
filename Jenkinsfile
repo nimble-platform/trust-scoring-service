@@ -17,9 +17,9 @@ node('nimble-jenkins-slave') {
             sh 'docker push nimbleplatform/trust-service:staging'
         }
 
-//        stage('Deploy') {
-//            sh 'ssh staging "cd /srv/nimble-staging/ && ./run-staging.sh restart-single catalog-service-srdc"'
-//        }
+        stage('Deploy') {
+            sh 'ssh staging "cd /srv/nimble-staging/ && ./run-staging.sh restart-single trust-service"'
+        }
     }
 
     if (env.BRANCH_NAME == 'master') {
