@@ -47,10 +47,10 @@ public class TrustModule extends AbstractModule {
     private Properties getProperties() {
         try {
             Properties properties = new Properties();
-            properties.load(getClass().getClassLoader().getResourceAsStream("config.properties"));
+            properties.load(getClass().getClassLoader().getResourceAsStream("exconfig.properties"));
             return properties;
         } catch (IOException ex) {
-            log.error("Error loading properties from config.properties", ex);
+            log.error("Error loading properties from exconfig.properties", ex);
         }
         return new Properties();
     }
