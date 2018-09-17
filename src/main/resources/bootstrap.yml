@@ -2,19 +2,44 @@ server:
   port: ${PORT:8081}
 spring:
   application:
-    # the name of the application represents the global identifier of this microservice.
     name: trust-service
   cloud:
     config:
-      uri: ${vcap.services.config-service.credentials.url:${CONFIG_SERVER_URI:http://localhost:8888}}
-      # failFast is disabled per default, so that the service can start standalone without config server.
-      # failFast should be enabled in production environments.
-      # it can be set via an environment variable or the config server
-      failFast: ${vcap.services.config-service.failFast:${CONFIG_SERVER_FAILFAST:false}}
+      enabled: ${CONFIG_SERVER_ENABLED:true}
+      uri: ${CONFIG_SERVER_URI:http://localhost:8888}
+      failFast: ${CONFIG_SERVER_FAILFAST:false}
     discovery:
-      # by disabling the service discovery the application/service can be started in "standalone mode".
-      # service discovery is disabled by default and should be enabled (set to true) for the "cloud mode".
-      # it can be set via an environment variable or the config server
-      enabled: ${discovery.enabled:${DISCOVERY_ENABLED:false}}
+      enabled: ${DISCOVERY_ENABLED:false}
+  jpa:
+    show-sql: false
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    properties:
+      hibernate:
+        temp:
+          use_jdbc_metadata_defaults: false
+    generate-ddl: true
+  datasource:
+    driverClassName: org.postgresql.Driver
+    url: jdbc:postgresql://${POSTGRES_HOST:localhost}:${POSTGRES_PORT:5432}/${POSTGRES_DB:trustdb}
+    username: ${POSTGRES_USER:postgres}
+    password: ${POSTGRES_PASSWORD:admin123}
+    maxActive: 5
+    maxIdle: 5
+  mail:
+    debug: false  # disable printing email to log output
+    host: ${SMTP_HOST:localhost}
+    port: ${SMTP_PORT:25}
+    defaultFrom: ${SMTP_DEFAULT_FROM:}
+    username: ${SMTP_USERNAME:}
+    password: ${SMTP_PASSWORD:}
+    smtp.auth: true
+    properties.mail.smtp.starttls.enable: true
+  jackson:
+    default-property-inclusion: NON_NULL
+
 logstash:
-  uri: ${vcap.services.logstash-service.credentials.url:${LOGSTASH_URI:localhost:5000}}
+  uri: ${LOGSTASH_URI:localhost:5000}
