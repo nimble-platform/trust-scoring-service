@@ -29,15 +29,6 @@ spring:
     password: ${POSTGRES_PASSWORD:admin123}
     maxActive: 5
     maxIdle: 5
-  mail:
-    debug: false  # disable printing email to log output
-    host: ${SMTP_HOST:localhost}
-    port: ${SMTP_PORT:25}
-    defaultFrom: ${SMTP_DEFAULT_FROM:}
-    username: ${SMTP_USERNAME:}
-    password: ${SMTP_PASSWORD:}
-    smtp.auth: true
-    properties.mail.smtp.starttls.enable: true
   jackson:
     default-property-inclusion: NON_NULL
 
