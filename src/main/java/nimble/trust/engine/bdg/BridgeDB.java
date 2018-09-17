@@ -9,8 +9,6 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import org.apache.jena.riot.Lang;
-import org.apache.jena.riot.RDFDataMgr;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -235,14 +233,4 @@ public class BridgeDB extends ABridge{
 			e.printStackTrace();
 		}
 	}
-	
-	public static void main(String[] args) {
-		ABridge b = new BridgeDB(null);
-		Model m = b.obtainTrustProfile("http://abiell.pc.ac.upc.edu:9081/iserve/id/services/17933a84-7418-4376-8630-c6f0b4580c1e/stormpulse-maps");
-		RDFDataMgr.write(System.out, m, Lang.TURTLE) ;
-	}
-
 }
-
-
-//http://localhost:8080/apidbt/apidbt?find=http://iserve.kmi.open.ac.uk/iserve/id/services/84bf044f-541e-4a93-886d-36ab4278bfe0/google-maps
