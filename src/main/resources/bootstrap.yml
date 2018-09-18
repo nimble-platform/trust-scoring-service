@@ -24,9 +24,9 @@ spring:
     generate-ddl: true
   datasource:
     driverClassName: org.postgresql.Driver
-    url: jdbc:postgresql://${POSTGRES_HOST:localhost}:${POSTGRES_PORT:5432}/${POSTGRES_DB:trustdb}
-    username: ${POSTGRES_USER:postgres}
-    password: ${POSTGRES_PASSWORD:admin123}
+    url: jdbc:postgresql://${TRUST_DB_HOST:localhost}:${TRUST_DB_HOST_PORT:5432}/${TRUST_DB_HOST_PORT:trustdb}
+    username: ${TRUST_DB_USERNAME:root}
+    password: ${TRUST_DB_USERNAME:changeme}
     maxActive: 5
     maxIdle: 5
   jackson:
