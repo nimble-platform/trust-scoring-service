@@ -2,7 +2,16 @@ version: '3'
 
 services:
   trust-service:
-    image: nimbleplatform/trust-service:latest
+    image: nimbleplatform/trust-service:staging
+    environment:
+      PORT: "9098"
+      TRUST_DB_HOST: "trust-db"
+      TRUST_DB_HOST_PORT: "5432"
+      TRUST_DB_NAME: "trustdb"
+      TRUST_DB_USERNAME: "admin"
+      TRUST_DB_PASSWORD: "password"
+    ports:
+      - "9098:9098"
 
   trust-db:
     image: postgres:10

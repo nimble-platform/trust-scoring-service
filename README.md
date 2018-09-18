@@ -35,6 +35,12 @@ The Maven plugin (swagger-codegen-maven-plugin) is used to generate defined inte
 #### docker (cloud)
  It will be possible to run the service in docker environment from core cloud infrastructure, but this part is still under configuration.
  
+ Start the local example setup with
+ 
+ ```bash
+ docker-compose up
+ ```
+ 
 ### Get Version Request
  ```
  get
