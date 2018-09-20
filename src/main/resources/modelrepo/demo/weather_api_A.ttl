@@ -5,8 +5,8 @@
 @prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix msm:     <http://iserve.kmi.open.ac.uk/ns/msm#> .
 @prefix dcterms:  <http://purl.org/dc/elements/1.1/> .
-@prefix trust:  <http://www.compose-project.eu/ns/web-of-things/trust#> .
-@prefix profile:  <http://www.compose-project.eu/ns/web-of-things/security/profiles#> .
+@prefix trust:  <http://www.nimble-project.org/ns/trust#> .
+@prefix profile:  <http://www.nimble-project.org/ns/security/profiles#> .
 
 <http://localhost/services/Weather_API_A>
       a       msm:Service ;
@@ -20,11 +20,11 @@
 		
 <http://localhost/services/Weather_API_A#NFP_SecurityGuarantee_1>
 		a   wl:NonfunctionalParameter , trust:SecurityGuarantee ;
-		trust:hasValue "http://www.compose-project.eu/ns/web-of-things/security/profiles#_authentication_token_oauth2"^^<http://www.compose-project.eu/ns/web-of-things/security/profiles#USDLSecType> .
+		trust:hasValue "http://www.nimble-project.org/ns/security/profiles#_authentication_token_oauth2"^^<http://www.nimble-project.org/ns/security/profiles#USDLSecType> .
 
 <http://localhost/services/Weather_API_A#NFP_RATING>
 		a   wl:NonfunctionalParameter , trust:Rating ;
-		trust:hasValue "http://www.compose-project.eu/ns/web-of-things/trust#fourStar"^^<http://www.compose-project.eu/ns/web-of-things/trust#RatingScale> .
+		trust:hasValue "http://www.nimble-project.org/ns/trust#fourStar"^^<http://www.nimble-project.org/ns/trust#RatingScale> .
 		
 <http://localhost/services/Weather_API_A#NFP_AVAILABILITY>
 		a   wl:NonfunctionalParameter , trust:Availability ;

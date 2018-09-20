@@ -3,18 +3,18 @@
 		{
 			"type":[
 				{
-					"uri":"http://www.compose-project.eu/ns/web-of-things/trust#Rating"
+					"uri":"http://www.nimble-project.org/ns/trust#Rating"
 				}
 			],
 			"importance":1.0,
-			"value":"http://www.compose-project.eu/ns/web-of-things/trust#threeStar",
+			"value":"http://www.nimble-project.org/ns/trust#threeStar",
 			"minValue":null,
 			"maxValue":null
 		},
 		{
 			"type":[
 				{
-					"uri":"http://www.compose-project.eu/ns/web-of-things/trust#Availability"
+					"uri":"http://www.nimble-project.org/ns/trust#Availability"
 				}
 			],
 			"importance":1.0,

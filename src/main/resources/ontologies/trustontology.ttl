@@ -1,4 +1,4 @@
-@prefix : <http://www.compose-project.eu/ns/web-of-things/trust#> .
+@prefix : <http://www.nimble-project.org/ns/trust#> .
 @prefix dc: <http://purl.org/dc/elements/1.1/> .
 @prefix dct: <http://purl.org/dc/terms/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
@@ -6,9 +6,9 @@
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@base <http://www.compose-project.eu/ns/web-of-things/trust> .
+@base <http://www.nimble-project.org/ns/trust> .
 
-<http://www.compose-project.eu/ns/web-of-things/trust> rdf:type owl:Ontology ;
+<http://www.nimble-project.org/ns/trust> rdf:type owl:Ontology ;
                                                        
                                                        dc:rights "Apache License, Version 2.0, January 2004"^^xsd:string ;
                                                        
@@ -16,9 +16,9 @@
                                                        
                                                        rdfs:comment "This ontology provides concepts related to the trust between two parties that wish to engage into mutual trusted relationships by exploring  trust capabilities and requirements."^^xsd:string ;
                                                        
-                                                       rdfs:seeAlso "http://www.compose-project.eu/ns/web-of-things/"^^xsd:string ;
+                                                       rdfs:seeAlso "http://www.nimble-project.org/ns/"^^xsd:string ;
                                                        
-                                                       dc:identifier "http://www.compose-project.eu/ns/web-of-things/trust"^^xsd:string ;
+                                                       dc:identifier "http://www.nimble-project.org/ns/trust"^^xsd:string ;
                                                        
                                                        owl:versionInfo "1.1.0" ;
                                                        
@@ -36,7 +36,7 @@
 #################################################################
 
 
-###  http://www.compose-project.eu/ns/web-of-things/trust#forContext
+###  http://www.nimble-project.org/ns/trust#forContext
 
 :forContext rdf:type owl:ObjectProperty ;
             
@@ -44,7 +44,7 @@
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/trust#hasAttribute
+###  http://www.nimble-project.org/ns/trust#hasAttribute
 
 :hasAttribute rdf:type owl:ObjectProperty ;
               
@@ -52,7 +52,7 @@
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/trust#hasCertificateDetail
+###  http://www.nimble-project.org/ns/trust#hasCertificateDetail
 
 :hasCertificateDetail rdf:type owl:ObjectProperty ;
                       
@@ -60,25 +60,25 @@
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/trust#hasCriteria
+###  http://www.nimble-project.org/ns/trust#hasCriteria
 
 :hasCriteria rdf:type owl:ObjectProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/trust#hasMetric
+###  http://www.nimble-project.org/ns/trust#hasMetric
 
 :hasMetric rdf:type owl:ObjectProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/trust#hasMetricValue
+###  http://www.nimble-project.org/ns/trust#hasMetricValue
 
 :hasMetricValue rdf:type owl:ObjectProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/trust#hasProfile
+###  http://www.nimble-project.org/ns/trust#hasProfile
 
 :hasProfile rdf:type owl:ObjectProperty ;
             
@@ -88,7 +88,7 @@
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/trust#isTrustProfileOf
+###  http://www.nimble-project.org/ns/trust#isTrustProfileOf
 
 :isTrustProfileOf rdf:type owl:ObjectProperty ;
                   
@@ -96,19 +96,19 @@
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/trust#next
+###  http://www.nimble-project.org/ns/trust#next
 
 :next rdf:type owl:ObjectProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/trust#recommendedCriteria
+###  http://www.nimble-project.org/ns/trust#recommendedCriteria
 
 :recommendedCriteria rdf:type owl:ObjectProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/trust#suggestedMatcher
+###  http://www.nimble-project.org/ns/trust#suggestedMatcher
 
 :suggestedMatcher rdf:type owl:ObjectProperty ;
                   
@@ -116,7 +116,7 @@
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/trust#trustedParticipant
+###  http://www.nimble-project.org/ns/trust#trustedParticipant
 
 :trustedParticipant rdf:type owl:ObjectProperty ;
                     
@@ -126,7 +126,7 @@
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/trust#trustingParticipant
+###  http://www.nimble-project.org/ns/trust#trustingParticipant
 
 :trustingParticipant rdf:type owl:ObjectProperty ;
                      
@@ -145,7 +145,7 @@
 #################################################################
 
 
-###  http://www.compose-project.eu/ns/web-of-things/trust#hasImportance
+###  http://www.nimble-project.org/ns/trust#hasImportance
 
 :hasImportance rdf:type owl:DatatypeProperty ;
                
@@ -153,19 +153,19 @@
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/trust#hasMaxValue
+###  http://www.nimble-project.org/ns/trust#hasMaxValue
 
 :hasMaxValue rdf:type owl:DatatypeProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/trust#hasMinValue
+###  http://www.nimble-project.org/ns/trust#hasMinValue
 
 :hasMinValue rdf:type owl:DatatypeProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/trust#hasName
+###  http://www.nimble-project.org/ns/trust#hasName
 
 :hasName rdf:type owl:DatatypeProperty ;
          
@@ -175,25 +175,25 @@
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/trust#hasScore
+###  http://www.nimble-project.org/ns/trust#hasScore
 
 :hasScore rdf:type owl:DatatypeProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/trust#hasTimestamp
+###  http://www.nimble-project.org/ns/trust#hasTimestamp
 
 :hasTimestamp rdf:type owl:DatatypeProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/trust#hasValue
+###  http://www.nimble-project.org/ns/trust#hasValue
 
 :hasValue rdf:type owl:DatatypeProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/trust#rank
+###  http://www.nimble-project.org/ns/trust#rank
 
 :rank rdf:type owl:DatatypeProperty .
 
@@ -208,7 +208,7 @@
 #################################################################
 
 
-###  http://www.compose-project.eu/ns/web-of-things/trust#Agent
+###  http://www.nimble-project.org/ns/trust#Agent
 
 :Agent rdf:type owl:Class ;
        
@@ -229,11 +229,11 @@
        
        rdfs:comment "An agent is a entity who participates in a trust relationship. An agent can be any resource such as software agent, human, software service, etc. An agent engages in relationships with other agents to meet certian goals withing some context or domain, under belief (trust) that other agent will provide what claimed to provide. Therefore, an agent may have trust requerments as a precondition for engaging into a relationship with other agent. Each agent has a trust profile, which is a set of its characteristics (aspects, attributes) to meet trust requrments."@en ;
        
-       rdfs:isDefinedBy <http://www.compose-project.eu/ns/web-of-things/trust> .
+       rdfs:isDefinedBy <http://www.nimble-project.org/ns/trust> .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/trust#Liveness
+###  http://www.nimble-project.org/ns/trust#Liveness
 
 :Availability rdf:type owl:Class ;
               
@@ -241,7 +241,7 @@
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/trust#CertificateAuthorityAttribute
+###  http://www.nimble-project.org/ns/trust#CertificateAuthorityAttribute
 
 :CertificateAuthorityAttribute rdf:type owl:Class ;
                                
@@ -249,12 +249,12 @@
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/trust#Context
+###  http://www.nimble-project.org/ns/trust#Context
 
 :Context rdf:type owl:Class ;
          
          rdfs:label "Context"@en ,
-                    <http://www.compose-project.eu/ns/web-of-things/trust> ;
+                    <http://www.nimble-project.org/ns/trust> ;
          
          rdfs:subClassOf [ rdf:type owl:Restriction ;
                            owl:onProperty :hasName ;
@@ -272,11 +272,11 @@
          rdfs:comment """A context within a trust relationship is being or to be established. E.g. public transport, tourism,  retail. For each context, there can be a recommended req trust profile(s) provided, in general, or agent can have req trust profile defined for the context.
  The term context defines the nature of the service or service functions, and each Context has a name, a type and a functional specification, such as ‘rent a car’ or ‘buy a book’ Context Type can be matched to a Service Type."""@en ;
          
-         rdfs:isDefinedBy "http://www.compose-project.eu/ns/web-of-things/trust" .
+         rdfs:isDefinedBy "http://www.nimble-project.org/ns/trust" .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/trust#ContractCompliance
+###  http://www.nimble-project.org/ns/trust#ContractCompliance
 
 :ContractCompliance rdf:type owl:Class ;
                     
@@ -288,7 +288,7 @@
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/trust#Matcher
+###  http://www.nimble-project.org/ns/trust#Matcher
 
 :Matcher rdf:type owl:Class ;
          
@@ -301,11 +301,11 @@
          
          rdfs:comment "A matcher represents an matching technique or algorithm or strategy to compute the level of trust between two agents. The agents expose their trust profiles (capabilities) and impose their trust criteria (requirments), which are then used by a matcher to assess whether trustworthy relationship can be established or not. I.e., whether trust capabilities meet trust requirments. E.g., concrete matchers are Additive Weighting or TOPSIS."@en ;
          
-         rdfs:isDefinedBy <http://www.compose-project.eu/ns/web-of-things/trust> .
+         rdfs:isDefinedBy <http://www.nimble-project.org/ns/trust> .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/trust#MeasurableTrustAttribute
+###  http://www.nimble-project.org/ns/trust#MeasurableTrustAttribute
 
 :MeasurableTrustAttribute rdf:type owl:Class ;
                           
@@ -329,7 +329,7 @@
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/trust#Metric
+###  http://www.nimble-project.org/ns/trust#Metric
 
 :Metric rdf:type owl:Class ;
         
@@ -340,13 +340,13 @@
                           owl:someValuesFrom :MetricValue
                         ] ;
         
-        rdfs:isDefinedBy "http://www.compose-project.eu/ns/web-of-things/trust" ;
+        rdfs:isDefinedBy "http://www.nimble-project.org/ns/trust" ;
         
         rdfs:comment "A metric as a measurement for specific trust attribute"@en .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/trust#MetricValue
+###  http://www.nimble-project.org/ns/trust#MetricValue
 
 :MetricValue rdf:type owl:Class ;
              
@@ -363,11 +363,11 @@
              
              rdfs:comment "A list of values of metric, if applicable."@en ;
              
-             rdfs:isDefinedBy "http://www.compose-project.eu/ns/web-of-things/trust" .
+             rdfs:isDefinedBy "http://www.nimble-project.org/ns/trust" .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/trust#NumberOfCompositions
+###  http://www.nimble-project.org/ns/trust#NumberOfCompositions
 
 :NumberOfCompositions rdf:type owl:Class ;
                       
@@ -375,7 +375,7 @@
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/trust#NumberOfDevelopers
+###  http://www.nimble-project.org/ns/trust#NumberOfDevelopers
 
 :NumberOfDevelopers rdf:type owl:Class ;
                     
@@ -383,7 +383,7 @@
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/trust#NumberOfRequests
+###  http://www.nimble-project.org/ns/trust#NumberOfRequests
 
 :NumberOfRequests rdf:type owl:Class ;
                   
@@ -391,7 +391,7 @@
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/trust#Popularity
+###  http://www.nimble-project.org/ns/trust#Popularity
 
 :Popularity rdf:type owl:Class ;
             
@@ -402,14 +402,14 @@
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/trust#PopularityCount
+###  http://www.nimble-project.org/ns/trust#PopularityCount
 
 :PopularityCount rdf:type owl:Class ;
                  
                  rdfs:subClassOf :Reputation .
 
 
-###  http://www.compose-project.eu/ns/web-of-things/trust#ContractComplianceCount
+###  http://www.nimble-project.org/ns/trust#ContractComplianceCount
 
 :ContractComplianceCount rdf:type owl:Class ;
                  
@@ -417,7 +417,7 @@
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/trust#ProviderCategoryBy3rdParty
+###  http://www.nimble-project.org/ns/trust#ProviderCategoryBy3rdParty
 
 :ProviderCategoryBy3rdParty rdf:type owl:Class ;
                             
@@ -425,7 +425,7 @@
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/trust#ProviderLocation
+###  http://www.nimble-project.org/ns/trust#ProviderLocation
 
 :ProviderLocation rdf:type owl:Class ;
                   
@@ -433,7 +433,7 @@
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/trust#ProviderWebReputationBy3rdParty
+###  http://www.nimble-project.org/ns/trust#ProviderWebReputationBy3rdParty
 
 :ProviderWebReputationBy3rdParty rdf:type owl:Class ;
                                  
@@ -441,7 +441,7 @@
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/trust#QoSAttribute
+###  http://www.nimble-project.org/ns/trust#QoSAttribute
 
 :QoSAttribute rdf:type owl:Class ;
               
@@ -451,7 +451,7 @@
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/trust#Reputation
+###  http://www.nimble-project.org/ns/trust#Reputation
 
 :Reputation rdf:type owl:Class ;
             
@@ -461,21 +461,21 @@
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/trust#ResponseTime
+###  http://www.nimble-project.org/ns/trust#ResponseTime
 
 :ResponseTime rdf:type owl:Class ;
               
               rdfs:subClassOf :QoSAttribute .
 
 
-###  http://www.compose-project.eu/ns/web-of-things/trust#Accuracy
+###  http://www.nimble-project.org/ns/trust#Accuracy
 
 :Accuracy rdf:type owl:Class ;
               
               rdfs:subClassOf :QoSAttribute .
               
 
-###  http://www.compose-project.eu/ns/web-of-things/trust#Frequency
+###  http://www.nimble-project.org/ns/trust#Frequency
 
 :Frequency rdf:type owl:Class ;
               
@@ -483,7 +483,7 @@
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/trust#SecurityAttribute
+###  http://www.nimble-project.org/ns/trust#SecurityAttribute
 
 :SecurityAttribute rdf:type owl:Class ;
                    
@@ -493,7 +493,7 @@
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/trust#SecurityGuarantee
+###  http://www.nimble-project.org/ns/trust#SecurityGuarantee
 
 :SecurityGuarantee rdf:type owl:Class ;
                    
@@ -501,7 +501,7 @@
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/trust#SecurityRequirment
+###  http://www.nimble-project.org/ns/trust#SecurityRequirment
 
 :SecurityRequirment rdf:type owl:Class ;
                     
@@ -509,7 +509,7 @@
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/trust#TrustAttribute
+###  http://www.nimble-project.org/ns/trust#TrustAttribute
 
 :TrustAttribute rdf:type owl:Class ;
                 
@@ -522,11 +522,11 @@
                 
                 rdfs:comment "Any parameter (feature, property, characteristics) that is relevant to a perception of trust. E..g. security-related features (authorization mechanism, authentication mechanism, data encryption), quality of service apects (reponse, data quality), reputation, etc."@en ;
                 
-                rdfs:isDefinedBy <http://www.compose-project.eu/ns/web-of-things/trust> .
+                rdfs:isDefinedBy <http://www.nimble-project.org/ns/trust> .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/trust#TrustCriteria
+###  http://www.nimble-project.org/ns/trust#TrustCriteria
 
 :TrustCriteria rdf:type owl:Class ;
                
@@ -537,14 +537,14 @@
                                  owl:someValuesFrom :TrustAttribute
                                ] ;
                
-               rdfs:isDefinedBy "http://www.compose-project.eu/ns/web-of-things/trust" ;
+               rdfs:isDefinedBy "http://www.nimble-project.org/ns/trust" ;
                
                rdfs:comment """Trust criteria is a set of requested trust attributes, with their values and preference. In other words, it is a triple <trust attribute/indicator, value, relevance>. 
 For example,  <'reputation', 'good', '1'>, <'popularity', '0.5', '1'>}"""@en .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/trust#TrustProfile
+###  http://www.nimble-project.org/ns/trust#TrustProfile
 
 :TrustProfile rdf:type owl:Class ;
               
@@ -557,11 +557,11 @@ For example,  <'reputation', 'good', '1'>, <'popularity', '0.5', '1'>}"""@en .
               
               rdfs:comment "Trust prifile is a set of trust-related attributes of an agent, e.g. security attributes, reputation, QoS attributes, etc."@en ;
               
-              rdfs:isDefinedBy <http://www.compose-project.eu/ns/web-of-things/trust> .
+              rdfs:isDefinedBy <http://www.nimble-project.org/ns/trust> .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/trust#TrustRelationship
+###  http://www.nimble-project.org/ns/trust#TrustRelationship
 
 :TrustRelationship rdf:type owl:Class ;
                    
@@ -594,11 +594,11 @@ For example,  <'reputation', 'good', '1'>, <'popularity', '0.5', '1'>}"""@en .
                    
                    rdfs:comment "TrustRelationship represents trust relationship as a 6-tuple <Trusted Agent, Trusting Agent, Context, TrustCriteria, Score, Timestamp>. Each trust relationship is established between two agents who wants to engange in some form of communication or cooperation within a certian context (e.g. buying or seeling goods, geting some information, etc). An trusting agent trusts that trusted agent has certian characteristics (or features), which are defined as a trust criteria by the trusting agent. TrustRelationship has a level of trust, which can be numerical value within a range e.g. [0..1]."@en ;
                    
-                   rdfs:isDefinedBy <http://www.compose-project.eu/ns/web-of-things/trust> .
+                   rdfs:isDefinedBy <http://www.nimble-project.org/ns/trust> .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/trust#UnmeasurableTrustAttribute
+###  http://www.nimble-project.org/ns/trust#UnmeasurableTrustAttribute
 
 :UnmeasurableTrustAttribute rdf:type owl:Class ;
                             
@@ -610,7 +610,7 @@ For example,  <'reputation', 'good', '1'>, <'popularity', '0.5', '1'>}"""@en .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/trust#UserRating
+###  http://www.nimble-project.org/ns/trust#UserRating
 
 :UserRating rdf:type owl:Class ;
             
@@ -620,7 +620,7 @@ For example,  <'reputation', 'good', '1'>, <'popularity', '0.5', '1'>}"""@en .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/trust#UserRatingCount
+###  http://www.nimble-project.org/ns/trust#UserRatingCount
 
 :UserRatingCount rdf:type owl:Class ;
                  
@@ -637,7 +637,7 @@ For example,  <'reputation', 'good', '1'>, <'popularity', '0.5', '1'>}"""@en .
 #################################################################
 
 
-###  http://www.compose-project.eu/ns/web-of-things/trust#RatingScale
+###  http://www.nimble-project.org/ns/trust#RatingScale
 
 :RatingScale rdf:type :Metric ,
                       owl:NamedIndividual ;
@@ -650,14 +650,14 @@ For example,  <'reputation', 'good', '1'>, <'popularity', '0.5', '1'>}"""@en .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/trust#RelativeToMaxScale
+###  http://www.nimble-project.org/ns/trust#RelativeToMaxScale
 
 :RelativeToMaxScale rdf:type :Metric ,
                              owl:NamedIndividual .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/trust#ReputationScale
+###  http://www.nimble-project.org/ns/trust#ReputationScale
 
 :ReputationScale rdf:type :Metric ,
                           owl:NamedIndividual ;
@@ -668,7 +668,7 @@ For example,  <'reputation', 'good', '1'>, <'popularity', '0.5', '1'>}"""@en .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/trust#fiveStar
+###  http://www.nimble-project.org/ns/trust#fiveStar
 
 :fiveStar rdf:type :MetricValue ,
                    owl:NamedIndividual ;
@@ -677,7 +677,7 @@ For example,  <'reputation', 'good', '1'>, <'popularity', '0.5', '1'>}"""@en .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/trust#fourStar
+###  http://www.nimble-project.org/ns/trust#fourStar
 
 :fourStar rdf:type :MetricValue ,
                    owl:NamedIndividual ;
@@ -688,7 +688,7 @@ For example,  <'reputation', 'good', '1'>, <'popularity', '0.5', '1'>}"""@en .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/trust#high
+###  http://www.nimble-project.org/ns/trust#high
 
 :high rdf:type :MetricValue ,
                owl:NamedIndividual ;
@@ -697,7 +697,7 @@ For example,  <'reputation', 'good', '1'>, <'popularity', '0.5', '1'>}"""@en .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/trust#low
+###  http://www.nimble-project.org/ns/trust#low
 
 :low rdf:type :MetricValue ,
               owl:NamedIndividual ;
@@ -708,7 +708,7 @@ For example,  <'reputation', 'good', '1'>, <'popularity', '0.5', '1'>}"""@en .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/trust#medium
+###  http://www.nimble-project.org/ns/trust#medium
 
 :medium rdf:type :MetricValue ,
                  owl:NamedIndividual ;
@@ -719,7 +719,7 @@ For example,  <'reputation', 'good', '1'>, <'popularity', '0.5', '1'>}"""@en .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/trust#oneStar
+###  http://www.nimble-project.org/ns/trust#oneStar
 
 :oneStar rdf:type :MetricValue ,
                   owl:NamedIndividual ;
@@ -730,7 +730,7 @@ For example,  <'reputation', 'good', '1'>, <'popularity', '0.5', '1'>}"""@en .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/trust#threeStar
+###  http://www.nimble-project.org/ns/trust#threeStar
 
 :threeStar rdf:type :MetricValue ,
                     owl:NamedIndividual ;
@@ -741,7 +741,7 @@ For example,  <'reputation', 'good', '1'>, <'popularity', '0.5', '1'>}"""@en .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/trust#twoStar
+###  http://www.nimble-project.org/ns/trust#twoStar
 
 :twoStar rdf:type :MetricValue ,
                   owl:NamedIndividual ;

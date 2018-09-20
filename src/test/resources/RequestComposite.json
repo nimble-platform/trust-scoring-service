@@ -184,12 +184,12 @@
     "parameters": {
         "attributes": [
             {
-                "type": "http://www.compose-project.eu/ns/web-of-things/trust#ProviderWebReputationBy3rdParty",
+                "type": "http://www.nimble-project.org/ns/trust#ProviderWebReputationBy3rdParty",
                 "value": "0",
                 "importance": 1
             },
             {
-                "type": "http://www.compose-project.eu/ns/web-of-things/trust#NumberOfCompositions",
+                "type": "http://www.nimble-project.org/ns/trust#NumberOfCompositions",
                 "value": "0",
                 "importance": 1
             }

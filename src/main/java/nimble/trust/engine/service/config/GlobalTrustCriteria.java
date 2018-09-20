@@ -66,7 +66,7 @@ public class GlobalTrustCriteria {
 		SecurityGoal goal = new SecurityGoal(URI.create(UsdlSec.Authentication.getURI()));
 		att4.addSecurityGoal(goal);
 		att4.addRealizedByTechnology(new SecurityTechnology(URI
-				.create("http://www.compose-project.eu/ns/web-of-things/security#OAuth_2_0")));
+				.create("http://www.nimble-project.org/ns/security#OAuth_2_0")));
 		att4.setImportance(1);
 
 		// security Confidentiality
@@ -80,8 +80,8 @@ public class GlobalTrustCriteria {
 		// security certificate
 		CertificateAuthorityAttribute certficate = factory.createCertificteAuthorityAttribute();
 		certficate.addType(URI.create(Trust.CertificateAuthorityAttribute.getURI()));
-		certficate.setCertificateAuthority("http://www.compose-project.eu/ns/web-of-things/security#US-Based");
-		// certficate.setCountry("http://www.compose-project.eu/ns/web-of-things/security#US");
+		certficate.setCertificateAuthority("http://www.nimble-project.org/ns/security#US-Based");
+		// certficate.setCountry("http://www.nimble-project.org/ns/security#US");
 
 		return new ExpressionBuilder().startNewTrustCriteria().attribute(att1).and().attribute(att2).and().attribute(att4)
 				.and().attribute(att5).and().attribute(certficate).build();

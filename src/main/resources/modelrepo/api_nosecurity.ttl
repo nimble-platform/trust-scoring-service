@@ -5,8 +5,8 @@
 @prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix msm:     <http://iserve.kmi.open.ac.uk/ns/msm#> .
 @prefix dcterms:  <http://purl.org/dc/elements/1.1/> .
-@prefix trust:  <http://www.compose-project.eu/ns/web-of-things/trust#> .
-@prefix profile:  <http://www.compose-project.eu/ns/web-of-things/security/profiles#> .
+@prefix trust:  <http://www.nimble-project.org/ns/trust#> .
+@prefix profile:  <http://www.nimble-project.org/ns/security/profiles#> .
 
 <http://www.programmableweb.com/api/nosecurity>
       a       msm:Service ;
@@ -19,7 +19,7 @@
 
 <http://127.0.0.1/services/1.1/nosecurity#NFP_REPUTATION>
 		a   wl:NonfunctionalParameter , trust:Reputation ;
-		trust:hasValue "http://www.compose-project.eu/ns/web-of-things/trust#high"^^<http://www.compose-project.eu/ns/web-of-things/trust#ReputationScale> .
+		trust:hasValue "http://www.nimble-project.org/ns/trust#high"^^<http://www.nimble-project.org/ns/trust#ReputationScale> .
 		
 <http://127.0.0.1/services/1.1/nosecurity#NFP_QoS>
 		a   wl:NonfunctionalParameter , trust:QoSAttribute ;

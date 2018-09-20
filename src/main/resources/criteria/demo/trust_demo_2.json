@@ -1,17 +1,17 @@
 {
     "attributes": [
                {
-            "type": "http://www.compose-project.eu/ns/web-of-things/trust#ProviderWebReputationBy3rdParty",
+            "type": "http://www.nimble-project.org/ns/trust#ProviderWebReputationBy3rdParty",
             "importance": 0.5,
             "value": "0"
         },
         {
-            "type": "http://www.compose-project.eu/ns/web-of-things/trust#NumberOfDevelopers",
+            "type": "http://www.nimble-project.org/ns/trust#NumberOfDevelopers",
             "importance": 0.5,
             "value": "0"
         },
          {
-            "type": "http://www.compose-project.eu/ns/web-of-things/trust#SecurityGuarantee",
+            "type": "http://www.nimble-project.org/ns/trust#SecurityGuarantee",
             "importance": 1,
             "value": 
                 {
@@ -23,7 +23,7 @@
                 }
         },
          {
-            "type": "http://www.compose-project.eu/ns/web-of-things/trust#SecurityGuarantee",
+            "type": "http://www.nimble-project.org/ns/trust#SecurityGuarantee",
             "importance": 1,
             "value": 
                 {
@@ -39,7 +39,7 @@
                         ],
                         "securitytechnology": [
                         {
-                            "type": "http://www.compose-project.eu/ns/web-of-things/security#TSL"
+                            "type": "http://www.nimble-project.org/ns/security#TSL"
                         }
                     ]
                 }

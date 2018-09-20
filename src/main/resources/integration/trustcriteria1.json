@@ -1,12 +1,12 @@
 {
     "attributes": [
                {
-            "type": "http://www.compose-project.eu/ns/web-of-things/trust#Reputation",
+            "type": "http://www.nimble-project.org/ns/trust#Reputation",
             "importance": 1,
             "value": "0"
         },
         {
-            "type": "http://www.compose-project.eu/ns/web-of-things/trust#UserRating",
+            "type": "http://www.nimble-project.org/ns/trust#UserRating",
             "importance": 1,
             "value": "0"
         }
