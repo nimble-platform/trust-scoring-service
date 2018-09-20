@@ -31,7 +31,6 @@ public class TrustAttribute extends BaseEntity{
 	@GeneratedValue
 	private Long id;
 
-	
 	private double importance = 1;
 	
 	private String value;
@@ -43,9 +42,13 @@ public class TrustAttribute extends BaseEntity{
 	@ManyToOne(optional = false, fetch = FetchType.EAGER)
 	private TrustAttributeType trustAttributeType;
 	
-	@ManyToOne(optional = true, fetch = FetchType.LAZY)
+	@ManyToOne(optional = true, fetch = FetchType.EAGER)
 //	@JoinColumn(name="trustProfile", referencedColumnName="id" )
     private TrustProfile trustProfile;
+	
+	@ManyToOne(optional = true, fetch = FetchType.EAGER)
+//	@JoinColumn(name="trustPolicy", referencedColumnName="id" )
+    private TrustPolicy trustPolicy;
 
 	
 		
