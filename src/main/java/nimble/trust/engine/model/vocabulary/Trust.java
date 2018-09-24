@@ -224,4 +224,38 @@ public class Trust {
     
     public static final Resource twoStar = m_model.createResource( "http://www.nimble-project.org/ns/trust#twoStar" );
     
+    
+    //NIMBLE metrics
+    
+    public static final Resource OverallCompanyRating = m_model.createResource( "http://www.nimble-project.org/ns/trust#OverallCompanyRating" );
+    
+    public static final Resource OverallCommunicationRating  = m_model.createResource( "http://www.nimble-project.org/ns/trust#OverallCommunicationRating" );
+    public static final Resource QualityOfNegotiationProcessRating = m_model.createResource( "http://www.nimble-project.org/ns/trust#QualityOfNegotiationProcessRating");
+    public static final Resource QualityOfOrderingProcessRating = m_model.createResource( "http://www.nimble-project.org/ns/trust#QualityOfOrderingProcessRating");
+    public static final Resource ResponseTimeRating = m_model.createResource( "http://www.nimble-project.org/ns/trust#ResponseTimeRating");
+    
+    public static final Resource OverallFullfilmentOfTermsRating  = m_model.createResource( "http://www.nimble-project.org/ns/trust#OverallFullfilmentOfTermsRating" );
+    public static final Resource ListingAccuracyRating = m_model.createResource( "http://www.nimble-project.org/ns/trust#ListingAccuracyRating");
+    public static final Resource ConformanceToContractualTerms = m_model.createResource( "http://www.nimble-project.org/ns/trust#ConformanceToContractualTerms");
+    
+
+    public static final Resource OverallDeliveryAndPackagingRating = m_model.createResource( "http://www.nimble-project.org/ns/trust#OverallDeliveryAndPackagingRating");
+    
+    public static final Resource NumberOfCompletedTransactions = m_model.createResource( "http://www.nimble-project.org/ns/trust#NumberOfCompletedTransactions" );
+    public static final Resource NumberOfUncompletedTransactions = m_model.createResource( "http://www.nimble-project.org/ns/trust#NumberOfUncompletedTransactions" );
+    
+    public static final Resource TradingVolume = m_model.createResource( "http://www.nimble-project.org/ns/trust#TradingVolume" );
+    
+    public static final Resource OverallProfileCompletness = m_model.createResource( "http://www.nimble-project.org/ns/trust#OverallProfileCompletness" );
+    public static final Resource ProfileCompletnessDetails = m_model.createResource( "http://www.nimble-project.org/ns/trust#ProfileCompletnessDetails" );
+    public static final Resource ProfileCompletnessDescription = m_model.createResource( "http://www.nimble-project.org/ns/trust#ProfileCompletnessDescription" );
+    public static final Resource ProfileCompletnessTrade = m_model.createResource( "http://www.nimble-project.org/ns/trust#ProfileCompletnessTrade" );
+    public static final Resource ProfileCompletnessCertificates = m_model.createResource( "http://www.nimble-project.org/ns/trust#ProfileCompletnessCertificates" );
+    
+    public static final Resource AverageTimeToRespond = m_model.createResource( "http://www.nimble-project.org/ns/trust#AverageTimeToRespond" );
+    
+    public static final Resource AverageNegotiationTime = m_model.createResource( "http://www.nimble-project.org/ns/trust#AverageNegotiationTime" );
+   
+    
 }
+
