@@ -1,5 +1,7 @@
 package nimble.trust.engine.repository;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -11,5 +13,7 @@ public interface TrustAttributeTypeRepository extends JpaRepository<TrustAttribu
 	TrustAttributeType findByName(String name);
 	
 	TrustAttributeType findById(Long id);
+	
+	List<TrustAttributeType> findByParentType(TrustAttributeType trustAttributeType);
 	
 }
