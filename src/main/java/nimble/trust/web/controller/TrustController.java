@@ -12,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -39,20 +40,21 @@ public class TrustController implements TrustApi {
 	
 	private static Logger log = LoggerFactory.getLogger(TrustController.class);
 	
-	
 	@Autowired
-	private ChangeEventHandlerService eventHandlerService; 
+	private ChangeEventHandlerService eventHandlerService;
 	
 	
     @ApiOperation(value = "Notification of trust data change", 
-    		notes = "Call this operation when trust-related data of a company are changed. After calling this operation, trust service will collect updates are will recalculate the trust score", 
+    		notes = "Call this operation when trust-related data of a company are changed. "
+    				+ "After calling this operation, trust service will collect updates are will recalculate the trust score. "
+    				+ "Valid options for changeType are 'company_details', 'company_description','company_certificates','company_trade'", 
     		response = String.class, tags={  })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "ChangeEvent succesfull processed", response = String.class),
         @ApiResponse(code = 400, message = "Bad request - validation failed", response = String.class),
         @ApiResponse(code = 500, message = "Error in processing the notification", response = String.class)})
     @RequestMapping(value = "/trust/notifyChange", produces = { "application/json" },  method = RequestMethod.POST)
-    public ResponseEntity<String> notificationTrustDataChange(
+    public ResponseEntity<String> notificationTrustDataChange(@RequestHeader(value="Authorization", required=true) String bearerToken,
     		@ApiParam(value = "ChangeNotification" ,required=true) @Valid @RequestBody ChangeEvent changeEvent){
     	
     	try {

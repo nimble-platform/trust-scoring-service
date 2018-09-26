@@ -23,7 +23,7 @@ import nimble.trust.config.AuditorAwarer;
 @EnableCircuitBreaker
 @EnableAutoConfiguration
 @EnableEurekaClient
-@EnableFeignClients
+@EnableFeignClients(basePackages="nimble.trust.engine.restclient")
 @RestController
 @EnableJpaAuditing(auditorAwareRef="auditorProvider")
 @EnableJpaRepositories(basePackages = "nimble.trust.engine.repository")

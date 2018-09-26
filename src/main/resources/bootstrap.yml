@@ -32,3 +32,11 @@ spring:
 
 logstash:
   uri: ${LOGSTASH_URI:localhost:5000}
+  
+nimble:
+ identity:
+   url: ${IDENTITY_SERVICE_URL}
+ trust:
+   url: ${TRUST_SERVICE_URL:http://nimble-staging.salzburgresearch.at/trust}
+ catalog:
+   url: ${TRUST_SERVICE_URL:http://nimble-staging.salzburgresearch.at/catalog-service}
