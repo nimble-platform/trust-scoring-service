@@ -3,6 +3,7 @@ package nimble.trust.engine.domain;
 import java.util.Date;
 
 import javax.persistence.EntityListeners;
+import javax.persistence.MappedSuperclass;
 import javax.persistence.Version;
 
 import org.springframework.data.annotation.CreatedBy;
@@ -23,6 +24,7 @@ import lombok.Setter;
         allowGetters = true
 )
 @Data
+@MappedSuperclass
 public abstract class BaseEntity{
 	
 

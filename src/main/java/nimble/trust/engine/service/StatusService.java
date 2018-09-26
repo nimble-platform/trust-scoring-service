@@ -23,5 +23,15 @@ public class StatusService {
 	public void delete(Status entity){
 		statusRepository.delete(entity);
 	}
+
+	public Status findOrCreate(String statusName) {
+		Status status = statusRepository.findByName(statusName);
+		if (status == null){
+			status = new Status();
+			status.setName(statusName);
+			status = save(status);
+		}
+		return status;
+	}
 	
 }

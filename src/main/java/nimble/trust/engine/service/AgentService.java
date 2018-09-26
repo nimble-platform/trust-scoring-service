@@ -23,5 +23,15 @@ public class AgentService {
 	public void delete(Agent agent){
 		agentRepository.delete(agent);
 	}
+
+	public Agent findOrCreateOwner(String altid) {
+		Agent agent = agentRepository.findByAltId(altid);
+		if (agent==null){
+			agent = new Agent();
+			agent.setAltId(altid);
+			agent  = save(agent);
+		}
+		return agent;
+	}
 	
 }

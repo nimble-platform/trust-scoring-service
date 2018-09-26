@@ -11,6 +11,8 @@ public interface TrustProfileRepository extends JpaRepository<TrustProfile, Long
     
 	TrustProfile findByOwner(Agent agent);
 	
+	TrustProfile findByOwnerAltId(String altid);
+	
 	TrustProfile findBy(Long id);
 	
 }

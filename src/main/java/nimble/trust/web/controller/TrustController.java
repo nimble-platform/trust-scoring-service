@@ -3,13 +3,22 @@ package nimble.trust.web.controller;
 import java.net.URI;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import nimble.trust.common.CompositeServiceWrapper;
 import nimble.trust.common.CompositionIdentifier;
 import nimble.trust.common.OrderType;
@@ -18,15 +27,45 @@ import nimble.trust.engine.model.pojo.TrustCriteria;
 import nimble.trust.engine.module.Factory;
 import nimble.trust.engine.op.enums.EnumLevel;
 import nimble.trust.engine.op.enums.EnumScoreStrategy;
+import nimble.trust.engine.service.ChangeEventHandlerService;
 import nimble.trust.engine.service.interfaces.TrustCompositionManager;
 import nimble.trust.engine.service.interfaces.TrustSimpleManager;
 import nimble.trust.swagger.api.TrustApi;
 import nimble.trust.util.tuple.Tuple2;
+import nimble.trust.web.dto.ChangeEvent;
 
 @Controller
 public class TrustController implements TrustApi {
 	
-	private static Logger log = LoggerFactory.getLogger(VersionController.class);
+	private static Logger log = LoggerFactory.getLogger(TrustController.class);
+	
+	
+	@Autowired
+	private ChangeEventHandlerService eventHandlerService; 
+	
+	
+    @ApiOperation(value = "Notification of trust data change", 
+    		notes = "Call this operation when trust-related data of a company are changed. After calling this operation, trust service will collect updates are will recalculate the trust score", 
+    		response = String.class, tags={  })
+    @ApiResponses(value = { 
+        @ApiResponse(code = 200, message = "ChangeEvent succesfull processed", response = String.class),
+        @ApiResponse(code = 400, message = "Bad request - validation failed", response = String.class),
+        @ApiResponse(code = 500, message = "Error in processing the notification", response = String.class)})
+    @RequestMapping(value = "/trust/notifyChange", produces = { "application/json" },  method = RequestMethod.POST)
+    public ResponseEntity<String> notificationTrustDataChange(
+    		@ApiParam(value = "ChangeNotification" ,required=true) @Valid @RequestBody ChangeEvent changeEvent){
+    	
+    	try {
+    		eventHandlerService.postChangeEvent(changeEvent);
+			return new ResponseEntity<>(HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+    	
+    }
+	
+	
+	
 	
 	public ResponseEntity<String> scoring(@RequestBody String request) {
 		
@@ -109,6 +148,4 @@ public class TrustController implements TrustApi {
 		}
 	}
 	
-
-
 }

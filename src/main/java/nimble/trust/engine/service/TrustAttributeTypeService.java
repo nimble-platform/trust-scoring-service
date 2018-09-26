@@ -24,4 +24,11 @@ public class TrustAttributeTypeService {
 		trustAttributeTypeRepository.delete(entity);
 	}
 	
+	public TrustAttributeType findByName(String name){
+		return trustAttributeTypeRepository.findByName(name);
+	}
+	
+	
+	
+	
 }
