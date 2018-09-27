@@ -43,7 +43,7 @@ logstash:
   
 nimble:
  identity:
-   url: ${IDENTITY_SERVICE_URL}
+   url: ${IDENTITY_SERVICE_URL:http://nimble-staging.salzburgresearch.at/identity-service-v2}
  trust:
    url: ${TRUST_SERVICE_URL:http://nimble-staging.salzburgresearch.at/trust}
  catalog:
