@@ -44,6 +44,7 @@ public class TrustProfileService {
 	
 
 
+	@Transactional
 	public TrustProfile updateTrustAttributeValue(String companyId, String localName, String newValue) {
 		TrustProfile profile = this.findOrCreateByAgentAltId(companyId);
 		TrustAttribute trustAttribute = this.findInProfileOrCreate(profile, localName);
@@ -83,8 +84,8 @@ public class TrustProfileService {
 		}
 		result = new  TrustAttribute();
 		result.setTrustProfile(profile);
-		profile.getTrustAttributes().add(result);
 		result.setTrustAttributeType(attributeTypeService.findByName(trustAttributeTypeName));
+		profile.getTrustAttributes().add(result);
 		return result;
 	}
 	

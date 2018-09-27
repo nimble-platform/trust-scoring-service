@@ -20,6 +20,7 @@ import nimble.trust.engine.model.vocabulary.Trust;
 import nimble.trust.engine.restclient.CatalogServiceClient;
 import nimble.trust.engine.restclient.IdentityServiceClient;
 import nimble.trust.engine.service.TrustProfileService;
+import nimble.trust.engine.service.TrustScoreSync;
 
 @Service
 public class ProfileCompletnessCollector {
@@ -30,12 +31,13 @@ public class ProfileCompletnessCollector {
 	private TrustProfileService profileService;
 
 	@Autowired
-	IdentityServiceClient identityServiceClient;
+	private IdentityServiceClient identityServiceClient;
 	
 	@Autowired
-	CatalogServiceClient catalogServiceClient;
+	private TrustScoreSync trustScoreSync;
+	
 
-	@Transactional
+	
 	public void obtainNewValueCompanyProfile(String companyId, String attributeTypeName) {
 		String newValue = getNewValue(companyId, attributeTypeName);
 		profileService.updateTrustAttributeValue(companyId, attributeTypeName, newValue);
@@ -80,22 +82,13 @@ public class ProfileCompletnessCollector {
 				score.toString());
 	}
 
+	@Transactional
 	public void recalculateTrustScoreAndSaveIt(String companyId) {
 		
 		log.info("trust score updated");
 		
 		
-		//notify catalog service
-		PartyType party = new PartyType();
-		List<QualityIndicatorType> qualityIndicatorTypes = Lists.newArrayList();
-		QualityIndicatorType score = new QualityIndicatorType();
-		score.setQualityParameter("TrustScore");
-		QuantityType quantity = new QuantityType();
-		quantity.setValue(new BigDecimal("1"));
-		score.setQuantity(quantity);
-		party.setQualityIndicator(qualityIndicatorTypes);
-		
-//		catalogServiceClient.postTrustScoreUpdate(companyId, party);
+		trustScoreSync.syncWithCatalogService(companyId);
 		
 
 	}

@@ -227,6 +227,9 @@ public class Trust {
     
     //NIMBLE metrics
     
+    
+    public static final Resource TrustScore = m_model.createResource( "http://www.nimble-project.org/ns/trust#TrustScore" );
+    
     public static final Resource OverallCompanyRating = m_model.createResource( "http://www.nimble-project.org/ns/trust#OverallCompanyRating" );
     
     public static final Resource OverallCommunicationRating  = m_model.createResource( "http://www.nimble-project.org/ns/trust#OverallCommunicationRating" );

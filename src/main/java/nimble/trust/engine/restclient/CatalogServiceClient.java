@@ -4,6 +4,7 @@ import feign.Response;
 
 
 import org.springframework.cloud.netflix.feign.FeignClient;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import eu.nimble.service.model.ubl.commonaggregatecomponents.PartyType;
@@ -14,7 +15,9 @@ import eu.nimble.service.model.ubl.commonaggregatecomponents.PartyType;
 @FeignClient(name = "catalog-service", url = "${nimble.catalog.url:}")
 public interface CatalogServiceClient {
 	
-	@RequestMapping(method = RequestMethod.POST, value = "/trustscore/{partyId}/update", consumes = "application/json")
-    Response postTrustScoreUpdate(@PathVariable("partyId") Long partyId, PartyType partyType);
+    @RequestMapping(value = "/party/{partyId}/trust",consumes = MediaType.APPLICATION_JSON_VALUE,method = RequestMethod.POST)
+    public Response postTrustScoreUpdate(@PathVariable("partyId") String partyId,
+    		@RequestBody PartyType partyType,@RequestHeader(value = "Authorization") String bearerToken);
+
 
 }

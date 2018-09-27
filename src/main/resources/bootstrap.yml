@@ -39,4 +39,6 @@ nimble:
  trust:
    url: ${TRUST_SERVICE_URL:http://nimble-staging.salzburgresearch.at/trust}
  catalog:
-   url: ${TRUST_SERVICE_URL:http://nimble-staging.salzburgresearch.at/catalog-service}
+   url: ${CATALOG_SERVICE_URL:http://nimble-staging.salzburgresearch.at/catalog}
+ business-process:
+   url: ${BUSINESS_PROCESS_SERVICE_URL:http://nimble-staging.salzburgresearch.at/business-process}
