@@ -1,5 +1,6 @@
 package nimble.trust.messaging;
 
+import nimble.trust.config.KafkaConfig;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
@@ -11,8 +12,12 @@ import org.springframework.stereotype.Component;
 public class KafkaReceiver {
 
     @KafkaListener(topics = "${nimble.kafka.topics.companyUpdates}")
-    public void receiveCompanyUpdates(ConsumerRecord<?, ?> consumerRecord) {
-        String companyID = consumerRecord.value().toString();
+    public void receiveCompanyUpdates(ConsumerRecord<String, KafkaConfig.AuthorizedMessage> consumerRecord) {
+        String companyID = consumerRecord.value().getValue();
+        String accessToken = consumerRecord.value().getAccessToken();
+
+        // Marco starts here :)
+
         System.out.println("Received updated for company with ID: " + companyID);
     }
 }
