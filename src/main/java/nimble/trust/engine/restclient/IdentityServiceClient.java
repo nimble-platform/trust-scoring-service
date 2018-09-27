@@ -16,7 +16,7 @@ public interface IdentityServiceClient {
 	@RequestMapping(method = RequestMethod.GET, value = "/party/{partyId}", produces = "application/json")
     Response getParty(@RequestHeader("Authorization") String bearerToken, @PathVariable("partyId") String partyId);
 	
-	@RequestMapping(method = RequestMethod.GET, value = "/party/trust/{partyId}", produces = "application/json")
+	@RequestMapping(method = RequestMethod.GET, value = "/party/completeness/{partyId}", produces = "application/json")
     Response getPartyTrust(@RequestHeader("Authorization") String bearerToken, @PathVariable("partyId") String partyId);
 
     @RequestMapping(method = RequestMethod.GET, value = "/parties/{partyIds}", produces = "application/json")

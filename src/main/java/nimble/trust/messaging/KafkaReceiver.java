@@ -29,9 +29,12 @@ public class KafkaReceiver {
     @KafkaListener(topics = "${nimble.kafka.topics.companyUpdates}")
     public void receiveCompanyUpdates(ConsumerRecord<String, KafkaConfig.AuthorizedMessage> consumerRecord) {
     	String bearerToken = consumerRecord.value().getAccessToken();
-        String partyId = consumerRecord.value().toString();   
+        String partyId = consumerRecord.value().getValue(); 
         log.info("Received updated for company with ID: " + partyId);
         
+        if (partyId==null){
+        	return;
+        }
         try {
     		final Authentication auth = new UsernamePasswordAuthenticationToken(bearerToken, null);
     		SecurityContextHolder.getContext().setAuthentication(auth);

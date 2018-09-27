@@ -49,7 +49,7 @@ public class ProfileCompletnessCollector {
 	 */
 	public void obtainNewValues(String partyId) {
 		
-		String bearerToken = SecurityContextHolder.getContext().getAuthentication().getCredentials().toString();
+		String bearerToken = SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString();
 		
 		PartyType partyType;
 		try {
