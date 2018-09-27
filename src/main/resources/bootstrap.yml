@@ -29,6 +29,14 @@ spring:
     maxIdle: 5
   jackson:
     default-property-inclusion: NON_NULL
+  kafka:
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS}
+    consumer:
+      group-id: trust-service${KAFKA_CONSUMER_GROUP_ID_SUFFIX:}
+    properties:
+      sasl:
+        jaas:
+          config: ${KAFKA_JAAS_CONFIG}
 
 logstash:
   uri: ${LOGSTASH_URI:localhost:5000}
@@ -40,3 +48,6 @@ nimble:
    url: ${TRUST_SERVICE_URL:http://nimble-staging.salzburgresearch.at/trust}
  catalog:
    url: ${TRUST_SERVICE_URL:http://nimble-staging.salzburgresearch.at/catalog-service}
+ kafka:
+   topics:
+     companyUpdates: ${KAFKA_TOPIC_COMPANY_UPDATES:company-updates}
