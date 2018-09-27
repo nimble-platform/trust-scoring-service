@@ -60,7 +60,7 @@ public class TrustScoreSync {
 		
 		
 		Response response =  catalogServiceClient.postTrustScoreUpdate(party.getID(), party, 
-				SecurityContextHolder.getContext().getAuthentication().getCredentials().toString());
+				SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString());
 		try {
 			if (response.status() == HttpStatus.OK.value()){
 				log.info("PartyId="+partyId+" : New trust score sucessfuly sent to a catalog service");
