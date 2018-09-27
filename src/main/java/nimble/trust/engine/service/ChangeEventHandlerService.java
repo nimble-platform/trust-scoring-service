@@ -44,4 +44,8 @@ public class ChangeEventHandlerService {
 		}
 	}
 
+	public void postChangeEvent(String partyId) {
+		profileCompletnessCollector.obtainNewValues(partyId);
+	}
+
 }

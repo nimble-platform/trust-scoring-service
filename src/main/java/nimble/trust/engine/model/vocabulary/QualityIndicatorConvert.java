@@ -41,6 +41,16 @@ public enum QualityIndicatorConvert {
 		return null;
 	}
 	
+	public static QualityIndicatorConvert findByQualityIndicatorParameterName(String name){
+		
+		QualityIndicatorConvert[] array = QualityIndicatorConvert.values();
+		for (QualityIndicatorConvert qualityIndicatorConvert : array) {
+			if (qualityIndicatorConvert.getQualityIndicatorParameter().toString().equalsIgnoreCase(name))
+				return qualityIndicatorConvert;
+		}
+		return null;
+	}
+	
 
 
 //	    

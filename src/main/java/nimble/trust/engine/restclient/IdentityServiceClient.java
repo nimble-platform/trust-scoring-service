@@ -12,8 +12,12 @@ import org.springframework.web.bind.annotation.*;
  */
 @FeignClient(name = "identity-service", url = "${nimble.identity.url:}")
 public interface IdentityServiceClient {
-    @RequestMapping(method = RequestMethod.GET, value = "/party/{partyId}", produces = "application/json")
-    Response getParty(@RequestHeader("Authorization") String bearerToken, @PathVariable("partyId") String storeId);
+    
+	@RequestMapping(method = RequestMethod.GET, value = "/party/{partyId}", produces = "application/json")
+    Response getParty(@RequestHeader("Authorization") String bearerToken, @PathVariable("partyId") String partyId);
+	
+	@RequestMapping(method = RequestMethod.GET, value = "/party/trust/{partyId}", produces = "application/json")
+    Response getPartyTrust(@RequestHeader("Authorization") String bearerToken, @PathVariable("partyId") String partyId);
 
     @RequestMapping(method = RequestMethod.GET, value = "/parties/{partyIds}", produces = "application/json")
     Response getParties(@RequestHeader("Authorization") String bearerToken, @PathVariable("partyIds") String partyIds);
