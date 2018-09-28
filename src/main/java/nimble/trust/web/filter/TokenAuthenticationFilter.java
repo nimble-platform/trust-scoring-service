@@ -27,6 +27,7 @@ public class TokenAuthenticationFilter extends GenericFilterBean {
 		// extract token from header
 		final String bearerToken = httpRequest.getHeader("Authorization");
 		if (bearerToken != null) {
+			SecurityContextHolder.setStrategyName(SecurityContextHolder.MODE_INHERITABLETHREADLOCAL);
 			final Authentication auth = new UsernamePasswordAuthenticationToken(bearerToken, null);
 			SecurityContextHolder.getContext().setAuthentication(auth);
 		}
