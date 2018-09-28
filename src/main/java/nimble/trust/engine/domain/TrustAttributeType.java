@@ -11,6 +11,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -38,9 +40,12 @@ public class TrustAttributeType extends BaseEntity{
 	@Setter
 	private String name;
 	
+	
+	@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY)
 	private TrustAttributeType parentType;
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "parentType", fetch = FetchType.LAZY)
 	private List<TrustAttributeType> subTypes;
 	

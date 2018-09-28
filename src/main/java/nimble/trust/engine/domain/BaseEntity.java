@@ -12,6 +12,7 @@ import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.Data;
@@ -31,28 +32,33 @@ public abstract class BaseEntity{
 	@Version
 	@Getter
 	@Setter
+	@JsonIgnore
 	private Long version;
 
 	
 	@Getter
 	@Setter
 	@CreatedDate
+	@JsonIgnore
 	private Date createdDatetime;
 
 	
 	@Getter
 	@Setter
 	@LastModifiedDate
+	@JsonIgnore
 	private Date updatedDatetime;
 	
 	@Getter
 	@Setter
 	@CreatedBy
+	@JsonIgnore
 	private String createdBy;
 	
 	@Getter
 	@Setter
 	@LastModifiedBy
+	@JsonIgnore
 	private String lastUpdatedBy;
 	
 	@Getter
