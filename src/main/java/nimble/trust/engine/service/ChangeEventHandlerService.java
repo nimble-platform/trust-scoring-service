@@ -27,19 +27,19 @@ public class ChangeEventHandlerService {
 		String type = changeEvent.getChangeType();
 
 		if (type.equalsIgnoreCase("company_details")) {
-			profileCompletnessCollector.obtainNewValueCompanyProfile(changeEvent.getCompanyIdentifier(),
+			profileCompletnessCollector.fetchNewValueAndSyncScore(changeEvent.getCompanyIdentifier(),
 					Trust.ProfileCompletnessDetails.getLocalName());
 		}
 		if (type.equalsIgnoreCase("company_description")) {
-			profileCompletnessCollector.obtainNewValueCompanyProfile(changeEvent.getCompanyIdentifier(),
+			profileCompletnessCollector.fetchNewValueAndSyncScore(changeEvent.getCompanyIdentifier(),
 					Trust.ProfileCompletnessDescription.getLocalName());
 		}
 		if (type.equalsIgnoreCase("company_certificates")) {
-			profileCompletnessCollector.obtainNewValueCompanyProfile(changeEvent.getCompanyIdentifier(),
+			profileCompletnessCollector.fetchNewValueAndSyncScore(changeEvent.getCompanyIdentifier(),
 					Trust.ProfileCompletnessCertificates.getLocalName());
 		}
 		if (type.equalsIgnoreCase("company_trade")) {
-			profileCompletnessCollector.obtainNewValueCompanyProfile(changeEvent.getCompanyIdentifier(),
+			profileCompletnessCollector.fetchNewValueAndSyncScore(changeEvent.getCompanyIdentifier(),
 					Trust.ProfileCompletnessTrade.getLocalName());
 		}
 	}

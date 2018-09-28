@@ -15,7 +15,7 @@ import eu.nimble.service.model.ubl.commonaggregatecomponents.PartyType;
 @FeignClient(name = "catalog-service", url = "${nimble.catalog.url:}")
 public interface CatalogServiceClient {
 	
-    @RequestMapping(value = "/party/{partyId}/trust",consumes = MediaType.APPLICATION_JSON_VALUE,method = RequestMethod.POST)
+    @RequestMapping(value = "/catalogue/party/{partyId}/trust",consumes = MediaType.APPLICATION_JSON_VALUE,method = RequestMethod.POST)
     public Response postTrustScoreUpdate(@PathVariable("partyId") String partyId,
     		@RequestBody PartyType partyType,@RequestHeader(value = "Authorization") String bearerToken);
 

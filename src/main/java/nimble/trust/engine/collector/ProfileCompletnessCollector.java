@@ -7,6 +7,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -37,77 +38,96 @@ public class ProfileCompletnessCollector {
 
 	@Autowired
 	private IdentityServiceClient identityServiceClient;
-	
+
 	@Autowired
 	private TrustScoreSync trustScoreSync;
-	
-
 
 	/**
-	 * responsible to call an identity service to obtain new data and to recalc scores
+	 * responsible to call an identity service to obtain new data and to recalc
+	 * scores
+	 * 
 	 * @param partyId
 	 */
 	public void obtainNewValues(String partyId) {
-		
-		String bearerToken = SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString();
-		
+
+		final String bearerToken = SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString();
+
 		PartyType partyType;
 		try {
-			partyType = JsonSerializationUtility.deserializeContent(identityServiceClient.getParty(bearerToken, partyId).body().asInputStream(), new TypeReference<PartyType>() {});
-			List<QualityIndicatorType> qualityIndicators =  partyType.getQualityIndicator();
+			partyType = JsonSerializationUtility.deserializeContent(
+					identityServiceClient.getPartyTrust(bearerToken, partyId).body().asInputStream(),
+					new TypeReference<PartyType>() {
+					});
+			List<QualityIndicatorType> qualityIndicators = partyType.getQualityIndicator();
 			List<String> ofInterest = Lists.newArrayList();
 			ofInterest.add(QualityIndicatorParameter.COMPLETENESS_OF_COMPANY_CERTIFICATE_DETAILS.toString());
 			ofInterest.add(QualityIndicatorParameter.COMPLETENESS_OF_COMPANY_TRADE_DETAILS.toString());
 			ofInterest.add(QualityIndicatorParameter.COMPLETENESS_OF_COMPANY_DESCRIPTION.toString());
 			ofInterest.add(QualityIndicatorParameter.COMPLETENESS_OF_COMPANY_GENERAL_DETAILS.toString());
 			ofInterest.add(QualityIndicatorParameter.PROFILE_COMPLETENESS.toString());
-			if (!CollectionUtils.isEmpty(qualityIndicators)){
+			if (!CollectionUtils.isEmpty(qualityIndicators)) {
 				for (QualityIndicatorType qualityIndicator : qualityIndicators) {
 					String parameterName = qualityIndicator.getQualityParameter();
-					if (ofInterest.contains(parameterName) && qualityIndicator.getQuantity()!=null){
-						updateCompanyProfile(partyId, QualityIndicatorConvert.
-									findByQualityIndicatorParameterName(parameterName).getTrustVocabulary(),qualityIndicator.getQuantity().getValue().toString());
+					if (ofInterest.contains(parameterName) && qualityIndicator.getQuantity() != null) {
+						updateCompanyProfileAndSyncScore(partyId, QualityIndicatorConvert
+								.findByQualityIndicatorParameterName(parameterName).getTrustVocabulary(),
+								qualityIndicator.getQuantity().getValue().toString());
 					}
 				}
 			}
 		} catch (IOException e) {
 			log.error(" Synchronization with identity service failed or internal error happened", e);
 		}
-		
-		
+
 	}
-	
-	public void updateCompanyProfile(String companyId, String attributeTypeName, String newValue) {
-		profileService.updateTrustAttributeValue(companyId, attributeTypeName, newValue);
-		recalculateScoreAndSaveIt(companyId);
-		recalculateTrustScoreAndSaveIt(companyId);
-	}
-	
-	public void obtainNewValueCompanyProfile(String companyId, String attributeTypeName) {
-		String newValue = getNewValue(companyId, attributeTypeName);
+
+	public void updateCompanyProfileAndSyncScore(String companyId, String attributeTypeName, String newValue) {
 		profileService.updateTrustAttributeValue(companyId, attributeTypeName, newValue);
 		recalculateScoreAndSaveIt(companyId);
 		recalculateTrustScoreAndSaveIt(companyId);
 	}
 
-	private String getNewValue(String companyId, String attributeTypeName) {
+	public void fetchNewValueAndSyncScore(String companyId, String attributeTypeName) {
+		String newValue = fetchNewValue(companyId, attributeTypeName);
+		if (newValue == null)
+			return;
+		profileService.updateTrustAttributeValue(companyId, attributeTypeName, newValue);
+		recalculateScoreAndSaveIt(companyId);
+		recalculateTrustScoreAndSaveIt(companyId);
+	}
 
-		String newValue = "0.25";
+	private String fetchNewValue(String partyId, String attributeTypeName) {
 
-//		if (attributeTypeName.equals(Trust.ProfileCompletnessCertificates.getLocalName())) {
-//			identityServiceClient.getParty(..
-//		}
-//		if (attributeTypeName.equals(Trust.ProfileCompletnessDetails.getLocalName())) {
-//
-//		}
-//		if (attributeTypeName.equals(Trust.ProfileCompletnessDescription.getLocalName())) {
-//
-//		}
-//		if (attributeTypeName.equals(Trust.ProfileCompletnessTrade.getLocalName())) {
-//
-//		}
+		final String bearerToken = SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString();
 
-		return newValue;
+		PartyType partyType;
+		try {
+
+			feign.Response response = identityServiceClient.getPartyTrust(bearerToken, partyId);
+//			System.out.println(new feign.codec.StringDecoder().decode(response, String.class));
+
+			if (response.status() == HttpStatus.OK.value()) {
+				partyType = JsonSerializationUtility.deserializeContent(response.body().asInputStream(),new TypeReference<PartyType>(){});
+				List<QualityIndicatorType> qualityIndicators = partyType.getQualityIndicator();
+				String parameterName = QualityIndicatorConvert.findByName(attributeTypeName)
+						.getQualityIndicatorParameter().toString();
+				if (!CollectionUtils.isEmpty(qualityIndicators)) {
+					for (QualityIndicatorType qualityIndicator : qualityIndicators) {
+						String qparameterName = qualityIndicator.getQualityParameter();
+						if (qparameterName.equals(parameterName) && qualityIndicator.getQuantity() != null) {
+							return qualityIndicator.getQuantity().getValue().toString();
+						}
+					}
+				}
+			}
+			else{
+				log.info("Synchronization with identity service failed due: "+new feign.codec.StringDecoder().decode(response, String.class));
+			}
+		} catch (IOException e) {
+			log.error("Synchronization with identity service failed or internal error happened", e);
+		}
+
+		return null;
 	}
 
 	public void recalculateScoreAndSaveIt(String companyId) {
@@ -117,10 +137,14 @@ public class ProfileCompletnessCollector {
 		TrustAttribute attr3 = profile.findAttribute(Trust.ProfileCompletnessDescription.getLocalName());
 		TrustAttribute attr4 = profile.findAttribute(Trust.ProfileCompletnessDetails.getLocalName());
 
-		BigDecimal score = (attr1 != null) ? new BigDecimal(attr1.getValue()) : BigDecimal.ZERO;
-		score = score.add((attr2 != null) ? new BigDecimal(attr2.getValue()) : BigDecimal.ZERO);
-		score = score.add((attr3 != null) ? new BigDecimal(attr3.getValue()) : BigDecimal.ZERO);
-		score = score.add((attr4 != null) ? new BigDecimal(attr4.getValue()) : BigDecimal.ZERO);
+		BigDecimal score = (attr1 != null && attr1.getValue() != null) ? new BigDecimal(attr1.getValue())
+				: BigDecimal.ZERO;
+		score = score
+				.add((attr2 != null && attr2.getValue() != null) ? new BigDecimal(attr2.getValue()) : BigDecimal.ZERO);
+		score = score
+				.add((attr3 != null && attr3.getValue() != null) ? new BigDecimal(attr3.getValue()) : BigDecimal.ZERO);
+		score = score
+				.add((attr4 != null && attr4.getValue() != null) ? new BigDecimal(attr4.getValue()) : BigDecimal.ZERO);
 		score = (score.compareTo(BigDecimal.ZERO) == 0) ? BigDecimal.ZERO : score.divide(new BigDecimal(4L));
 
 		profileService.updateTrustAttributeValue(companyId, Trust.OverallProfileCompletness.getLocalName(),
@@ -129,14 +153,11 @@ public class ProfileCompletnessCollector {
 
 	@Transactional
 	public void recalculateTrustScoreAndSaveIt(String companyId) {
-		
+
 		log.info("trust score updated");
-		
-		
+
 		trustScoreSync.syncWithCatalogService(companyId);
-		
 
 	}
-
 
 }
