@@ -30,6 +30,10 @@ public class TrustAttributeTypeService {
 		return trustAttributeTypeRepository.findByName(name);
 	}
 	
+	public TrustAttributeType findById(Long id){
+		return trustAttributeTypeRepository.findById(id);
+	}
+	
 	public List<TrustAttributeType> findAll(){
 		return trustAttributeTypeRepository.findAll();
 	}

@@ -26,32 +26,26 @@ import io.swagger.annotations.ApiResponses;
 import nimble.trust.common.CompositeServiceWrapper;
 import nimble.trust.common.CompositionIdentifier;
 import nimble.trust.common.OrderType;
-import nimble.trust.engine.domain.TrustAttributeType;
 import nimble.trust.engine.json.ProduceJSON;
 import nimble.trust.engine.model.pojo.TrustCriteria;
 import nimble.trust.engine.module.Factory;
 import nimble.trust.engine.op.enums.EnumLevel;
 import nimble.trust.engine.op.enums.EnumScoreStrategy;
 import nimble.trust.engine.service.ChangeEventHandlerService;
-import nimble.trust.engine.service.TrustAttributeTypeService;
 import nimble.trust.engine.service.interfaces.TrustCompositionManager;
 import nimble.trust.engine.service.interfaces.TrustSimpleManager;
 import nimble.trust.swagger.api.TrustApi;
 import nimble.trust.util.tuple.Tuple2;
 import nimble.trust.web.dto.ChangeEvent;
-import nimble.trust.web.dto.DtoUtil;
-import nimble.trust.web.dto.TrustAttributeTypeDto;
 
 @Controller
-public class TrustController implements TrustApi {
+public class TrustScoreController implements TrustApi {
 	
-	private static Logger log = LoggerFactory.getLogger(TrustController.class);
+	private static Logger log = LoggerFactory.getLogger(TrustScoreController.class);
 	
 	@Autowired
 	private ChangeEventHandlerService eventHandlerService;
-	
-	@Autowired
-    private TrustAttributeTypeService trustAttributeTypeService;
+
 	
 	
     @ApiOperation(value = "Notification of trust data change", 
@@ -79,22 +73,7 @@ public class TrustController implements TrustApi {
 	
 	
 	
-    //Trust Attribute Types
-    
-
-	@ApiOperation(value = "Returns a list of supported trust metric types", 
-			notes = "Returns a list of supported trust metric types", 
-			response = TrustAttributeTypeDto.class, responseContainer = "List")
-	@ApiResponses(value = { @ApiResponse(code = 200, message = "List returned sucessfully",response=TrustAttributeTypeDto.class)})
-	@RequestMapping(value = "/trust/metrictypes/all", produces = { "application/json" }, method = RequestMethod.GET)
-	public ResponseEntity<List<TrustAttributeTypeDto>> getAllMetricTypes(
-			@RequestHeader(value = "Authorization") String bearerToken) {
-		List<TrustAttributeType> attributeTypes = trustAttributeTypeService.findAllRootLevel();
-		List<TrustAttributeTypeDto> converted = DtoUtil.toDto(attributeTypes);
-		return new ResponseEntity<List<TrustAttributeTypeDto>>(converted, HttpStatus.OK);
-	}
-
-	
+   
     
     
 	public ResponseEntity<String> scoring(@RequestBody String request) {
