@@ -16,8 +16,10 @@ import com.google.common.collect.Lists;
 import eu.nimble.service.model.ubl.commonaggregatecomponents.PartyType;
 import eu.nimble.service.model.ubl.commonaggregatecomponents.QualityIndicatorType;
 import eu.nimble.service.model.ubl.commonbasiccomponents.QuantityType;
+import eu.nimble.service.model.ubl.extension.QualityIndicatorParameter;
 import feign.Response;
 import feign.codec.StringDecoder;
+import nimble.trust.engine.domain.Agent;
 import nimble.trust.engine.domain.TrustAttribute;
 import nimble.trust.engine.domain.TrustProfile;
 import nimble.trust.engine.model.vocabulary.QualityIndicatorConvert;
@@ -56,7 +58,17 @@ public class TrustScoreSync {
 				qualityIndicatorTypes.add(qualityIndicator);
 			}
 		}
+		
+		Agent profileOwner = profile.getOwner();
+		QualityIndicatorType trustScoreIndicator = new QualityIndicatorType();
+		trustScoreIndicator.setQualityParameter(QualityIndicatorParameter.TRUST_SCORE.toString());
+		QuantityType score = new QuantityType();
+		score.setValue((profileOwner.getTrustScore()!=null)? profileOwner.getTrustScore():BigDecimal.ZERO);
+		trustScoreIndicator.setQuantity(score);
+		qualityIndicatorTypes.add(trustScoreIndicator);
+		
 		party.setQualityIndicator(qualityIndicatorTypes);
+		
 		
 		
 		Response response =  catalogServiceClient.postTrustScoreUpdate(party.getID(), party, 

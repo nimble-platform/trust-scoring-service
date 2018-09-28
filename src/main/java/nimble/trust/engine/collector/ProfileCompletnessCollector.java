@@ -54,35 +54,51 @@ public class ProfileCompletnessCollector {
 
 		PartyType partyType;
 		try {
-			partyType = JsonSerializationUtility.deserializeContent(
-					identityServiceClient.getPartyTrust(bearerToken, partyId).body().asInputStream(),
-					new TypeReference<PartyType>() {
-					});
-			List<QualityIndicatorType> qualityIndicators = partyType.getQualityIndicator();
-			List<String> ofInterest = Lists.newArrayList();
-			ofInterest.add(QualityIndicatorParameter.COMPLETENESS_OF_COMPANY_CERTIFICATE_DETAILS.toString());
-			ofInterest.add(QualityIndicatorParameter.COMPLETENESS_OF_COMPANY_TRADE_DETAILS.toString());
-			ofInterest.add(QualityIndicatorParameter.COMPLETENESS_OF_COMPANY_DESCRIPTION.toString());
-			ofInterest.add(QualityIndicatorParameter.COMPLETENESS_OF_COMPANY_GENERAL_DETAILS.toString());
-			ofInterest.add(QualityIndicatorParameter.PROFILE_COMPLETENESS.toString());
-			if (!CollectionUtils.isEmpty(qualityIndicators)) {
-				for (QualityIndicatorType qualityIndicator : qualityIndicators) {
-					String parameterName = qualityIndicator.getQualityParameter();
-					if (ofInterest.contains(parameterName) && qualityIndicator.getQuantity() != null) {
-						updateCompanyProfileAndSyncScore(partyId, QualityIndicatorConvert
-								.findByQualityIndicatorParameterName(parameterName).getTrustVocabulary(),
-								qualityIndicator.getQuantity().getValue().toString());
+			
+			feign.Response response = identityServiceClient.getPartyTrust(bearerToken, partyId);
+//			System.out.println(new feign.codec.StringDecoder().decode(response, String.class));
+
+			if (response.status() == HttpStatus.OK.value()) {
+				partyType = JsonSerializationUtility.deserializeContent(response.body().asInputStream(),new TypeReference<PartyType>() {});
+				List<QualityIndicatorType> qualityIndicators = partyType.getQualityIndicator();
+				List<String> ofInterest = Lists.newArrayList();
+				ofInterest.add(QualityIndicatorParameter.COMPLETENESS_OF_COMPANY_CERTIFICATE_DETAILS.toString());
+				ofInterest.add(QualityIndicatorParameter.COMPLETENESS_OF_COMPANY_TRADE_DETAILS.toString());
+				ofInterest.add(QualityIndicatorParameter.COMPLETENESS_OF_COMPANY_DESCRIPTION.toString());
+				ofInterest.add(QualityIndicatorParameter.COMPLETENESS_OF_COMPANY_GENERAL_DETAILS.toString());
+				ofInterest.add(QualityIndicatorParameter.PROFILE_COMPLETENESS.toString());
+				if (!CollectionUtils.isEmpty(qualityIndicators)) {
+					for (QualityIndicatorType qualityIndicator : qualityIndicators) {
+						String parameterName = qualityIndicator.getQualityParameter();
+						if (ofInterest.contains(parameterName) && qualityIndicator.getQuantity() != null) {
+							updateCompanyProfile(partyId,
+									QualityIndicatorConvert.findByQualityIndicatorParameterName(parameterName)
+											.getTrustVocabulary(),
+									qualityIndicator.getQuantity().getValue().toString());
+						}
 					}
 				}
+				syncScores(partyId);
+			} else {
+				log.info("Synchronization with identity service failed due: "
+						+ new feign.codec.StringDecoder().decode(response, String.class));
 			}
 		} catch (IOException e) {
 			log.error(" Synchronization with identity service failed or internal error happened", e);
 		}
 
 	}
+	
+	public void updateCompanyProfile(String companyId, String attributeTypeName, String newValue) {
+		profileService.updateTrustAttributeValue(companyId, attributeTypeName, newValue);
+	}
 
 	public void updateCompanyProfileAndSyncScore(String companyId, String attributeTypeName, String newValue) {
 		profileService.updateTrustAttributeValue(companyId, attributeTypeName, newValue);
+		syncScores(companyId);
+	}
+	
+	public void syncScores(String companyId){
 		recalculateScoreAndSaveIt(companyId);
 		recalculateTrustScoreAndSaveIt(companyId);
 	}

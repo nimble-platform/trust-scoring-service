@@ -30,17 +30,23 @@ public class ChangeEventHandlerService {
 			profileCompletnessCollector.fetchNewValueAndSyncScore(changeEvent.getCompanyIdentifier(),
 					Trust.ProfileCompletnessDetails.getLocalName());
 		}
-		if (type.equalsIgnoreCase("company_description")) {
+		else if (type.equalsIgnoreCase("company_description")) {
 			profileCompletnessCollector.fetchNewValueAndSyncScore(changeEvent.getCompanyIdentifier(),
 					Trust.ProfileCompletnessDescription.getLocalName());
 		}
-		if (type.equalsIgnoreCase("company_certificates")) {
+		else if (type.equalsIgnoreCase("company_certificates")) {
 			profileCompletnessCollector.fetchNewValueAndSyncScore(changeEvent.getCompanyIdentifier(),
 					Trust.ProfileCompletnessCertificates.getLocalName());
 		}
-		if (type.equalsIgnoreCase("company_trade")) {
+		else if (type.equalsIgnoreCase("company_trade")) {
 			profileCompletnessCollector.fetchNewValueAndSyncScore(changeEvent.getCompanyIdentifier(),
 					Trust.ProfileCompletnessTrade.getLocalName());
+		}
+		else if (type.equals("company_reviews")){
+			
+		}
+		else{
+			throw new Exception("uknown change type");
 		}
 	}
 
