@@ -18,7 +18,9 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import nimble.trust.engine.domain.TrustAttributeType;
+import nimble.trust.engine.domain.TrustPolicy;
 import nimble.trust.engine.service.TrustAttributeTypeService;
+import nimble.trust.engine.service.TrustPolicyService;
 import nimble.trust.web.dto.DtoUtil;
 import nimble.trust.web.dto.TrustAttributeTypeDto;
 
@@ -31,6 +33,9 @@ public class TrustPolicyController {
 	
 	@Autowired
     private TrustAttributeTypeService trustAttributeTypeService;
+	
+	@Autowired
+	private TrustPolicyService trustPolicyService;
 
 
 	@ApiOperation(value = "List trust metric types", 
@@ -67,6 +72,27 @@ public class TrustPolicyController {
 		return new ResponseEntity<>(converted, HttpStatus.OK);
 	}
 
+	
+	@ApiOperation(value = "Get trust policy", 
+			notes = "Provides trust policy", 
+			response = TrustPolicy.class, responseContainer = "")
+	@ApiResponses(value = { 
+			@ApiResponse(code = 200, message = "Policy returned sucessfully",response=TrustPolicy.class),
+			@ApiResponse(code = 404, message = "TrustPolicy not found",response=String.class)
+			})
+	@RequestMapping(value = "/trust/policy/global", produces = { "application/json" }, method = RequestMethod.GET)
+	public ResponseEntity<Object> getTrustPolicy( @RequestHeader(value = "Authorization") String bearerToken) {
+		
+		TrustPolicy policy = trustPolicyService.findGlobalTRustPolicy();
+				
+		if (policy == null){
+		    String msg = "Failed to find trust policy";
+		    log.warn(msg);
+		    return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<>(policy, HttpStatus.OK);
+	}
+	
 	
     
 }
