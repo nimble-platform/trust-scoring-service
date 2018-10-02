@@ -42,7 +42,7 @@ public class TrustPolicyController {
 			notes = "Returns a list of trust metric types", 
 			response = TrustAttributeTypeDto.class, responseContainer = "List")
 	@ApiResponses(value = { @ApiResponse(code = 200, message = "List returned sucessfully",response=TrustAttributeTypeDto.class)})
-	@RequestMapping(value = "/trust/metrictypes/all", produces = { "application/json" }, method = RequestMethod.GET)
+	@RequestMapping(value = "/metrictypes/all", produces = { "application/json" }, method = RequestMethod.GET)
 	public ResponseEntity<List<TrustAttributeTypeDto>> getAllMetricTypes(
 			@RequestHeader(value = "Authorization") String bearerToken) {
 		List<TrustAttributeType> attributeTypes = trustAttributeTypeService.findAllRootLevel();
@@ -57,7 +57,7 @@ public class TrustPolicyController {
 			@ApiResponse(code = 200, message = "List returned sucessfully",response=TrustAttributeTypeDto.class),
 			@ApiResponse(code = 404, message = "Type not found",response=String.class)
 			})
-	@RequestMapping(value = "/trust/metrictypes/sub/{typeId}", produces = { "application/json" }, method = RequestMethod.GET)
+	@RequestMapping(value = "/metrictypes/sub/{typeId}", produces = { "application/json" }, method = RequestMethod.GET)
 	public ResponseEntity<Object> getSubmetricTypes( @PathVariable Long typeId, 
 			@RequestHeader(value = "Authorization") String bearerToken) {
 		
@@ -80,7 +80,7 @@ public class TrustPolicyController {
 			@ApiResponse(code = 200, message = "Policy returned sucessfully",response=TrustPolicy.class),
 			@ApiResponse(code = 404, message = "TrustPolicy not found",response=String.class)
 			})
-	@RequestMapping(value = "/trust/policy/global", produces = { "application/json" }, method = RequestMethod.GET)
+	@RequestMapping(value = "/policy/global", produces = { "application/json" }, method = RequestMethod.GET)
 	public ResponseEntity<Object> getTrustPolicy( @RequestHeader(value = "Authorization") String bearerToken) {
 		
 		TrustPolicy policy = trustPolicyService.findGlobalTRustPolicy();
