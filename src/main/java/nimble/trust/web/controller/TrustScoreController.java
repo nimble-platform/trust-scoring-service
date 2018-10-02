@@ -9,16 +9,19 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import eu.nimble.service.model.ubl.commonaggregatecomponents.PartyType;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
@@ -32,6 +35,7 @@ import nimble.trust.engine.module.Factory;
 import nimble.trust.engine.op.enums.EnumLevel;
 import nimble.trust.engine.op.enums.EnumScoreStrategy;
 import nimble.trust.engine.service.ChangeEventHandlerService;
+import nimble.trust.engine.service.TrustProfileService;
 import nimble.trust.engine.service.interfaces.TrustCompositionManager;
 import nimble.trust.engine.service.interfaces.TrustSimpleManager;
 import nimble.trust.swagger.api.TrustApi;
@@ -46,6 +50,8 @@ public class TrustScoreController implements TrustApi {
 	@Autowired
 	private ChangeEventHandlerService eventHandlerService;
 
+	@Autowired
+	private TrustProfileService trustProfileService;
 	
 	
     @ApiOperation(value = "Notification of trust data change", 
@@ -57,7 +63,7 @@ public class TrustScoreController implements TrustApi {
         @ApiResponse(code = 200, message = "ChangeEvent succesfull processed", response = String.class),
         @ApiResponse(code = 400, message = "Bad request - validation failed", response = String.class),
         @ApiResponse(code = 500, message = "Error in processing the notification", response = String.class)})
-    @RequestMapping(value = "/trust/notifyChange", produces = { "application/json" },  method = RequestMethod.POST)
+    @RequestMapping(value = "/notifyChange", produces = { "application/json" },  method = RequestMethod.POST)
     public ResponseEntity<String> notificationTrustDataChange(@RequestHeader(value="Authorization", required=true) String bearerToken,
     		@ApiParam(value = "ChangeNotification" ,required=true) @Valid @RequestBody ChangeEvent changeEvent){
     	try {
@@ -73,6 +79,34 @@ public class TrustScoreController implements TrustApi {
 	
 	
 	
+    @ApiOperation(value = "Obtain Party with trust score", notes = "Obtain UBL Party with trust score",
+    		response = PartyType.class, tags={  })
+    @ApiResponses(value = { 
+            @ApiResponse(code = 200, message = "Request succesfull processed", response = String.class),
+            @ApiResponse(code = 404, message = "Party with partyId not found", response = String.class),
+            @ApiResponse(code = 500, message = "Internal Server Error", response = String.class)})
+    @RequestMapping(value = "/party/{partyId}/trust",produces = MediaType.APPLICATION_JSON_VALUE,method = RequestMethod.GET)
+    public ResponseEntity<?> getPartyTrustData(@ApiParam(value = "Identifier of the party") @PathVariable String partyId,
+                                             @ApiParam(value = "Authorization header to be obtained via login to the NIMBLE platform") @RequestHeader(value = "Authorization") String bearerToken) {
+    	
+    	PartyType partyType = null;
+    	try {
+    		partyType = trustProfileService.createPartyType(partyId);
+    		if (partyType == null){
+    			log.warn("GetPartyTrustData not found data for partyId:"+partyId);
+        		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        	}
+        	else{
+        		log.info("GetPartyTrustData successfully executed for partyId:"+partyId);
+        		return new ResponseEntity<>(partyType, HttpStatus.OK);
+        	}
+		} catch (Exception e) {
+			log.error("GetPartyTrustData failed for partyId"+partyId, e);
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+    	
+    	
+    }
    
     
     

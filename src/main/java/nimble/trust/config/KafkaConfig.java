@@ -84,24 +84,24 @@ public class KafkaConfig {
     }
 
     public static class AuthorizedMessage {
-        private String value;
+        private String companyId;
         private String accessToken;
 
         public AuthorizedMessage() {
         }
 
-        public AuthorizedMessage(String value, String accessToken) {
-            this.value = value;
+        public AuthorizedMessage(String companyId, String accessToken) {
+            this.companyId = companyId;
             this.accessToken = accessToken;
         }
+        
+        public String getCompanyId() {
+			return companyId;
+		}
 
-        public String getValue() {
-            return value;
-        }
-
-        public void setValue(String value) {
-            this.value = value;
-        }
+        public void setCompanyId(String companyId) {
+			this.companyId = companyId;
+		}
 
         public String getAccessToken() {
             return accessToken;
