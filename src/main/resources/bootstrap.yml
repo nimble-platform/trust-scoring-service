@@ -54,4 +54,11 @@ nimble:
    topics:
      companyUpdates: ${KAFKA_TOPIC_COMPANY_UPDATES:company-updates}
      trustScoreUpdates: ${KAFKA_TOPIC_TRUST_SCORE_UPDATES:trust-score-updates}
-   
+     
+#   
+#feign:
+#  client:
+#    config:
+#      default:
+#        connectTimeout: 10000
+#        readTimeout: 10000

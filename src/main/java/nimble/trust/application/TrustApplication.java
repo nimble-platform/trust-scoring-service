@@ -17,6 +17,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.web.bind.annotation.RestController;
 
+import feign.Logger;
 import nimble.trust.config.AuditorAwarer;
 
 @Configuration
@@ -58,5 +59,10 @@ public class TrustApplication implements CommandLineRunner {
             return 10;
         }
 
+    }
+    
+    @Bean
+    Logger.Level feignLoggerLevel() {
+        return Logger.Level.FULL;
     }
 }
