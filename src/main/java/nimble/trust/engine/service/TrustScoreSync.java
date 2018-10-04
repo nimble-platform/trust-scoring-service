@@ -20,7 +20,6 @@ public class TrustScoreSync {
 	private String trustScoreUpdatesTopic;
 	
 	
-
 	@Autowired
 	private KafkaTemplate<String, KafkaConfig.AuthorizedMessage> kafkaTemplate;
 

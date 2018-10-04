@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import com.google.common.eventbus.AsyncEventBus;
 
 import nimble.trust.engine.collector.ProfileCompletnessCollector;
+import nimble.trust.engine.collector.RatingsCollector;
 import nimble.trust.engine.model.vocabulary.Trust;
 import nimble.trust.web.dto.ChangeEvent;
 
@@ -17,6 +18,9 @@ public class ChangeEventHandlerService {
 
 	@Autowired
 	private ProfileCompletnessCollector profileCompletnessCollector;
+	
+	@Autowired
+	private RatingsCollector ratingsCollector;
 
 	public void postChangeEvent(ChangeEvent changeEvent) throws Exception {
 		asyncEventBus.post(changeEvent);
@@ -42,16 +46,14 @@ public class ChangeEventHandlerService {
 			profileCompletnessCollector.fetchNewValueAndSyncScore(changeEvent.getCompanyIdentifier(),
 					Trust.ProfileCompletnessTrade.getLocalName());
 		}
-		else if (type.equals("company_reviews")){
-			
+		else if (type.equals("ratings-update")){
+			ratingsCollector.fetchRatingsSummary(changeEvent.getCompanyIdentifier());
+		}
+		else if (type.equals("company-updates")){
+			profileCompletnessCollector.fetchProfileCompletnessValues(changeEvent.getCompanyIdentifier());	
 		}
 		else{
 			throw new Exception("uknown change type");
 		}
 	}
-
-	public void postChangeEvent(String partyId) {
-		profileCompletnessCollector.obtainNewValues(partyId);
-	}
-
 }

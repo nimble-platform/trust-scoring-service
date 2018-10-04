@@ -145,6 +145,12 @@
             <artifactId>postgresql</artifactId>
         </dependency>
 
+		<dependency>
+    		<groupId>io.github.openfeign</groupId>
+    		<artifactId>feign-gson</artifactId>
+    		<version>9.3.1</version>
+		</dependency>
+
         <dependency>
             <groupId>eu.nimble.core.common</groupId>
             <artifactId>utility</artifactId>

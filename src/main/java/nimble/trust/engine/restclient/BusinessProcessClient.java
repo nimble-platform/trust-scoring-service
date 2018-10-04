@@ -35,5 +35,11 @@ public interface BusinessProcessClient {
 			@ApiParam(value = "Company ID", required = false) @RequestParam(value = "companyId", required = false) String companyId,
 			@ApiParam(value = "Role in business process. Can be seller or buyer", required = false) @RequestParam(value = "role", required = false, defaultValue = "SELLER") String role,
 			@ApiParam(value = "State of transaction. Can be WaitingResponse, Approved or Denied", required = false) @RequestParam(value = "status", required = false) String status);
+	
+	
+	@RequestMapping(value = "/ratingsSummary", produces = {"application/json"}, method = RequestMethod.GET)
+	Response getRatingsSummary(
+			@RequestParam(value = "partyID") String partyID,
+            @ApiParam(value = "" ,required=true ) @RequestHeader(value="Authorization", required=true) String bearerToken);
 
 }

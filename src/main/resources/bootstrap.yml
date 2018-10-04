@@ -54,6 +54,7 @@ nimble:
    topics:
      companyUpdates: ${KAFKA_TOPIC_COMPANY_UPDATES:company-updates}
      trustScoreUpdates: ${KAFKA_TOPIC_TRUST_SCORE_UPDATES:trust-score-updates}
+     ratingsUpdates: ${KAFKA_TOPIC_BUSINESS_PROCESS_UPDATES:business-process-updates}
      
 #   
 #feign:

@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -26,7 +25,7 @@ import nimble.trust.engine.model.vocabulary.QualityIndicatorConvert;
 import nimble.trust.engine.model.vocabulary.Trust;
 import nimble.trust.engine.restclient.IdentityServiceClient;
 import nimble.trust.engine.service.TrustProfileService;
-import nimble.trust.engine.service.TrustScoreSync;
+import nimble.trust.engine.service.TrustCalculationService;
 
 @Service
 public class ProfileCompletnessCollector {
@@ -38,9 +37,11 @@ public class ProfileCompletnessCollector {
 
 	@Autowired
 	private IdentityServiceClient identityServiceClient;
-
+	
+	
 	@Autowired
-	private TrustScoreSync trustScoreSync;
+	private TrustCalculationService trustCalculationService;
+
 
 	/**
 	 * responsible to call an identity service to obtain new data and to recalc
@@ -48,7 +49,7 @@ public class ProfileCompletnessCollector {
 	 * 
 	 * @param partyId
 	 */
-	public void obtainNewValues(String partyId) {
+	public void fetchProfileCompletnessValues(String partyId) {
 
 		final String bearerToken = SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString();
 
@@ -99,8 +100,8 @@ public class ProfileCompletnessCollector {
 	}
 	
 	public void syncScores(String companyId){
-		recalculateScoreAndSaveIt(companyId);
-		recalculateTrustScoreAndSaveIt(companyId);
+		recalculateProfileCompleteness(companyId);
+		recalculateTrustScore(companyId);
 	}
 
 	public void fetchNewValueAndSyncScore(String companyId, String attributeTypeName) {
@@ -108,8 +109,8 @@ public class ProfileCompletnessCollector {
 		if (newValue == null)
 			return;
 		profileService.updateTrustAttributeValue(companyId, attributeTypeName, newValue);
-		recalculateScoreAndSaveIt(companyId);
-		recalculateTrustScoreAndSaveIt(companyId);
+		recalculateProfileCompleteness(companyId);
+		recalculateTrustScore(companyId);
 	}
 
 	private String fetchNewValue(String partyId, String attributeTypeName) {
@@ -146,7 +147,7 @@ public class ProfileCompletnessCollector {
 		return null;
 	}
 
-	public void recalculateScoreAndSaveIt(String companyId) {
+	public void recalculateProfileCompleteness(String companyId) {
 		TrustProfile profile = profileService.findByAgentAltId(companyId);
 		TrustAttribute attr1 = profile.findAttribute(Trust.ProfileCompletnessTrade.getLocalName());
 		TrustAttribute attr2 = profile.findAttribute(Trust.ProfileCompletnessCertificates.getLocalName());
@@ -163,17 +164,14 @@ public class ProfileCompletnessCollector {
 				.add((attr4 != null && attr4.getValue() != null) ? new BigDecimal(attr4.getValue()) : BigDecimal.ZERO);
 		score = (score.compareTo(BigDecimal.ZERO) == 0) ? BigDecimal.ZERO : score.divide(new BigDecimal(4L));
 
+		//persist score
 		profileService.updateTrustAttributeValue(companyId, Trust.OverallProfileCompletness.getLocalName(),
 				score.toString());
 	}
 
-	@Transactional
-	public void recalculateTrustScoreAndSaveIt(String companyId) {
-
-		log.info("trust score updated");
-
-		trustScoreSync.syncWithCatalogService(companyId);
-
+	
+	public void recalculateTrustScore(String companyId) {
+		trustCalculationService.score(companyId);
 	}
 
 }

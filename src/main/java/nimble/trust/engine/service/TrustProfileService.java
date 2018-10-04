@@ -106,6 +106,7 @@ public class TrustProfileService {
 				QualityIndicatorType qualityIndicator = new QualityIndicatorType();
 				qualityIndicator.setQualityParameter(qualityName);
 				QuantityType quantity = new QuantityType();
+				if (trustAttribute.getValue()==null) continue;
 				quantity.setValue(new BigDecimal(trustAttribute.getValue()));
 				qualityIndicator.setQuantity(quantity);
 				qualityIndicatorTypes.add(qualityIndicator);

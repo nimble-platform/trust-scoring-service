@@ -12,7 +12,10 @@ import org.springframework.stereotype.Service;
 import com.fasterxml.jackson.core.type.TypeReference;
 
 import eu.nimble.utility.JsonSerializationUtility;
+import nimble.trust.engine.model.vocabulary.QualityIndicatorConvert;
 import nimble.trust.engine.restclient.BusinessProcessClient;
+import nimble.trust.engine.service.TrustCalculationService;
+import nimble.trust.engine.service.TrustProfileService;
 import nimble.trust.web.dto.OverallStatistics;
 
 @Service
@@ -22,6 +25,14 @@ public class StatisticsCollector {
 
 	@Autowired
 	private BusinessProcessClient businessProcessClient;
+	
+	@Autowired
+	private TrustProfileService profileService;
+	
+
+	@Autowired
+	private TrustCalculationService trustCalculationService;
+
 
 	// collect statistics
 
@@ -35,7 +46,23 @@ public class StatisticsCollector {
 				OverallStatistics statistics = JsonSerializationUtility
 						.deserializeContent(response.body().asInputStream(), new TypeReference<OverallStatistics>() {
 						});
-				System.out.println(statistics);
+				
+				profileService.updateTrustAttributeValue(partyId,
+						QualityIndicatorConvert.AverageNegotiationTime.getTrustVocabulary(),
+						new BigDecimal(statistics.getAverageNegotiationTime()).toString());
+				profileService.updateTrustAttributeValue(partyId,
+						QualityIndicatorConvert.AverageTimeToRespond.getTrustVocabulary(),
+						new BigDecimal(statistics.getAverageResponseTime()).toString());
+				profileService.updateTrustAttributeValue(partyId,
+						QualityIndicatorConvert.TradingVolume.getTrustVocabulary(),
+						new BigDecimal(statistics.getTradingVolume()).toString());
+				profileService.updateTrustAttributeValue(partyId,
+						QualityIndicatorConvert.NumberOfCompletedTransactions.getTrustVocabulary(),
+						new BigDecimal(statistics.getNumberOfTransactions()).toString());
+				
+				
+				trustCalculationService.score(partyId);
+				
 			} else {
 				log.info("Synchronization with business process statistics failed due: "
 						+ new feign.codec.StringDecoder().decode(response, String.class));
@@ -46,7 +73,7 @@ public class StatisticsCollector {
 	}
 	
 	
-	public void fetchTotalTransactions(String partyId) {
+	public BigDecimal fetchTotalTransactions(String partyId) {
 //		final String bearerToken = SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString();
 		try {
 
@@ -55,7 +82,7 @@ public class StatisticsCollector {
 			if (response.status() == HttpStatus.OK.value()) {
 				Object decoded =  new feign.codec.StringDecoder().decode(response, String.class);
 				BigDecimal count = new BigDecimal(decoded.toString());
-				System.out.println(count);
+				return count; 
 			} else {
 				log.info("Rest call to business process getProcessCount failed due: "
 						+ new feign.codec.StringDecoder().decode(response, String.class));
@@ -63,9 +90,10 @@ public class StatisticsCollector {
 		} catch (Exception e) {
 			log.error("Rest call to business process getProcessCount internal error:", e);
 		}
+		return null;
 	}
 	
-	public void fetchTotalTrading(String partyId) {
+	public BigDecimal fetchTotalTrading(String partyId) {
 //		final String bearerToken = SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString();
 		try {
 
@@ -74,7 +102,7 @@ public class StatisticsCollector {
 			if (response.status() == HttpStatus.OK.value()) {
 				Object decoded =  new feign.codec.StringDecoder().decode(response, String.class);
 				BigDecimal count = new BigDecimal(decoded.toString());
-				System.out.println(count);
+				return count; 
 			} else {
 				log.info("Rest call to business process getTradingVolume failed due: "
 						+ new feign.codec.StringDecoder().decode(response, String.class));
@@ -82,6 +110,7 @@ public class StatisticsCollector {
 		} catch (Exception e) {
 			log.error("Rest call to business process getTradingVolume internal error:", e);
 		}
+		return null;
 	}
 
 
