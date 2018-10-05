@@ -117,7 +117,7 @@ public class TrustScoreController implements TrustApi {
             @ApiResponse(code = 200, message = "Request succesfull processed", response = String.class),
             @ApiResponse(code = 404, message = "Party with partyId not found", response = String.class),
             @ApiResponse(code = 500, message = "Internal Server Error", response = String.class)})
-    @RequestMapping(value = "/party/{partyId}/trust",produces = MediaType.APPLICATION_JSON_VALUE,method = RequestMethod.GET)
+    @RequestMapping(value = "/party/{partyId}/trust2",produces = MediaType.APPLICATION_JSON_VALUE,method = RequestMethod.GET)
     public ResponseEntity<?> getPartyTrustData2(@ApiParam(value = "Identifier of the party") @PathVariable("partyId") String partyId) {
     	
     	PartyType partyType = null;
