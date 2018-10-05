@@ -12,7 +12,11 @@ public enum QualityIndicatorConvert {
 	OverallFullfilmentOfTermsRating (Trust.OverallFullfilmentOfTermsRating.getLocalName(), QualityIndicatorParameter.FULFILLMENT_OF_TERMS ),
 
 	OverallDeliveryAndPackagingRating (Trust.OverallDeliveryAndPackagingRating.getLocalName(), QualityIndicatorParameter.DELIVERY_PACKAGING),
+	
 	NumberOfCompletedTransactions (Trust.NumberOfCompletedTransactions.getLocalName(), QualityIndicatorParameter.NUMBER_OF_TRANSACTIONS),
+	
+	//FIXME  -- add NUMBER_OF_UNCompleted-TRANSACTIONS
+	NumberOfUncompletedTransactions (Trust.NumberOfUncompletedTransactions.getLocalName(), QualityIndicatorParameter.NUMBER_OF_TRANSACTIONS),
 	
 	TradingVolume (Trust.TradingVolume.getLocalName(), QualityIndicatorParameter.TRADING_VOLUME),
 	
@@ -24,7 +28,7 @@ public enum QualityIndicatorConvert {
 	
 	ProfileCompletnessTrade (Trust.ProfileCompletnessTrade.getLocalName(), QualityIndicatorParameter.COMPLETENESS_OF_COMPANY_TRADE_DETAILS),
 	
-	ProfileCompletnessCertificates (Trust.ProfileCompletnessTrade.getLocalName(), QualityIndicatorParameter.COMPLETENESS_OF_COMPANY_CERTIFICATE_DETAILS),
+	ProfileCompletnessCertificates (Trust.ProfileCompletnessCertificates.getLocalName(), QualityIndicatorParameter.COMPLETENESS_OF_COMPANY_CERTIFICATE_DETAILS),
 	
 	AverageTimeToRespond (Trust.AverageTimeToRespond.getLocalName(), QualityIndicatorParameter.RESPONSE_TIME),
 	

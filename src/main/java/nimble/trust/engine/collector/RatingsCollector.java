@@ -63,33 +63,35 @@ public class RatingsCollector {
 
 		Double totalNumberOfRatings = json.getDouble("totalNumberOfRatings");
 
-		if (isNullOrZero(totalNumberOfRatings))
-			return;
+		boolean allZero = false;
+		if (isNullOrZero(totalNumberOfRatings)){
+			allZero = true;
+		}
 
 		Double qualityOfNegotiationProcess = json.getDouble("qualityOfNegotiationProcess");
 		Double qualityOfOrderingProcess = json.getDouble("qualityOfOrderingProcess");
 		Double responseTimeRating = json.getDouble("responseTimeRating");
 
-		Double qualityOfNegotiationProcess_Average = qualityOfNegotiationProcess / totalNumberOfRatings;
-		Double qualityOfOrderingProcess_Average = qualityOfOrderingProcess / totalNumberOfRatings;
-		Double responseTimeRating_Average = responseTimeRating / totalNumberOfRatings;
+		Double qualityOfNegotiationProcess_Average = (allZero)? 0:qualityOfNegotiationProcess / totalNumberOfRatings;
+		Double qualityOfOrderingProcess_Average = (allZero)? 0:qualityOfOrderingProcess / totalNumberOfRatings;
+		Double responseTimeRating_Average = (allZero)? 0:responseTimeRating / totalNumberOfRatings;
 
-		Double overallCommunicationRating = (qualityOfNegotiationProcess_Average + qualityOfOrderingProcess_Average
+		Double overallCommunicationRating = (allZero)? 0:(qualityOfNegotiationProcess_Average + qualityOfOrderingProcess_Average
 				+ responseTimeRating_Average) / 3;
 
 		Double listingAccuracy = json.getDouble("listingAccuracy");
 		Double conformanceToContractualTerms = json.getDouble("conformanceToContractualTerms");
 
-		Double listingAccuracy_Average = listingAccuracy / totalNumberOfRatings;
-		Double conformanceToContractualTerms_Average = conformanceToContractualTerms / totalNumberOfRatings;
+		Double listingAccuracy_Average = (allZero)? 0:listingAccuracy / totalNumberOfRatings;
+		Double conformanceToContractualTerms_Average = (allZero)? 0:conformanceToContractualTerms / totalNumberOfRatings;
 
-		Double overallFullfilmentOfTermsRating = (listingAccuracy_Average + conformanceToContractualTerms_Average) / 2;
+		Double overallFullfilmentOfTermsRating =(allZero)? 0:(listingAccuracy_Average + conformanceToContractualTerms_Average) / 2;
 
 		Double deliveryAndPackaging = json.getDouble("deliveryAndPackaging");
 
-		Double deliveryAndPackaging_Average = deliveryAndPackaging / totalNumberOfRatings;
+		Double deliveryAndPackaging_Average = (allZero)? 0: deliveryAndPackaging / totalNumberOfRatings;
 
-		Double overallCompanyRating = (overallCommunicationRating + overallFullfilmentOfTermsRating
+		Double overallCompanyRating = (allZero)? 0: (overallCommunicationRating + overallFullfilmentOfTermsRating
 				+ deliveryAndPackaging_Average) / 3;
 
 		profileService.updateTrustAttributeValue(partyId,
