@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import nimble.trust.engine.collector.RatingsCollector;
 import nimble.trust.engine.collector.StatisticsCollector;
 import nimble.trust.engine.domain.Agent;
 import nimble.trust.engine.repository.AgentRepository;
@@ -26,9 +27,17 @@ public class AgentController {
     
     @Autowired
     private StatisticsCollector collector;
+    
+    @Autowired
+    private RatingsCollector ratingCollector;
 
     @GetMapping("/agents")
     public Page<Agent> getQuestions(Pageable pageable, @RequestHeader(value = "Authorization") String bearerToken) {
+        return agentRepository.findAll(pageable);
+    }
+    
+    @GetMapping("/agents-no-auth")
+    public Page<Agent> getQuestions(Pageable pageable) {
         return agentRepository.findAll(pageable);
     }
 
@@ -44,6 +53,8 @@ public class AgentController {
     	collector.fetchStatistics(partyId);
     	collector.fetchTotalTrading(null);
     	collector.fetchTotalTransactions(null);
+    	
+    	ratingCollector.fetchRatingsSummary(partyId);
     	
     	return new ResponseEntity<>(HttpStatus.OK);
     	
