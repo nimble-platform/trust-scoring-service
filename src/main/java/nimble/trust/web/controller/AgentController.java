@@ -28,6 +28,7 @@ public class AgentController {
     @Autowired
     private StatisticsCollector collector;
     
+    
     @Autowired
     private RatingsCollector ratingCollector;
 
@@ -35,6 +36,9 @@ public class AgentController {
     public Page<Agent> getQuestions(Pageable pageable, @RequestHeader(value = "Authorization") String bearerToken) {
         return agentRepository.findAll(pageable);
     }
+    
+    
+
     
     @GetMapping("/agents-no-auth")
     public Page<Agent> getQuestions(Pageable pageable) {
@@ -50,16 +54,30 @@ public class AgentController {
     
     @PostMapping("/test")
     public ResponseEntity<?> test( @RequestParam(value = "companyId", required = false) String partyId, @RequestHeader(value = "Authorization") String bearerToken) {
-    	collector.fetchStatistics(partyId);
-    	collector.fetchTotalTrading(null);
-    	collector.fetchTotalTransactions(null);
+    
     	
-    	ratingCollector.fetchRatingsSummary(partyId);
-    	
+//    	collector.fetchStatistics(partyId);
+//    	collector.fetchTotalTrading(null);
+//    	collector.fetchTotalTransactions(null);
+//    	
+//    	ratingCollector.fetchRatingsSummary(partyId);
+//    	
     	return new ResponseEntity<>(HttpStatus.OK);
     	
     }
     
+    @GetMapping("/test-auth")
+    public ResponseEntity<?>  testAuth(@RequestHeader(value = "Authorization") String bearerToken) {
+    	
+    	return new ResponseEntity<>(HttpStatus.OK);
+    	
+    }
 
+    @GetMapping("/test-auth2")
+    public ResponseEntity<?>  testAuth2(@RequestHeader(value = "Token") String bearerToken) {
+    	
+    	return new ResponseEntity<>(HttpStatus.OK);
+    	
+    }
     
 }
