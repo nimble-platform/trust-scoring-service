@@ -80,9 +80,8 @@ public class TrustScoreController implements TrustApi {
 			return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
 		}
     }
-	
-	
-	
+    
+    
     @ApiOperation(value = "Obtain Party with trust score", notes = "Obtain UBL Party with trust score",
     		response = PartyType.class, tags={  })
     @ApiResponses(value = { 
@@ -90,7 +89,7 @@ public class TrustScoreController implements TrustApi {
             @ApiResponse(code = 404, message = "Party with partyId not found", response = String.class),
             @ApiResponse(code = 500, message = "Internal Server Error", response = String.class)})
     @RequestMapping(value = "/party/{partyId}/trust",produces = MediaType.APPLICATION_JSON_VALUE,method = RequestMethod.GET)
-    public ResponseEntity<?> getPartyTrustData(@ApiParam(value = "Identifier of the party") @PathVariable String partyId,
+    public ResponseEntity<?> getPartyTrustData(@ApiParam(value = "Identifier of the party") @PathVariable("partyId") String partyId,
                                              @ApiParam(value = "Authorization header to be obtained via login to the NIMBLE platform") @RequestHeader(value = "Authorization") String bearerToken) {
     	
     	PartyType partyType = null;
@@ -108,8 +107,34 @@ public class TrustScoreController implements TrustApi {
 			log.error("GetPartyTrustData failed for partyId"+partyId, e);
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
+    }
+    
+    
+    
+    @ApiOperation(value = "Obtain Party with trust score 2", notes = "Obtain UBL Party with trust score 2",
+    		response = PartyType.class, tags={  })
+    @ApiResponses(value = { 
+            @ApiResponse(code = 200, message = "Request succesfull processed", response = String.class),
+            @ApiResponse(code = 404, message = "Party with partyId not found", response = String.class),
+            @ApiResponse(code = 500, message = "Internal Server Error", response = String.class)})
+    @RequestMapping(value = "/party/{partyId}/trust",produces = MediaType.APPLICATION_JSON_VALUE,method = RequestMethod.GET)
+    public ResponseEntity<?> getPartyTrustData2(@ApiParam(value = "Identifier of the party") @PathVariable("partyId") String partyId) {
     	
-    	
+    	PartyType partyType = null;
+    	try {
+    		partyType = trustProfileService.createPartyType(partyId);
+    		if (partyType == null){
+    			log.warn("GetPartyTrustData not found data for partyId:"+partyId);
+        		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        	}
+        	else{
+        		log.info("GetPartyTrustData successfully executed for partyId:"+partyId);
+        		return new ResponseEntity<>(partyType, HttpStatus.OK);
+        	}
+		} catch (Exception e) {
+			log.error("GetPartyTrustData failed for partyId"+partyId, e);
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
     }
     
     @ApiOperation(value = "Calculate trust score", notes = "Calculate trust score",
