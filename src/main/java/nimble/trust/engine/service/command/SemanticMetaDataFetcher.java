@@ -2,7 +2,6 @@ package nimble.trust.engine.service.command;
 
 
 import java.net.URI;
-import java.util.List;
 
 import org.apache.jena.atlas.logging.Log;
 import org.slf4j.Logger;
@@ -15,7 +14,6 @@ import com.hp.hpl.jena.rdf.model.ModelFactory;
 import nimble.trust.common.Syntax;
 import nimble.trust.engine.kb.RDFModelsHandler;
 import nimble.trust.engine.kb.SharedOntModelSpec;
-import nimble.trust.engine.kb.SparqlGraphStoreManager;
 import nimble.trust.engine.model.factory.TrustModelFactory;
 import nimble.trust.engine.model.io.ToGraphParser;
 import nimble.trust.engine.model.pojo.Agent;
@@ -28,20 +26,16 @@ import nimble.trust.util.uri.UIDGenerator;
  * Metadata fetch command responsible for obtaining resource annotations either from local file system / online / triple
  * stores
  * 
- * @author markov
+ * @author marko
  * 
  */
 public class SemanticMetaDataFetcher {
 
-	@SuppressWarnings("unused")
-	private final SparqlGraphStoreManager graphStoreManager;
 	
-	private final List<SparqlGraphStoreManager> externalGraphStoreMgrs;
+	
 	private static final Logger log = LoggerFactory.getLogger(SemanticMetaDataFetcher.class);
 
-	public SemanticMetaDataFetcher(final SparqlGraphStoreManager graphStoreManager, final List<SparqlGraphStoreManager> externalGraphStoreMgrs) {
-		this.graphStoreManager = graphStoreManager;
-		this.externalGraphStoreMgrs = externalGraphStoreMgrs;
+	public SemanticMetaDataFetcher() {
 	}
 
 	/**
@@ -89,21 +83,11 @@ public class SemanticMetaDataFetcher {
 		Model internalModel = null;
 		try {
 			if (fetchFromInternalRegirsty) {
-//				Log.info(this, "obtaining model from internal registry using sparqlEndpoint");
-//				internalModel = graphStoreManager.getGraph(uri);
-				Log.info(this, "obtaining model from internal MYSQL using D2RQ Bridge or CustomBridge");
+				Log.info(this, "obtaining model from trust database");
 				internalModel = CollectorConfig.InternalCollector.getCollector().collectInformation(uri.toASCIIString());
 			}
 		} catch (Exception e) {
-			//FIXME this log below is obsolute. now using mysql.
-			if (e instanceof org.apache.jena.atlas.web.HttpException) {
-				log.info("internal registry using sparqlEndpoint connection refused - sparqendpoint is not running //" + e.getMessage());
-			} else if (e.getMessage()!=null && e.getMessage().contains("HTTP error code")) {
-				throw new RuntimeException(e);
-			}
-				else {
-				e.printStackTrace();
-			}
+			e.printStackTrace();
 		}
 		
 		Model modelUnion;
@@ -135,11 +119,11 @@ public class SemanticMetaDataFetcher {
 	 */
 	private Model fetchServiceFromExternalRegistry(URI uri) {
 		Model model = null;
-		for (SparqlGraphStoreManager storeManager : externalGraphStoreMgrs) {
-			model = storeManager.getGraph(uri);
-			if (model.isEmpty() == false) // stop when model is found
-				continue;
-		}
+//		for (SparqlGraphStoreManager storeManager : externalGraphStoreMgrs) {
+//			model = storeManager.getGraph(uri);
+//			if (model.isEmpty() == false) // stop when model is found
+//				continue;
+//		}
 		return model;
 	}
 

@@ -35,6 +35,7 @@ import nimble.trust.engine.module.Factory;
 import nimble.trust.engine.op.enums.EnumLevel;
 import nimble.trust.engine.op.enums.EnumScoreStrategy;
 import nimble.trust.engine.service.ChangeEventHandlerService;
+import nimble.trust.engine.service.TrustCalculationService;
 import nimble.trust.engine.service.TrustProfileService;
 import nimble.trust.engine.service.interfaces.TrustCompositionManager;
 import nimble.trust.engine.service.interfaces.TrustSimpleManager;
@@ -53,11 +54,14 @@ public class TrustScoreController implements TrustApi {
 	@Autowired
 	private TrustProfileService trustProfileService;
 	
+	@Autowired
+	private TrustCalculationService trustCalculationService;
+	
 	
     @ApiOperation(value = "Notification of trust data change", 
     		notes = "Call this operation when trust-related data of a company are changed. "
     				+ "After calling this operation, trust service will collect updates are will recalculate the trust score. "
-    				+ "Valid options for changeType are 'company_reviews','company_details', 'company_description','company_certificates','company_trade'", 
+    				+ "Valid options for changeType are 'ratings-update','company_details', 'company_description','company_certificates','company_trade'", 
     		response = String.class, tags={  })
     @ApiResponses(value = { 
         @ApiResponse(code = 200, message = "ChangeEvent succesfull processed", response = String.class),
@@ -106,6 +110,26 @@ public class TrustScoreController implements TrustApi {
 		}
     	
     	
+    }
+    
+    @ApiOperation(value = "Calculate trust score", notes = "Calculate trust score",
+    		response = PartyType.class, tags={  })
+    @ApiResponses(value = { 
+            @ApiResponse(code = 200, message = "Request succesfull processed", response = String.class),
+            @ApiResponse(code = 404, message = "Party with partyId not found", response = String.class),
+            @ApiResponse(code = 500, message = "Internal Server Error", response = String.class)})
+    @RequestMapping(value = "/score/{partyId}",produces = MediaType.APPLICATION_JSON_VALUE,method = RequestMethod.GET)
+    public ResponseEntity<?> calculateTrustScore(@ApiParam(value = "Identifier of the party") @PathVariable String partyId,
+                                             @ApiParam(value = "Authorization header to be obtained via login to the NIMBLE platform") @RequestHeader(value = "Authorization") String bearerToken) {
+    	
+    	try {
+    		trustCalculationService.score(partyId);
+            return new ResponseEntity<>(HttpStatus.OK);
+		} catch (Exception e) {
+			log.error("Calculation failed for partyId"+partyId, e);
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+    
     }
    
     

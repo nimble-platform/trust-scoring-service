@@ -23,7 +23,7 @@ public class InternalCollector extends AbstractCollector {
 	}
 
 	private void initBridge() {
-		b = new BridgeDB(null);
+		b = new BridgeDB();
 	}
 
 	@Override

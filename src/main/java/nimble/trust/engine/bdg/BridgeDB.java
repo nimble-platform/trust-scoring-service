@@ -4,13 +4,13 @@ package nimble.trust.engine.bdg;
 
 
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import com.hp.hpl.jena.datatypes.xsd.XSDDatatype;
 import com.hp.hpl.jena.rdf.model.Model;
@@ -23,6 +23,8 @@ import nimble.trust.engine.model.vocabulary.ModelEnum;
 import nimble.trust.engine.model.vocabulary.NSPrefixes;
 import nimble.trust.engine.model.vocabulary.Trust;
 import nimble.trust.engine.model.vocabulary.UsdlSec;
+import nimble.trust.engine.service.BeanUtil;
+import nimble.trust.engine.service.TrustProfileService;
 
 /**
  * Obtainer of trust profile from sql database and turn it into rdf
@@ -34,13 +36,7 @@ public class BridgeDB extends ABridge{
 	
 	private static final Logger log = LoggerFactory.getLogger(BridgeDB.class);
 	
-	private  String jdbc_url = "jdbc:mysql://localhost/composetrust?user=root&password=";
-	
-	private Connection conn = null;
-	
-	java.sql.PreparedStatement ps = null;
-	
-	
+		
 	private String sqlString = 
 			" select a.ID hasID "+
 			" ,  a.ALTID hasCOMPOSEUID "+
@@ -74,19 +70,16 @@ public class BridgeDB extends ABridge{
 	
 
 	
-	
-	public BridgeDB(String pjdbc){
-		if (pjdbc !=null) jdbc_url = pjdbc;
-		log.info("trust service will connect to jdbc url "+jdbc_url);
-	}
-
-	
 	@Override
 	public synchronized Model getTrustProfile(String serviceId)   {
 		
+		TrustProfileService profileService = BeanUtil.getBean(TrustProfileService.class);
+		
+		System.out.println(profileService);
+		
 		ResultSet rs;
 		try {
-			rs = executeSelect(serviceId);
+			rs = null;//executeSelect(serviceId);
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new RuntimeException(e.getMessage());
@@ -206,31 +199,10 @@ public class BridgeDB extends ABridge{
 	}
 
 
-	private ResultSet executeSelect(String serviceId) throws Exception{
-		if (ps == null || ps.isClosed()){ 
-			ps = getConnection().prepareStatement(sqlString);
-		}
-		ps.setString(1, serviceId);
-		return ps.executeQuery();
-	}
-	
-	
-	private Connection  getConnection() throws Exception{
-		if (conn == null || conn.isClosed() == true || conn.isValid(0) == false){
-			 Class.forName("com.mysql.jdbc.Driver").newInstance();
-			 conn = DriverManager.getConnection(jdbc_url);
-		}
-		return conn;
-	}
+
 	
 	@Override
 	public void stop() {
-		try {
-			if (ps != null)
-				ps.close();
-			getConnection().close();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+
 	}
 }

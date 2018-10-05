@@ -131,7 +131,7 @@ public class BasicTrustManager implements TrustSimpleManager {
 	 * @return ontModel as a Jena model that contains statements about the resource
 	 */
 	private OntModel loadSemanticMetadata(URI uri, boolean fetchFromExternalRegistries, boolean useMappedLocations, boolean fetchFromInternalRegirsty) {
-		return new SemanticMetaDataFetcher(graphStoreManager, externalGraphStoreMgrs).apply(uri, fetchFromExternalRegistries, useMappedLocations, fetchFromInternalRegirsty);
+		return new SemanticMetaDataFetcher().apply(uri, fetchFromExternalRegistries, useMappedLocations, fetchFromInternalRegirsty);
 	}
 
 	@Override
@@ -273,16 +273,6 @@ public class BasicTrustManager implements TrustSimpleManager {
 			collector.collectInformation(resources, map);	 
 		}
 		
-		//TODO not all models have Trust.NS+"inputUID"
-		
-//		for (URI uri : resources) {
-//			fillTrustProfilForResource(model, uri, (List<Model>) list.get(uri));
-//			listModels.add(new Tuple2<URI, Model>(uri, model));
-//		}
-		
-		
-		//FIXME  - is this the best place for shuting down
-//		CollectorEnum.InternalCollector.getCollector().shutDown();
 		if (logRequest) {
 			storeModelsIntoStore(listModels);
 		}
