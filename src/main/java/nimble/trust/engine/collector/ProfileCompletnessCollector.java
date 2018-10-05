@@ -105,15 +105,16 @@ public class ProfileCompletnessCollector {
 	}
 
 	public void fetchNewValueAndSyncScore(String companyId, String attributeTypeName) {
-		String newValue = fetchNewValue(companyId, attributeTypeName);
-		if (newValue == null)
-			return;
-		profileService.updateTrustAttributeValue(companyId, attributeTypeName, newValue);
-		recalculateProfileCompleteness(companyId);
-		recalculateTrustScore(companyId);
+		fetchProfileCompletnessValues(companyId);
+//		String newValue = fetchNewValue(companyId, attributeTypeName);
+//		if (newValue == null)
+//			return;
+//		profileService.updateTrustAttributeValue(companyId, attributeTypeName, newValue);
+//		recalculateProfileCompleteness(companyId);
+//		recalculateTrustScore(companyId);
 	}
 
-	private String fetchNewValue(String partyId, String attributeTypeName) {
+	public String fetchNewValue(String partyId, String attributeTypeName) {
 
 		final String bearerToken = SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString();
 
