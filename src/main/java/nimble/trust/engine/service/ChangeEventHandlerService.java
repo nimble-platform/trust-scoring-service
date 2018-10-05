@@ -47,10 +47,10 @@ public class ChangeEventHandlerService {
 					Trust.ProfileCompletnessTrade.getLocalName());
 		}
 		else if (type.equals("ratings-update")){
-			ratingsCollector.fetchRatingsSummary(changeEvent.getCompanyIdentifier());
+			ratingsCollector.fetchRatingsSummary(changeEvent.getCompanyIdentifier(), true);
 		}
 		else if (type.equals("company-updates")){
-			profileCompletnessCollector.fetchProfileCompletnessValues(changeEvent.getCompanyIdentifier());	
+			profileCompletnessCollector.fetchProfileCompletnessValues(changeEvent.getCompanyIdentifier(), true);	
 		}
 		else{
 			throw new Exception("uknown change type");

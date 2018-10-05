@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import nimble.trust.engine.domain.TrustProfile;
 import nimble.trust.engine.model.vocabulary.QualityIndicatorConvert;
 import nimble.trust.engine.restclient.BusinessProcessClient;
 import nimble.trust.engine.service.TrustCalculationService;
@@ -31,9 +32,11 @@ public class RatingsCollector {
 	private TrustCalculationService trustCalculationService;
 
 	
+	@Autowired
+	private ProfileCompletnessCollector completnessCollector;
 	
 	// collect rating scores
-	public void fetchRatingsSummary(String partyId) {
+	public void fetchRatingsSummary(String partyId, Boolean recalculateTrustScore) {
 		final String bearerToken = SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString();
 		try {
 
@@ -43,6 +46,11 @@ public class RatingsCollector {
 				
 				String body = new feign.codec.StringDecoder().decode(response, String.class).toString();
 				processBody(partyId,body);
+				
+				if (recalculateTrustScore){
+					collectOtherDataIfNeeded(partyId);
+					trustCalculationService.score(partyId);
+				}
 
 			} else {
 				log.info("Synchronization with business process ratingsSummary failed due: "
@@ -50,6 +58,13 @@ public class RatingsCollector {
 			}
 		} catch (Exception e) {
 			log.error(" Synchronization with business process ratingsSummary internal error:", e);
+		}
+	}
+
+	private void collectOtherDataIfNeeded(String partyId) {
+		TrustProfile profile = profileService.findByAgentAltId(partyId);
+		if (profile.findAttribute(QualityIndicatorConvert.OverallProfileCompletness.getTrustVocabulary()) == null){
+			completnessCollector.fetchProfileCompletnessValues(partyId, false);
 		}
 	}
 
@@ -105,7 +120,6 @@ public class RatingsCollector {
 		profileService.updateTrustAttributeValue(partyId,
 				QualityIndicatorConvert.OverallCompanyRating.getTrustVocabulary(), new BigDecimal(overallCompanyRating).toString());
 		
-		trustCalculationService.score(partyId);
 	}
 
 	private boolean isNullOrZero(Double d) {

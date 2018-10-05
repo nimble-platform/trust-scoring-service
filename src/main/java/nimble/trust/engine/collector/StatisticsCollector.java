@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import com.fasterxml.jackson.core.type.TypeReference;
 
 import eu.nimble.utility.JsonSerializationUtility;
+import nimble.trust.engine.domain.TrustProfile;
 import nimble.trust.engine.model.vocabulary.QualityIndicatorConvert;
 import nimble.trust.engine.restclient.BusinessProcessClient;
 import nimble.trust.engine.service.TrustCalculationService;
@@ -32,11 +33,14 @@ public class StatisticsCollector {
 
 	@Autowired
 	private TrustCalculationService trustCalculationService;
+	
+	@Autowired
+	private ProfileCompletnessCollector completnessCollector;
 
 
 	// collect statistics
 
-	public void fetchStatistics(String partyId) {
+	public void fetchStatistics(String partyId, Boolean recalculateTrustScore) {
 		final String bearerToken = SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString();
 		try {
 
@@ -60,8 +64,10 @@ public class StatisticsCollector {
 						QualityIndicatorConvert.NumberOfCompletedTransactions.getTrustVocabulary(),
 						new BigDecimal(statistics.getNumberOfTransactions()).toString());
 				
-				
-				trustCalculationService.score(partyId);
+				if (recalculateTrustScore){
+					collectOtherDataIfNeeded(partyId);
+					trustCalculationService.score(partyId);
+				}
 				
 			} else {
 				log.info("Synchronization with business process statistics failed due: "
@@ -72,6 +78,12 @@ public class StatisticsCollector {
 		}
 	}
 	
+	private void collectOtherDataIfNeeded(String partyId) {
+		TrustProfile profile = profileService.findByAgentAltId(partyId);
+		if (profile.findAttribute(QualityIndicatorConvert.OverallProfileCompletness.getTrustVocabulary()) == null){
+			completnessCollector.fetchProfileCompletnessValues(partyId, false);
+		}
+	}
 	
 	public BigDecimal fetchTotalTransactions(String partyId) {
 //		final String bearerToken = SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString();

@@ -24,8 +24,8 @@ import nimble.trust.engine.domain.TrustProfile;
 import nimble.trust.engine.model.vocabulary.QualityIndicatorConvert;
 import nimble.trust.engine.model.vocabulary.Trust;
 import nimble.trust.engine.restclient.IdentityServiceClient;
-import nimble.trust.engine.service.TrustProfileService;
 import nimble.trust.engine.service.TrustCalculationService;
+import nimble.trust.engine.service.TrustProfileService;
 
 @Service
 public class ProfileCompletnessCollector {
@@ -38,6 +38,11 @@ public class ProfileCompletnessCollector {
 	@Autowired
 	private IdentityServiceClient identityServiceClient;
 	
+	@Autowired
+	private RatingsCollector ratingsCollector;
+	
+	@Autowired
+	private StatisticsCollector  statisticsCollector;
 	
 	@Autowired
 	private TrustCalculationService trustCalculationService;
@@ -49,7 +54,7 @@ public class ProfileCompletnessCollector {
 	 * 
 	 * @param partyId
 	 */
-	public void fetchProfileCompletnessValues(String partyId) {
+	public void fetchProfileCompletnessValues(String partyId, Boolean recalculateTrustScore) {
 
 		final String bearerToken = SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString();
 
@@ -79,7 +84,7 @@ public class ProfileCompletnessCollector {
 						}
 					}
 				}
-				syncScores(partyId);
+				syncScores(partyId, recalculateTrustScore);
 			} else {
 				log.info("Synchronization with identity service failed due: "
 						+ new feign.codec.StringDecoder().decode(response, String.class));
@@ -96,16 +101,27 @@ public class ProfileCompletnessCollector {
 
 	public void updateCompanyProfileAndSyncScore(String companyId, String attributeTypeName, String newValue) {
 		profileService.updateTrustAttributeValue(companyId, attributeTypeName, newValue);
-		syncScores(companyId);
+		syncScores(companyId, true);
 	}
 	
-	public void syncScores(String companyId){
-		recalculateProfileCompleteness(companyId);
-		recalculateTrustScore(companyId);
+	public void syncScores(String partyId, Boolean recalculateTrustScore){
+		recalculateProfileCompleteness(partyId);
+		
+		//try to obtain also other data if this is initial registration of the profileCompletness
+		TrustProfile profile = profileService.findByAgentAltId(partyId);
+		if (profile.findAttribute(QualityIndicatorConvert.OverallCompanyRating.getTrustVocabulary()) == null){
+			ratingsCollector.fetchRatingsSummary(partyId, false);
+		}
+		if (profile.findAttribute(QualityIndicatorConvert.AverageTimeToRespond.getTrustVocabulary()) == null){
+			statisticsCollector.fetchStatistics(partyId, false);
+		}
+		
+		if (recalculateTrustScore )
+			recalculateTrustScore(partyId);
 	}
 
-	public void fetchNewValueAndSyncScore(String companyId, String attributeTypeName) {
-		fetchProfileCompletnessValues(companyId);
+	public void fetchNewValueAndSyncScore(String partyId, String attributeTypeName) {
+		fetchProfileCompletnessValues(partyId, true);
 //		String newValue = fetchNewValue(companyId, attributeTypeName);
 //		if (newValue == null)
 //			return;
