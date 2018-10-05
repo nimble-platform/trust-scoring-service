@@ -15,8 +15,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.GenericFilterBean;
 
-//@Component
-//@Order(1)
+@Component
+@Order(1)
 public class TokenAuthenticationFilter extends GenericFilterBean {
 
 	@Override
