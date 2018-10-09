@@ -34,6 +34,7 @@ import nimble.trust.engine.model.pojo.TrustCriteria;
 import nimble.trust.engine.model.pojo.TrustProfile;
 import nimble.trust.engine.model.utils.TrustOntologyUtil;
 import nimble.trust.engine.model.vocabulary.ModelEnum;
+import nimble.trust.engine.model.vocabulary.Trust;
 import nimble.trust.engine.op.enums.EnumScoreStrategy;
 import nimble.trust.engine.op.match.GeneralMatchOp;
 import nimble.trust.engine.op.score.AbstractScoreStrategy;
@@ -261,9 +262,9 @@ public class BasicRankingManager implements RankingManager {
 			for (Element element : listCriteria) {
 				TrustAttribute requestedAttr = ((SingleElement)element).getAttribute();
 				TResource type = requestedAttr.obtainType();
-				log.info("evaluting " + type.getUri() + " for " + profile.getAgent().getUri());
+				log.info("Evaluting " + type.getUri().toString().replaceAll(Trust.NS, "") + " for partyId " + profile.getAgent().getCompose_ID().toString().replaceAll(Trust.NS, ""));
 				final List<TrustAttribute> attributes = TrustOntologyUtil.instance().filterByTypeDirect(profile.getAttributes(), type.getUri());
-				log.info("they will be evaluated w.r.t " + attributes);
+				log.info("Criterion " + attributes);
 				final double value = match(requestedAttr, attributes);
 				if (filterIfMissingAttribute && value == 0) {
 					return null;
@@ -285,10 +286,10 @@ public class BasicRankingManager implements RankingManager {
 	 * @return
 	 */
 	private double match(final TrustAttribute requested, final List<TrustAttribute> attributes) throws Exception{
-		ValuesHolder valuesHolder = new ValuesHolderLoader().loadValues(); 
+		ValuesHolder valuesHolder = new ValuesHolderLoader().loadValues();
 		GeneralMatchOp operator = new GeneralMatchOp(knowledgeBaseManager, valuesHolder);
 		double result = operator.apply(requested, attributes);
-		log.info("match result: "+result);
+		log.info("Match result: "+result);
 		return result;
 	}
 
@@ -296,10 +297,6 @@ public class BasicRankingManager implements RankingManager {
 	private ToModelParser getOrCreateToModelParser() {
 		if (parser == null) {
 			parser = new ToModelParser();
-//			String uri = ModelEnum.SecurityOntology.getURI();
-//			OntModel securityProfileModel = knowledgeBaseManager.getModel(uri, RDFModelsHandler.getGlobalInstance());
-//			SecProfileExpressionToModel secProfileExpressionToModel = new SecProfileExpressionToModel(securityProfileModel);
-//			parser.registerSpecificParser(secProfileExpressionToModel, Const.parserNameSecurityProfileAsUSDLSecExpression);
 			SecGuaranteeToModel secGuaranteeToModel = new SecGuaranteeToModel();
 			parser.registerSpecificParser(secGuaranteeToModel, Const.parserNameSecurityGuarantee);
 		}

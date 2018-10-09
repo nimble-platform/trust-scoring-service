@@ -51,12 +51,22 @@ public class StatisticsCollector {
 						.deserializeContent(response.body().asInputStream(), new TypeReference<OverallStatistics>() {
 						});
 				
+				Double averageNegotiationTime = statistics.getAverageNegotiationTime();
+				if (averageNegotiationTime.doubleValue()!=0){
+					averageNegotiationTime = averageNegotiationTime * 24*60*60; // day to seconds 
+				}
 				profileService.updateTrustAttributeValue(partyId,
 						QualityIndicatorConvert.AverageNegotiationTime.getTrustVocabulary(),
-						new BigDecimal(statistics.getAverageNegotiationTime()).toString());
+						new BigDecimal(averageNegotiationTime).toString());
+				
+				Double averageResponseTime = statistics.getAverageResponseTime();
+				if (averageResponseTime.doubleValue()!=0){
+					averageResponseTime = averageResponseTime * 24*60*60; // day to seconds 
+				}
 				profileService.updateTrustAttributeValue(partyId,
 						QualityIndicatorConvert.AverageTimeToRespond.getTrustVocabulary(),
-						new BigDecimal(statistics.getAverageResponseTime()).toString());
+						new BigDecimal(averageResponseTime).toString());
+				
 				profileService.updateTrustAttributeValue(partyId,
 						QualityIndicatorConvert.TradingVolume.getTrustVocabulary(),
 						new BigDecimal(statistics.getTradingVolume()).toString());

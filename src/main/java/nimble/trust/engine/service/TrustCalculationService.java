@@ -32,7 +32,7 @@ public class TrustCalculationService {
 	@Transactional
 	public void score(String partyId){
 		
-		log.info("trust score updated");
+
 		
 		//get profile and policy and calculate;
 		final TrustSimpleManager trustManager = Factory.createInstance(TrustSimpleManager.class);
@@ -46,6 +46,7 @@ public class TrustCalculationService {
 		}
 
 		System.out.println(trustScore);
+		log.info("trust score updated");
 		
 //		trustScoreSync.syncWithCatalogService(partyId);
 		

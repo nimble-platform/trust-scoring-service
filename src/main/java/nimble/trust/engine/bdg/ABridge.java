@@ -10,15 +10,11 @@ public abstract class ABridge {
 	
 	public synchronized Model obtainTrustProfile(String serviceId) {
 		inputServiceID = serviceId;
-		return getTrustProfile(fixServiceID(serviceId));
+		return getTrustProfile(serviceId);
 	}
 
 	protected abstract Model getTrustProfile(String fixServiceID) ;
 	
-	private String fixServiceID(String serviceId) {
-		String lastPart = serviceId.substring(serviceId.lastIndexOf('/') + 1);
-		return "http://www.programmableweb.com/api/"+lastPart;
-	}
 
 	public abstract  void stop();
 	

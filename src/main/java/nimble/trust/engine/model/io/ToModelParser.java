@@ -77,7 +77,7 @@ public class ToModelParser {
 	}
 
 	private void populateCOMPOSE_ID(Agent agent, Resource resource) {
-		Resource r1 = resource.getPropertyResourceValue((ModelFactory.createDefaultModel().createProperty(Trust.NS+"composeUID")));
+		Resource r1 = resource.getPropertyResourceValue((ModelFactory.createDefaultModel().createProperty(Trust.NS+"nimbleId")));
 //		System.err.println(v);
 		if (r1!=null){
 			agent.setCompose_ID(URI.create(r1.getURI()));

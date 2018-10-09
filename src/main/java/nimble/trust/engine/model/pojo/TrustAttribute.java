@@ -71,7 +71,7 @@ public class TrustAttribute extends TResource{
 	
 	@Override
 	public String toString() {
-		return getUri()+" "+getValue()+"^^"+getValueDatatype();
+		return "attribute "+getValue()+"^^"+getValueDatatype();
 	}
 	
 	
