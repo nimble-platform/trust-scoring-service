@@ -1,5 +1,7 @@
 package nimble.trust.engine.service;
 
+import java.math.BigDecimal;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -32,6 +34,13 @@ public class AgentService {
 			agent  = save(agent);
 		}
 		return agent;
+	}
+
+	@Transactional
+	public void updateTrustScore(String partyId, Double trustScore) {
+		Agent agent = agentRepository.findByAltId(partyId);
+		agent.setTrustScore(new BigDecimal(trustScore));
+		agent = save(agent);
 	}
 	
 }

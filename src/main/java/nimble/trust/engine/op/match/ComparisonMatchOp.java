@@ -65,7 +65,7 @@ public class ComparisonMatchOp {
 		}
 		
 		// should be greater than expected, and if so, return attribute value normalized.
-		if (requested.getValue().equals(0) != false && isNotByMinMax(requested)) {
+		if (isNotByMinMax(requested)) {
 			double value = Double.valueOf(attribute.getValue().toString()).doubleValue();
 			double reqestedValue = Double.valueOf(requested.getValue().toString()).doubleValue();
 			log.info("comparing numeric values: requested <= value {" + requested.getValue() + "," + attribute.getValue()+"}");

@@ -7,6 +7,7 @@ import javax.transaction.Transactional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import nimble.trust.engine.domain.TrustPolicy;
@@ -27,13 +28,17 @@ public class TrustCalculationService {
 	@Autowired
 	private TrustPolicyService trustPolicyService; 
 	
+	@Autowired
+	private AgentService agentService;
+	
+	@Value("${app.trust.trustScore.syncWithCatalogService}")
+    private Boolean syncWithCatalogService;
+	
 	
 	
 	@Transactional
 	public void score(String partyId){
-		
 
-		
 		//get profile and policy and calculate;
 		final TrustSimpleManager trustManager = Factory.createInstance(TrustSimpleManager.class);
 		TrustPolicy trustPolicy = trustPolicyService.findGlobalTRustPolicy();
@@ -41,14 +46,18 @@ public class TrustCalculationService {
 		Double trustScore = null;
 		try {
 			trustScore = trustManager.obtainTrustIndex(URI.create(Trust.getURI()+partyId), criteria);
+			
+			agentService.updateTrustScore(partyId, trustScore);
+		
+			if (syncWithCatalogService){
+				trustScoreSync.syncWithCatalogService(partyId);
+			}
+			log.info("trust score of party with id"+partyId+" is updated to "+trustScore);
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.error("Exception", e);
 		}
 
-		System.out.println(trustScore);
-		log.info("trust score updated");
 		
-//		trustScoreSync.syncWithCatalogService(partyId);
 		
 	}
 

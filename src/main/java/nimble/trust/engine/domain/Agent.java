@@ -42,7 +42,7 @@ public class Agent extends BaseEntity{
 	
 	@Getter
 	@Setter
-	@Column(name = "trustScore")
+	@Column(name = "trustScore", precision=12, scale=6)
 	private BigDecimal trustScore;
 	
 	
