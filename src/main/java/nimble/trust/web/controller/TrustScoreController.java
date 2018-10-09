@@ -27,14 +27,17 @@ import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import nimble.trust.common.OrderType;
+import nimble.trust.engine.domain.TrustPolicy;
 import nimble.trust.engine.json.ProduceJSON;
 import nimble.trust.engine.model.pojo.TrustCriteria;
 import nimble.trust.engine.module.Factory;
 import nimble.trust.engine.op.enums.EnumScoreStrategy;
 import nimble.trust.engine.service.ChangeEventHandlerService;
 import nimble.trust.engine.service.TrustCalculationService;
+import nimble.trust.engine.service.TrustPolicyService;
 import nimble.trust.engine.service.TrustProfileService;
 import nimble.trust.engine.service.interfaces.TrustSimpleManager;
+import nimble.trust.engine.util.PolicyConverter;
 import nimble.trust.swagger.api.FilterApi;
 import nimble.trust.swagger.api.ScoreApi;
 import nimble.trust.util.tuple.Tuple2;
@@ -50,6 +53,9 @@ public class TrustScoreController implements FilterApi, ScoreApi {
 
 	@Autowired
 	private TrustProfileService trustProfileService;
+	
+	@Autowired
+	private TrustPolicyService trustPolicyService;
 	
 	@Autowired
 	private TrustCalculationService trustCalculationService;
@@ -144,8 +150,10 @@ public class TrustScoreController implements FilterApi, ScoreApi {
 					
 			final TrustSimpleManager trustManager = Factory.createInstance(TrustSimpleManager.class);
 			TrustCriteria criteria = RequestJSONUtil.getCriteria(request);
-			if (criteria == null) 
-				criteria = trustManager.getGlobalTrustCriteria();
+			if (criteria == null)  {
+				TrustPolicy trustPolicy = trustPolicyService.findGlobalTRustPolicy();
+				criteria = PolicyConverter.fromPolicyToCriteria(trustPolicy);
+			}
 			final List<URI> list = RequestJSONUtil.getResourceList(request);
 			EnumScoreStrategy strategy = RequestJSONUtil.getScoreStrategy(request);
 			List<Tuple2<URI, Double>> result = null;
