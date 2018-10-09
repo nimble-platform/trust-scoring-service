@@ -138,7 +138,25 @@ public class TrustScoreController implements FilterApi, ScoreApi {
 			log.error("Calculation failed for partyId"+partyId, e);
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
+    }
     
+    
+    @ApiOperation(value = "Calculate trust score using global policy for all profiles", notes = "Calculate trust score using global policy for all profiles in trust db",
+    		response = PartyType.class, tags={  })
+    @ApiResponses(value = { 
+            @ApiResponse(code = 200, message = "Request succesfull processed", response = String.class),
+            @ApiResponse(code = 500, message = "Internal Server Error", response = String.class)})
+    @RequestMapping(value = "/calculate/batch",produces = MediaType.APPLICATION_JSON_VALUE,method = RequestMethod.POST)
+    public ResponseEntity<?> calculateTrustScoreBatch(
+                                             @ApiParam(value = "Authorization header to be obtained via login to the NIMBLE platform") @RequestHeader(value = "Authorization") String bearerToken) {
+    	
+    	try {
+    		trustCalculationService.scoreBatch();
+            return new ResponseEntity<>(HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+ 
     }
    
     

@@ -3,6 +3,8 @@ package nimble.trust.engine.service;
 import java.math.BigDecimal;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -41,6 +43,10 @@ public class AgentService {
 		Agent agent = agentRepository.findByAltId(partyId);
 		agent.setTrustScore(new BigDecimal(trustScore));
 		agent = save(agent);
+	}
+	
+	public Page<Agent> findAll(Pageable pageable){
+		return agentRepository.findAll(pageable);
 	}
 	
 }

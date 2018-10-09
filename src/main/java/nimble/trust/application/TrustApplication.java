@@ -15,6 +15,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.data.domain.AuditorAware;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.web.bind.annotation.RestController;
 
 import feign.Logger;
@@ -31,6 +32,7 @@ import nimble.trust.config.AuditorAwarer;
 @EntityScan(basePackages = "nimble.trust.engine.domain")
 @SpringBootApplication
 @ComponentScan(basePackages = "nimble.trust")
+@EnableAsync
 public class TrustApplication implements CommandLineRunner {
 
    
