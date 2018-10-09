@@ -28,7 +28,7 @@ paths:
             $ref: '#/definitions/Version'
             
    # This is the trust scoring and ranking path endpoint.
-  /trust/score:
+  /score:
     post:
       description: get trust score and rank
       produces:
@@ -48,27 +48,8 @@ paths:
           schema:
                 type: string
                 
-  /trust/compositions/score:
-    post:
-      description: get trust score and rank compositions
-      produces:
-      - application/json
-      operationId: "scoringCompositions"
-      parameters:
-        - in: "body"
-          name: "body"
-          description: "trust request in a json format"
-          required: true
-          schema:
-                type: string
-      responses:
-        # Response code
-        200:
-          description: Successful response
-          schema:
-                type: string
 
-  /trust/filter/threshold:            
+  /filter/threshold:            
       post:
             description: trust filtering
             produces:
@@ -88,7 +69,7 @@ paths:
                 schema:
                       type: string
 
-  /trust/filter/exclusion:            
+  /filter/exclusion:            
       post:
             description: trust filtering by missing properties
             produces:

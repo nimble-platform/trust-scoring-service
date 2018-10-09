@@ -26,25 +26,22 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
-import nimble.trust.common.CompositeServiceWrapper;
-import nimble.trust.common.CompositionIdentifier;
 import nimble.trust.common.OrderType;
 import nimble.trust.engine.json.ProduceJSON;
 import nimble.trust.engine.model.pojo.TrustCriteria;
 import nimble.trust.engine.module.Factory;
-import nimble.trust.engine.op.enums.EnumLevel;
 import nimble.trust.engine.op.enums.EnumScoreStrategy;
 import nimble.trust.engine.service.ChangeEventHandlerService;
 import nimble.trust.engine.service.TrustCalculationService;
 import nimble.trust.engine.service.TrustProfileService;
-import nimble.trust.engine.service.interfaces.TrustCompositionManager;
 import nimble.trust.engine.service.interfaces.TrustSimpleManager;
-import nimble.trust.swagger.api.TrustApi;
+import nimble.trust.swagger.api.FilterApi;
+import nimble.trust.swagger.api.ScoreApi;
 import nimble.trust.util.tuple.Tuple2;
 import nimble.trust.web.dto.ChangeEvent;
 
 @Controller
-public class TrustScoreController implements TrustApi {
+public class TrustScoreController implements FilterApi, ScoreApi {
 	
 	private static Logger log = LoggerFactory.getLogger(TrustScoreController.class);
 	
@@ -111,43 +108,24 @@ public class TrustScoreController implements TrustApi {
     
     
     
-    @ApiOperation(value = "Obtain Party with trust score 2", notes = "Obtain UBL Party with trust score 2",
+    @ApiOperation(value = "Calculate trust score using global policy", notes = "Calculate trust score using global policy",
     		response = PartyType.class, tags={  })
     @ApiResponses(value = { 
             @ApiResponse(code = 200, message = "Request succesfull processed", response = String.class),
             @ApiResponse(code = 404, message = "Party with partyId not found", response = String.class),
             @ApiResponse(code = 500, message = "Internal Server Error", response = String.class)})
-    @RequestMapping(value = "/party/{partyId}/trust2",produces = MediaType.APPLICATION_JSON_VALUE,method = RequestMethod.GET)
-    public ResponseEntity<?> getPartyTrustData2(@ApiParam(value = "Identifier of the party") @PathVariable("partyId") String partyId) {
-    	
-    	PartyType partyType = null;
-    	try {
-    		partyType = trustProfileService.createPartyType(partyId);
-    		if (partyType == null){
-    			log.warn("GetPartyTrustData not found data for partyId:"+partyId);
-        		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        	}
-        	else{
-        		log.info("GetPartyTrustData successfully executed for partyId:"+partyId);
-        		return new ResponseEntity<>(partyType, HttpStatus.OK);
-        	}
-		} catch (Exception e) {
-			log.error("GetPartyTrustData failed for partyId"+partyId, e);
-			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-		}
-    }
-    
-    @ApiOperation(value = "Calculate trust score", notes = "Calculate trust score",
-    		response = PartyType.class, tags={  })
-    @ApiResponses(value = { 
-            @ApiResponse(code = 200, message = "Request succesfull processed", response = String.class),
-            @ApiResponse(code = 404, message = "Party with partyId not found", response = String.class),
-            @ApiResponse(code = 500, message = "Internal Server Error", response = String.class)})
-    @RequestMapping(value = "/score/{partyId}",produces = MediaType.APPLICATION_JSON_VALUE,method = RequestMethod.GET)
+    @RequestMapping(value = "/calculate/{partyId}",produces = MediaType.APPLICATION_JSON_VALUE,method = RequestMethod.POST)
     public ResponseEntity<?> calculateTrustScore(@ApiParam(value = "Identifier of the party") @PathVariable String partyId,
                                              @ApiParam(value = "Authorization header to be obtained via login to the NIMBLE platform") @RequestHeader(value = "Authorization") String bearerToken) {
     	
     	try {
+    		
+    		PartyType partyType = trustProfileService.createPartyType(partyId);
+    		if (partyType == null){
+    			log.warn("GetPartyTrustData not found data for partyId:"+partyId);
+        		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        	}
+    		
     		trustCalculationService.score(partyId);
             return new ResponseEntity<>(HttpStatus.OK);
 		} catch (Exception e) {
@@ -216,24 +194,6 @@ public class TrustScoreController implements TrustApi {
 			final List<URI> resources = RequestJSONUtil.getResourceList(request);
 			filtered = trustManager.filterByCriteriaNotMeet(resources, criteria);
 			return new ResponseEntity<>(new ProduceJSON().ofFilteringResult(filtered), HttpStatus.OK);
-		} catch (Exception e) {
-			 e.printStackTrace();
-			 return new ResponseEntity<>(new ProduceJSON().ofError(e), HttpStatus.BAD_REQUEST);
-		}
-	}
-	
-	public ResponseEntity<String> scoringCompositions(@RequestBody String request) {
-		log.info("Invoked Rest: scoring compositions");
-		try {
-			TrustCompositionManager trustManager = Factory.createInstance(TrustCompositionManager.class);
-			TrustCriteria criteria = RequestJSONUtil.getCriteria(request);
-			if (criteria == null) criteria = trustManager.getGlobalTrustCriteria();
-			final List<CompositeServiceWrapper> compositeServiceList = RequestJSONUtil.getCompositeServiceWrapperList(request);
-			trustManager.setGlobalTrustCriteria(criteria);
-			EnumLevel level = RequestJSONUtil.getLevelFromJsonComposite(request);
-			String strategy = RequestJSONUtil.getStrategyFromJsonComposite(request);
-			List<Tuple2<CompositionIdentifier, Double>> scored = trustManager.obtainTrustIndexes(compositeServiceList, criteria, level, strategy);
-			return new ResponseEntity<>(new ProduceJSON().ofRankingCompositionsResult(scored), HttpStatus.OK);
 		} catch (Exception e) {
 			 e.printStackTrace();
 			 return new ResponseEntity<>(new ProduceJSON().ofError(e), HttpStatus.BAD_REQUEST);
