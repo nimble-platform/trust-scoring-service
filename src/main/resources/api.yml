@@ -31,6 +31,8 @@ paths:
   /calculate/custom:
     post:
       description: Get trust score and rank using custom trust policy
+      consumes:
+        - application/json
       produces:
       - application/json
       operationId: "calculateCustom"
@@ -53,6 +55,8 @@ paths:
   /filter/threshold:            
       post:
             description: trust filtering
+            consumes:
+                - application/json
             produces:
             - application/json
             operationId: "filteringByThreshold"
@@ -73,6 +77,8 @@ paths:
   /filter/exclusion:            
       post:
             description: trust filtering by missing properties
+            consumes:
+              - application/json
             produces:
             - application/json
             operationId: "filterByCriteriaNotMeet"

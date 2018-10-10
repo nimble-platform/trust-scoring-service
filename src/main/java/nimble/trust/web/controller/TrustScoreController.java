@@ -189,13 +189,13 @@ public class TrustScoreController implements FilterApi, CalculateApi {
 		try {
 					
 			final TrustSimpleManager trustManager = Factory.createInstance(TrustSimpleManager.class);
-			TrustCriteria criteria = RequestJSONUtil.getCriteria(request);
+			TrustCriteria criteria = RequestJSONUtil2.getCriteria(request);
 			if (criteria == null)  {
 				TrustPolicy trustPolicy = trustPolicyService.findGlobalTRustPolicy();
 				criteria = PolicyConverter.fromPolicyToCriteria(trustPolicy);
 			}
-			final List<URI> list = RequestJSONUtil.getResourceList(request);
-			EnumScoreStrategy strategy = RequestJSONUtil.getScoreStrategy(request);
+			final List<URI> list = RequestJSONUtil2.getResourceList(request);
+			EnumScoreStrategy strategy = RequestJSONUtil2.getScoreStrategy(request);
 			List<Tuple2<URI, Double>> result = null;
 			if (strategy == EnumScoreStrategy.TOPSIS) {
 				result = trustManager.rankResources(list, criteria, EnumScoreStrategy.TOPSIS, false,OrderType.DESC);
@@ -217,10 +217,10 @@ public class TrustScoreController implements FilterApi, CalculateApi {
 		try {
 			List<URI> filtered ;
 			final TrustSimpleManager trustManager = Factory.createInstance(TrustSimpleManager.class);
-			TrustCriteria criteria = RequestJSONUtil.getCriteria(request);
+			TrustCriteria criteria = RequestJSONUtil2.getCriteria(request);
 			if (criteria == null) 
 				criteria = trustManager.getGlobalTrustCriteria();
-			final List<URI> resources = RequestJSONUtil.getResourceList(request);
+			final List<URI> resources = RequestJSONUtil2.getResourceList(request);
 			filtered = trustManager.filterTrustedByThreshold(resources, criteria);
 			return new ResponseEntity<>(new ProduceJSON().ofFilteringResult(filtered), HttpStatus.OK);
 		} catch (Exception e) {
@@ -236,10 +236,10 @@ public class TrustScoreController implements FilterApi, CalculateApi {
 		try {
 			List<URI> filtered ;
 			final TrustSimpleManager trustManager = Factory.createInstance(TrustSimpleManager.class);
-			TrustCriteria criteria = RequestJSONUtil.getCriteria(request);
+			TrustCriteria criteria = RequestJSONUtil2.getCriteria(request);
 			if (criteria == null) 
 				criteria = trustManager.getGlobalTrustCriteria();
-			final List<URI> resources = RequestJSONUtil.getResourceList(request);
+			final List<URI> resources = RequestJSONUtil2.getResourceList(request);
 			filtered = trustManager.filterByCriteriaNotMeet(resources, criteria);
 			return new ResponseEntity<>(new ProduceJSON().ofFilteringResult(filtered), HttpStatus.OK);
 		} catch (Exception e) {

@@ -1,0 +1,37 @@
+{
+    "strategy": "standard",
+    "parties": [
+        {
+            "partyId": "5"
+        },
+		{
+            "partyId": "747"
+        }
+    ],
+    "parameters": {
+        "attributes": [
+            {
+                "type": "OverallProfileCompletness",
+                "value": "0",
+                "importance": 1
+            },
+            {
+                "type": "OverallCompanyRating",
+                "value": "0",
+                "importance": 1
+            },
+			{
+                "type": "AverageTimeToRespond",
+                "maxValue": "42000",
+				"value": "0",
+                "importance": 1
+            },
+			{
+                "type": "AverageNegotiationTime",
+                "maxValue": "42000",
+				"value": "0",
+                "importance": 1
+            }
+        ]
+    }
+}

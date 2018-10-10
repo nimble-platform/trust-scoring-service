@@ -78,6 +78,9 @@ public class TrustPOJOFactory {
 		Object o_valueMin = obtainValueMin(minvalue);
 		Object o_valueMax = obtainValueMax(maxvalue);
 			String sURI =type.asText();
+			if (sURI.contains(Trust.NS)==false){
+				sURI = Trust.NS+sURI;
+			}
 			URI uri = URI.create(sURI);
 			
 			boolean isSecurity = TrustOntologyUtil.instance().isSubtype(sURI, Trust.SecurityAttribute.getURI());
