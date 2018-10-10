@@ -36,7 +36,7 @@ public class TrustPolicy extends BaseEntity{
 	private Agent owner;
 	
 	@OneToMany(mappedBy = "trustPolicy", 
-			fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+			fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<TrustAttribute> trustAttributes = Lists.newArrayList();
 	
 	@Override
