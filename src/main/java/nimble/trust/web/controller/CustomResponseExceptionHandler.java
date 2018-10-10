@@ -13,7 +13,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 @ControllerAdvice
 @RestController
-public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExceptionHandler {
+public class CustomResponseExceptionHandler extends ResponseEntityExceptionHandler {
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
