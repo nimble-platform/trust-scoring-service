@@ -38,13 +38,13 @@ import nimble.trust.engine.service.TrustPolicyService;
 import nimble.trust.engine.service.TrustProfileService;
 import nimble.trust.engine.service.interfaces.TrustSimpleManager;
 import nimble.trust.engine.util.PolicyConverter;
+import nimble.trust.swagger.api.CalculateApi;
 import nimble.trust.swagger.api.FilterApi;
-import nimble.trust.swagger.api.ScoreApi;
 import nimble.trust.util.tuple.Tuple2;
 import nimble.trust.web.dto.ChangeEvent;
 
 @Controller
-public class TrustScoreController implements FilterApi, ScoreApi {
+public class TrustScoreController implements FilterApi, CalculateApi {
 	
 	private static Logger log = LoggerFactory.getLogger(TrustScoreController.class);
 	
@@ -120,7 +120,7 @@ public class TrustScoreController implements FilterApi, ScoreApi {
             @ApiResponse(code = 200, message = "Request succesfull processed", response = String.class),
             @ApiResponse(code = 404, message = "Party with partyId not found", response = String.class),
             @ApiResponse(code = 500, message = "Internal Server Error", response = String.class)})
-    @RequestMapping(value = "/calculate/{partyId}",produces = MediaType.APPLICATION_JSON_VALUE,method = RequestMethod.POST)
+    @RequestMapping(value = "/calculate/global/{partyId}",produces = MediaType.APPLICATION_JSON_VALUE,method = RequestMethod.POST)
     public ResponseEntity<?> calculateTrustScore(@ApiParam(value = "Identifier of the party") @PathVariable String partyId,
                                              @ApiParam(value = "Authorization header to be obtained via login to the NIMBLE platform") @RequestHeader(value = "Authorization") String bearerToken) {
     	
@@ -141,13 +141,14 @@ public class TrustScoreController implements FilterApi, ScoreApi {
     }
     
     
-    @ApiOperation(value = "Calculate trust score using global policy for all profiles", notes = "Calculate trust score using global policy for all profiles in trust db",
+    @ApiOperation(value = "Recalculates trust score using global policy for all parties in trust database", 
+    		notes = "Asynchronous operation that recalculates a trust score  for all parties in trust database using global policy. Only ADMINs should use this operation",
     		response = PartyType.class, tags={  })
     @ApiResponses(value = { 
             @ApiResponse(code = 200, message = "Request succesfull processed", response = String.class),
             @ApiResponse(code = 500, message = "Internal Server Error", response = String.class)})
-    @RequestMapping(value = "/calculate/batch",produces = MediaType.APPLICATION_JSON_VALUE,method = RequestMethod.POST)
-    public ResponseEntity<?> calculateTrustScoreBatch(
+    @RequestMapping(value = "/recalculate/batch",produces = MediaType.APPLICATION_JSON_VALUE,method = RequestMethod.POST)
+    public ResponseEntity<?> recalculateTrustScoreBatch(
                                              @ApiParam(value = "Authorization header to be obtained via login to the NIMBLE platform") @RequestHeader(value = "Authorization") String bearerToken) {
     	
     	try {
@@ -160,10 +161,31 @@ public class TrustScoreController implements FilterApi, ScoreApi {
     }
    
     
+    @ApiOperation(value = "Create trust profiles for all parties registered in the platform", 
+    		notes = "Asynchronous operation that creates trust profiles for all parties registered in the platform. "
+    				+ "Trust score is calculated using global trust policy. "
+    				+ "Only ADMINs should use this operation",
+    		response = PartyType.class, tags={  })
+    @ApiResponses(value = { 
+            @ApiResponse(code = 200, message = "Request succesfull processed", response = String.class),
+            @ApiResponse(code = 500, message = "Internal Server Error", response = String.class)})
+    @RequestMapping(value = "/fetch-all-calculate/batch",produces = MediaType.APPLICATION_JSON_VALUE,method = RequestMethod.POST)
+    public ResponseEntity<?> fetchAndCalculateTrustScoreBatch(
+                                             @ApiParam(value = "Authorization header to be obtained via login to the NIMBLE platform") @RequestHeader(value = "Authorization") String bearerToken) {
+    	
+    	try {
+    		trustCalculationService.createAllAndScoreBatch();
+            return new ResponseEntity<>(HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+ 
+    }
     
-	public ResponseEntity<String> scoring(@RequestBody String request) {
+    
+	public ResponseEntity<String> calculateCustom(@RequestBody String request) {
 		
-		log.info("Invoked Rest: scoring");
+		log.info("Invoked Rest: scoring using custom policy");
 		try {
 					
 			final TrustSimpleManager trustManager = Factory.createInstance(TrustSimpleManager.class);

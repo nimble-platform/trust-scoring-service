@@ -9,16 +9,25 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.http.HttpStatus;
 import org.springframework.scheduling.annotation.Async;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.google.common.collect.Lists;
+
+import eu.nimble.utility.JsonSerializationUtility;
+import nimble.trust.engine.collector.ProfileCompletnessCollector;
 import nimble.trust.engine.domain.Agent;
 import nimble.trust.engine.domain.TrustPolicy;
 import nimble.trust.engine.model.pojo.TrustCriteria;
 import nimble.trust.engine.model.vocabulary.Trust;
 import nimble.trust.engine.module.Factory;
+import nimble.trust.engine.restclient.IdentityServiceClient;
 import nimble.trust.engine.service.interfaces.TrustSimpleManager;
 import nimble.trust.engine.util.PolicyConverter;
+import nimble.trust.web.dto.IdentifierNameTuple;
 
 @Service
 public class TrustCalculationService {
@@ -33,6 +42,13 @@ public class TrustCalculationService {
 
 	@Autowired
 	private AgentService agentService;
+	
+	@Autowired
+	private IdentityServiceClient identityServiceClient;
+	
+	@Autowired
+	private ProfileCompletnessCollector completnessCollector;
+	
 
 	@Value("${app.trust.trustScore.syncWithCatalogService}")
 	private Boolean syncWithCatalogService;
@@ -57,6 +73,9 @@ public class TrustCalculationService {
 		}
 	}
 
+	/**
+	 * 
+	 */
 	@Async
 	public void scoreBatch() {
 		int pageNumber = 0;
@@ -70,6 +89,32 @@ public class TrustCalculationService {
 				score(agent.getAltId());
 			}
 		} while (!page.isLast());
+	}
+
+	/**
+	 * 
+	 */
+	@Async
+	public void createAllAndScoreBatch() {
+
+		final String bearerToken = SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString();
+
+		try {
+			feign.Response response = identityServiceClient.getAllPartyIds(bearerToken, Lists.newArrayList());
+			if (response.status() == HttpStatus.OK.value()) {
+				List<IdentifierNameTuple> tuples = JsonSerializationUtility.deserializeContent(
+						response.body().asInputStream(), new TypeReference<List<IdentifierNameTuple>>() {
+						});
+				for (IdentifierNameTuple t : tuples) {
+					completnessCollector.fetchProfileCompletnessValues(t.getIdentifier(), true);
+				}
+			} else {
+				log.info("GetAllPartyIds request to identity service failed due: "
+						+ new feign.codec.StringDecoder().decode(response, String.class));
+			}
+		} catch (Exception e) {
+			log.error("CreateAllAndScoreBatch failed or internal error happened", e);
+		}
 	}
 
 }
