@@ -61,7 +61,7 @@ public class ProfileCompletnessCollector {
 		PartyType partyType;
 		try {
 			
-			feign.Response response = identityServiceClient.getPartyTrust(bearerToken, partyId);
+			feign.Response response = identityServiceClient.getProfileCompleteness(bearerToken, partyId);
 //			System.out.println(new feign.codec.StringDecoder().decode(response, String.class));
 
 			if (response.status() == HttpStatus.OK.value()) {
@@ -137,7 +137,7 @@ public class ProfileCompletnessCollector {
 		PartyType partyType;
 		try {
 
-			feign.Response response = identityServiceClient.getPartyTrust(bearerToken, partyId);
+			feign.Response response = identityServiceClient.getProfileCompleteness(bearerToken, partyId);
 //			System.out.println(new feign.codec.StringDecoder().decode(response, String.class));
 
 			if (response.status() == HttpStatus.OK.value()) {
