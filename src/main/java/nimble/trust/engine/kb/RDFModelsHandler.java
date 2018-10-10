@@ -1,19 +1,14 @@
 package nimble.trust.engine.kb;
 
 
-import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.net.URI;
 import java.util.Map;
 
 import org.apache.jena.riot.adapters.AdapterFileManager;
 import org.apache.jena.riot.stream.StreamManager;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.collect.Maps;
-import com.google.common.io.CharStreams;
 import com.hp.hpl.jena.ontology.OntModel;
 import com.hp.hpl.jena.ontology.OntModelSpec;
 import com.hp.hpl.jena.rdf.model.Model;
@@ -27,22 +22,9 @@ public class RDFModelsHandler {
 	Map<String, OntModel> modelCache = Maps.newConcurrentMap();
 	
 	private static RDFModelsHandler globalInstance  = null;
-	
-	private final String modelrepo = "modelrepo";
-	//private static final Logger log = LoggerFactory.getLogger(RDFModelsHandler.class);
 
-	private JsonNode modelmap = null;
 	
 	private RDFModelsHandler() {
-
-		try {
-			InputStream is = this.getClass().getResourceAsStream("/"+modelrepo+"/modelmap");
-			String s = CharStreams.toString(new InputStreamReader(is));
-			ObjectMapper m = new ObjectMapper();
-			modelmap = m.readTree(s);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 	}
 
 	public synchronized OntModel fetch(URI uri, String syntax, OntModelSpec modelSpec) {
@@ -76,16 +58,7 @@ public class RDFModelsHandler {
 	
 	
 	public synchronized OntModel fetchDescriptionFromFileSystem(String uri, String syntax, OntModelSpec modelSpec) {
-		JsonNode node =  modelmap.get(uri);
-		if (node == null && hasCachedModel(uri) == false)
-			return null;
-		if (hasCachedModel(uri))
-			return getFromCache(uri);
-		else{
-			InputStream is = getClass().getResourceAsStream("/"+node.textValue());
-			return fetch(uri, is, modelSpec);
-		}
-		
+		return null;
 	}
 	
 	public synchronized OntModel fetchOntologyFromLocalLocation(String uri, String syntax, OntModelSpec modelSpec) {
