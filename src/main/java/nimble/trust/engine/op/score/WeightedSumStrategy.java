@@ -36,7 +36,7 @@ public class WeightedSumStrategy extends AbstractScoreStrategy {
 	protected void init() {
 		identifyMaxValues(dataSet, attributeList);
 		identifyMinValues(dataSet, attributeList);
-		log.info("WeightedSumStrategy initialized");
+		log.debug("WeightedSumStrategy initialized");
 	}
 
 	/**
@@ -55,7 +55,7 @@ public class WeightedSumStrategy extends AbstractScoreStrategy {
 				Double scaledVal = scaleTo01(t);
 				Double scaledImportance =  t.getT1().getImportance() / weightsSum;
 				score = score + (scaledVal * scaledImportance);
-				log.info("** "+attribute.obtainType().getUri()+" "+score +" as score = "+(score - (scaledVal * scaledImportance))
+				log.debug("** "+attribute.obtainType().getUri()+" "+score +" as score = "+(score - (scaledVal * scaledImportance))
 						+" + ("+scaledVal+" * "+ t.getT1().getImportance()+" / "+weightsSum+")");
 		}
 		return score;

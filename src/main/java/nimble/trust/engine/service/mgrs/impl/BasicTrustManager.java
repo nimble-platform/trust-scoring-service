@@ -207,11 +207,11 @@ public class BasicTrustManager implements TrustSimpleManager {
 	}
 
 	private void printList(List<Tuple2<URI, Double>> set, String note) {
-		log.info("******** <" + note + "> ************");
+		log.debug("******** <" + note + "> ************");
 		for (Tuple2<URI, Double> t : set) {
 			log.info(t.getT1() + " score " + t.getT2());
 		}
-		log.info("******** </" + note + "> ************");
+		log.debug("******** </" + note + "> ************");
 	}
 
 	@Override
@@ -291,7 +291,7 @@ public class BasicTrustManager implements TrustSimpleManager {
 		List<Tuple2<URI, Model>> listModels = obtainModelsListTuple(resources, logRequest);
 		List<Model> models = castListModels(listModels);
 		timer.stop();
-		log.info("loading models  total time: "+timer.elapsed(TimeUnit.MILLISECONDS));
+		log.debug("loading models  total time: "+timer.elapsed(TimeUnit.MILLISECONDS));
 		return models;
 	}
 	

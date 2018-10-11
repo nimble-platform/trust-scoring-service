@@ -183,7 +183,7 @@ public class BasicRankingManager implements RankingManager {
 			else{
 				//return -1 if no data/information about resource
 				String agentURI = agent.getUri().toASCIIString();
-				log.info("Trust profile of resource with URI "+agentURI+" has no any data. Its trust index is -1");
+				log.debug("Trust profile of resource with URI "+agentURI+" has no any data. Its trust index is -1");
 				Tuple2<Agent, Double> result = new Tuple2<Agent, Double>(agent, -1D);
 				listAgentScore.add(result);
 			}
@@ -231,11 +231,11 @@ public class BasicRankingManager implements RankingManager {
 
 	
 	private void printRank(List<Tuple2<URI, Double>> set) {
-		log.info("******** <ranking output> ************");
+		log.debug("******** <ranking output> ************");
 		for (Tuple2<URI, Double> t : set) {
 			log.info(t.getT1() + " score " + t.getT2());
 		}
-		log.info("********  <ranking output> ************");
+		log.debug("********  <ranking output> ************");
 	}
 
 	
@@ -262,9 +262,9 @@ public class BasicRankingManager implements RankingManager {
 			for (Element element : listCriteria) {
 				TrustAttribute requestedAttr = ((SingleElement)element).getAttribute();
 				TResource type = requestedAttr.obtainType();
-				log.info("Evaluting " + type.getUri().toString().replaceAll(Trust.NS, "") + " for partyId " + profile.getAgent().getCompose_ID().toString().replaceAll(Trust.NS, ""));
+				log.debug("Evaluting " + type.getUri().toString().replaceAll(Trust.NS, "") + " for partyId " + profile.getAgent().getCompose_ID().toString().replaceAll(Trust.NS, ""));
 				final List<TrustAttribute> attributes = TrustOntologyUtil.instance().filterByTypeDirect(profile.getAttributes(), type.getUri());
-				log.info("Criterion " + attributes);
+				log.debug("Criterion " + attributes);
 				final double value = match(requestedAttr, attributes);
 				if (filterIfMissingAttribute && value == 0) {
 					return null;
@@ -289,7 +289,7 @@ public class BasicRankingManager implements RankingManager {
 		ValuesHolder valuesHolder = new ValuesHolderLoader().loadValues();
 		GeneralMatchOp operator = new GeneralMatchOp(knowledgeBaseManager, valuesHolder);
 		double result = operator.apply(requested, attributes);
-		log.info("Match result: "+result);
+		log.debug("Match result: "+result);
 		return result;
 	}
 

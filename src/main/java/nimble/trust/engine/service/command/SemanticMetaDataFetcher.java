@@ -52,7 +52,7 @@ public class SemanticMetaDataFetcher {
 		// Try to get the service descr from the external registries.
 		try {
 			if (fetchFromExternalRegistries) {
-				log.info("obtaining model from external registries using sparqlEndpoint");
+				log.debug("obtaining model from external registries using sparqlEndpoint");
 				externalModel = fetchServiceFromExternalRegistry(uri);
 			}
 		} catch (Exception e) {
@@ -60,14 +60,14 @@ public class SemanticMetaDataFetcher {
 		}
 		// try to find it on the web or via location mapping
 		if (externalModel == null && useMappedLocations) {
-			log.info("obtaining model using com.inn.RDFModelHandler for loading / retrieving {cached} models. "
+			log.debug("obtaining model using com.inn.RDFModelHandler for loading / retrieving {cached} models. "
 					+ "	Caching is "+RDFModelsHandler.getGlobalInstance().isCachingModels());
 			try {
 			   externalModel = RDFModelsHandler.getGlobalInstance().
 							fetchDescriptionFromFileSystem(uri.toASCIIString(), Syntax.TTL.getName(), SharedOntModelSpec.getModelSpecShared());
 
 				if ( externalModel == null){
-						log.info("requested model for "+ uri.toASCIIString()+ " not found. If you have description use "
+						log.debug("requested model for "+ uri.toASCIIString()+ " not found. If you have description use "
 								+ "addResourceDescription(URI resourceURI, InputStream inputStream) of TrustManager to add it into module");
 
 				}
@@ -75,7 +75,7 @@ public class SemanticMetaDataFetcher {
 //				return ModelFactory.createOntologyModel(SharedOntModelSpec.getModelSpecShared());
 				
 			} catch (org.apache.jena.atlas.web.HttpException e) {
-				log.info(" There was model retrival failure. Failed to retrive model because " + e.getMessage());
+				log.debug(" There was model retrival failure. Failed to retrive model because " + e.getMessage());
 			}
 		}
 		// try to find it in internal registry
@@ -83,7 +83,7 @@ public class SemanticMetaDataFetcher {
 		Model internalModel = null;
 		try {
 			if (fetchFromInternalRegirsty) {
-				Log.info(this, "obtaining model from trust database");
+				Log.debug(this, "obtaining model from trust database");
 				internalModel = CollectorConfig.InternalCollector.getCollector().collectInformation(uri.toASCIIString());
 			}
 		} catch (Exception e) {

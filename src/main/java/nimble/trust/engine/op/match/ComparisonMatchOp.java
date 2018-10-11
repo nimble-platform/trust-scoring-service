@@ -68,7 +68,7 @@ public class ComparisonMatchOp {
 		if (isNotByMinMax(requested)) {
 			double value = Double.valueOf(attribute.getValue().toString()).doubleValue();
 			double reqestedValue = Double.valueOf(requested.getValue().toString()).doubleValue();
-			log.info("comparing numeric values: requested <= value {" + requested.getValue() + "," + attribute.getValue()+"}");
+			log.debug("comparing numeric values: requested <= value {" + requested.getValue() + "," + attribute.getValue()+"}");
 			if (reqestedValue <= value) {
 				return cast(normalize(attribute, type).getValue());
 			}
@@ -81,14 +81,14 @@ public class ComparisonMatchOp {
 		if (isComparisonByMin(requested)) {
 			double value = Double.valueOf(attribute.getValue().toString()).doubleValue();
 			double requestedMinValue = Double.valueOf(requested.getMinValue().toString()).doubleValue();
-			log.info("comparing numeric values: value >= requestedMinValue {" + attribute.getValue() + "," + requested.getValue()+"}");
+			log.debug("comparing numeric values: value >= requestedMinValue {" + attribute.getValue() + "," + requested.getValue()+"}");
 			return (value >= requestedMinValue) ? 1 : 0;
 		}
 		// should be less than expected, and if so, return 1;
 		else if (isComparisonByMax(requested)) {
 			double value = Double.valueOf(attribute.getValue().toString()).doubleValue();
 			double requestedMaxValue = Double.valueOf(requested.getMaxValue().toString()).doubleValue();
-			log.info("comparing numeric values: value <= requestedMaxValue {" + attribute.getValue() + "," + requested.getValue()+"}");
+			log.debug("comparing numeric values: value <= requestedMaxValue {" + attribute.getValue() + "," + requested.getValue()+"}");
 			return (value <= requestedMaxValue) ? 1 : 0;
 		}
 		// should be greater in a range, and if so, return 1;
@@ -96,11 +96,11 @@ public class ComparisonMatchOp {
 			double value = Double.valueOf(attribute.getValue().toString()).doubleValue();
 			double requestedMaxValue = Double.valueOf(requested.getMaxValue().toString()).doubleValue();
 			double requestedMinValue = Double.valueOf(requested.getMinValue().toString()).doubleValue();
-			log.info("comparing numeric values: value >= requestedMinValue && value <= requestedMaxValue {" + attribute.getValue() + "," + requestedMinValue+","+requestedMaxValue+"}");
+			log.debug("comparing numeric values: value >= requestedMinValue && value <= requestedMaxValue {" + attribute.getValue() + "," + requestedMinValue+","+requestedMaxValue+"}");
 			return (value >= requestedMinValue && value <= requestedMaxValue) ? 1 : 0;
 		}
 
-		log.info("comparing numeric values returns " + returnValue);
+		log.debug("comparing numeric values returns " + returnValue);
 		return returnValue;
 	}
 
