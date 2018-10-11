@@ -21,8 +21,6 @@ public class TrustPolicyService {
 	@Autowired
 	private TrustPolicyRepository trustPolicyRepository;
 	
-	@Autowired
-	private TrustCalculationService trustCalculationService;
 
 	@Autowired
     private TrustAttributeTypeService trustAttributeTypeService;
@@ -54,9 +52,7 @@ public class TrustPolicyService {
 		else{
 			policy = updateTrustPolicy(policy, trustPolicyDto);
 		}
-		if (trustPolicyDto.getRecalculateScoresWhenUpdated()){
-			trustCalculationService.scoreBatch();
-		}
+		
 		return policy;
 	}
 

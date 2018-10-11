@@ -21,6 +21,7 @@ import io.swagger.annotations.ApiResponses;
 import nimble.trust.engine.domain.TrustAttributeType;
 import nimble.trust.engine.domain.TrustPolicy;
 import nimble.trust.engine.service.TrustAttributeTypeService;
+import nimble.trust.engine.service.TrustCalculationService;
 import nimble.trust.engine.service.TrustPolicyService;
 import nimble.trust.web.dto.DtoUtil;
 import nimble.trust.web.dto.TrustAttributeTypeDto;
@@ -38,6 +39,9 @@ public class TrustPolicyController {
 	
 	@Autowired
 	private TrustPolicyService trustPolicyService;
+	
+	@Autowired
+	private TrustCalculationService trustCalculationService;
 
 
 	@ApiOperation(value = "List trust metric types", 
@@ -116,6 +120,9 @@ public class TrustPolicyController {
 			    return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 			}
 			trustPolicyService.createOrUpdateTrustPolicy(trustPolicyDto);
+			if (trustPolicyDto.getRecalculateScoresWhenUpdated()){
+				trustCalculationService.scoreBatch();
+			}
 			log.info("trust policy updated");
 			return new ResponseEntity<>(HttpStatus.OK);
 		} catch (Exception e) {
