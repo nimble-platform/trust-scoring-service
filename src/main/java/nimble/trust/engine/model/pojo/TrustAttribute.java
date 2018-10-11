@@ -7,7 +7,7 @@ import java.net.URI;
 import com.hp.hpl.jena.datatypes.RDFDatatype;
 
 /**
- * TrustAttribute For COMPOSE, it is any trust-relevant functional / non-functional property
+ * TrustAttribut - it is any trust-relevant functional / non-functional property
  * @author marko
  *
  */

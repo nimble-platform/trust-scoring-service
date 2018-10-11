@@ -11,6 +11,6 @@ public interface TrustPolicyRepository extends JpaRepository<TrustPolicy, Long> 
     
 	TrustPolicy findByOwner(Agent agent);
 	
-	TrustPolicy findBy(Long id);
+	TrustPolicy findById(Long id);
 	
 }

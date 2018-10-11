@@ -4,7 +4,6 @@ import java.util.Date;
 
 import javax.persistence.EntityListeners;
 import javax.persistence.MappedSuperclass;
-import javax.persistence.Version;
 
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
@@ -29,7 +28,7 @@ import lombok.Setter;
 public abstract class BaseEntity{
 	
 
-	@Version
+//	@Version
 	@Getter
 	@Setter
 	@JsonIgnore
