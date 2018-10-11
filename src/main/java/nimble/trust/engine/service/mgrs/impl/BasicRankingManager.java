@@ -233,7 +233,7 @@ public class BasicRankingManager implements RankingManager {
 	private void printRank(List<Tuple2<URI, Double>> set) {
 		log.debug("******** <ranking output> ************");
 		for (Tuple2<URI, Double> t : set) {
-			log.info(t.getT1() + " score " + t.getT2());
+			log.debug(t.getT1() + " score " + t.getT2());
 		}
 		log.debug("********  <ranking output> ************");
 	}

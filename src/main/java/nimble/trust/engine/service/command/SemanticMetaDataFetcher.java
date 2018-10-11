@@ -3,7 +3,6 @@ package nimble.trust.engine.service.command;
 
 import java.net.URI;
 
-import org.apache.jena.atlas.logging.Log;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -83,7 +82,7 @@ public class SemanticMetaDataFetcher {
 		Model internalModel = null;
 		try {
 			if (fetchFromInternalRegirsty) {
-				Log.debug(this, "obtaining model from trust database");
+				log.debug("obtaining model from trust database");
 				internalModel = CollectorConfig.InternalCollector.getCollector().collectInformation(uri.toASCIIString());
 			}
 		} catch (Exception e) {
