@@ -87,7 +87,7 @@ public class ProfileCompletnessCollector {
 				syncScores(partyId, recalculateTrustScore);
 			} else {
 				log.info("Synchronization with identity service failed due: "
-						+ new feign.codec.StringDecoder().decode(response, String.class));
+						+ new feign.codec.StringDecoder().decode(response, String.class)+" Return status: "+response.status());
 			}
 		} catch (IOException e) {
 			log.error(" Synchronization with identity service failed or internal error happened", e);

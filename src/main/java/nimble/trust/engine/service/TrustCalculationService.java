@@ -67,7 +67,7 @@ public class TrustCalculationService {
 			if (syncWithCatalogService) {
 				trustScoreSync.syncWithCatalogService(partyId);
 			}
-			log.info("trust score of party with id" + partyId + " is updated to " + trustScore);
+			log.info("trust score of party with ID " + partyId + " is updated to " + trustScore);
 		} catch (Exception e) {
 			log.error("Exception", e);
 		}

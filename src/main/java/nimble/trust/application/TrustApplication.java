@@ -1,5 +1,6 @@
 package nimble.trust.application;
 
+import org.springframework.beans.factory.config.MethodInvokingFactoryBean;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.ExitCodeGenerator;
 import org.springframework.boot.SpringApplication;
@@ -16,6 +17,7 @@ import org.springframework.data.domain.AuditorAware;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.scheduling.annotation.EnableAsync;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.RestController;
 
 import feign.Logger;
@@ -66,5 +68,14 @@ public class TrustApplication implements CommandLineRunner {
     @Bean
     Logger.Level feignLoggerLevel() {
         return Logger.Level.FULL;
+    }
+    
+    @Bean
+    public MethodInvokingFactoryBean methodInvokingFactoryBean() {
+        MethodInvokingFactoryBean methodInvokingFactoryBean = new MethodInvokingFactoryBean();
+        methodInvokingFactoryBean.setTargetClass(SecurityContextHolder.class);
+        methodInvokingFactoryBean.setTargetMethod("setStrategyName");
+        methodInvokingFactoryBean.setArguments(new String[]{SecurityContextHolder.MODE_INHERITABLETHREADLOCAL});
+        return methodInvokingFactoryBean;
     }
 }

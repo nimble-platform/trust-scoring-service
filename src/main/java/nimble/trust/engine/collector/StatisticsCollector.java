@@ -81,7 +81,7 @@ public class StatisticsCollector {
 				
 			} else {
 				log.info("Synchronization with business process statistics failed due: "
-						+ new feign.codec.StringDecoder().decode(response, String.class));
+						+ new feign.codec.StringDecoder().decode(response, String.class)+" Return status: "+response.status());
 			}
 		} catch (Exception e) {
 			log.error(" Synchronization with business process statistics internal error:", e);
