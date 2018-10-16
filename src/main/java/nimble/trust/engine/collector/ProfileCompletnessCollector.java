@@ -86,8 +86,11 @@ public class ProfileCompletnessCollector {
 				}
 				syncScores(partyId, recalculateTrustScore);
 			} else {
-				log.info("Synchronization with identity service failed due: "
+				log.warn("Synchronization with identity service failed due: "
 						+ new feign.codec.StringDecoder().decode(response, String.class)+" Return status: "+response.status());
+				if (response.status()==404 && recalculateTrustScore ==false){ //not found
+					fetchOther(partyId);	
+				}
 			}
 		} catch (IOException e) {
 			log.error(" Synchronization with identity service failed or internal error happened", e);
@@ -108,6 +111,14 @@ public class ProfileCompletnessCollector {
 		recalculateProfileCompleteness(partyId);
 		
 		//try to obtain also other data if this is initial registration of the profileCompletness
+		fetchOther(partyId);
+		
+		if (recalculateTrustScore )
+			recalculateTrustScore(partyId);
+	}
+	
+
+	private void fetchOther(String partyId) {
 		TrustProfile profile = profileService.findByAgentAltId(partyId);
 		if (profile.findAttribute(QualityIndicatorConvert.OverallCompanyRating.getTrustVocabulary()) == null){
 			ratingsCollector.fetchRatingsSummary(partyId, false);
@@ -115,9 +126,6 @@ public class ProfileCompletnessCollector {
 		if (profile.findAttribute(QualityIndicatorConvert.AverageTimeToRespond.getTrustVocabulary()) == null){
 			statisticsCollector.fetchStatistics(partyId, false);
 		}
-		
-		if (recalculateTrustScore )
-			recalculateTrustScore(partyId);
 	}
 
 	public void fetchNewValueAndSyncScore(String partyId, String attributeTypeName) {
