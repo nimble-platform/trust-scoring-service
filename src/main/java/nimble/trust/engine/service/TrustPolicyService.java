@@ -2,7 +2,6 @@ package nimble.trust.engine.service;
 
 import java.util.List;
 
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -12,6 +11,7 @@ import nimble.trust.engine.domain.TrustAttribute;
 import nimble.trust.engine.domain.TrustAttributeType;
 import nimble.trust.engine.domain.TrustPolicy;
 import nimble.trust.engine.repository.TrustPolicyRepository;
+import nimble.trust.web.dto.DtoUtil;
 import nimble.trust.web.dto.TrustAttributeDto;
 import nimble.trust.web.dto.TrustPolicyDto;
 
@@ -98,33 +98,8 @@ public class TrustPolicyService {
 			attr.setTrustAttributeType(type);
 		}
 
-		String expression = trustAttributeDto.getExpression();
-		if (StringUtils.isBlank(expression)) {
-			attr.setMinValue(null);
-			attr.setValue(null);
-			attr.setMaxValue(null);
-		} else {
-			if (expression.contains("between ")) {
-				expression = expression.replaceAll("between ", "");
-				String[] parts = StringUtils.split(expression, " ");
-				attr.setMinValue(parts[0]);
-				attr.setValue(null);
-				attr.setMaxValue(parts[1]);
-			}
-			if (expression.contains("greater or equal ")) {
-				expression = expression.replaceAll("greater or equal ", "");
-				attr.setMinValue(expression);
-				attr.setValue(null);
-				attr.setMaxValue(null);
-			}
-			if (expression.contains("less or equal ")) {
-				expression = expression.replaceAll("less or equal ", "");
-				attr.setMinValue(null);
-				attr.setValue(null);
-				attr.setMaxValue(expression);
-			}
-		}
-
+		attr = DtoUtil.resolveExpression(attr, trustAttributeDto.getExpression());
+		
 		return attr;
 
 	}

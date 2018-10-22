@@ -22,6 +22,7 @@ import nimble.trust.engine.model.types.USDLSecExpression;
 import nimble.trust.engine.model.utils.TrustOntologyUtil;
 import nimble.trust.engine.model.vocabulary.Trust;
 import nimble.trust.util.uri.UIDGenerator;
+import nimble.trust.web.dto.DtoUtil;
 
 
 public class TrustPOJOFactory {
@@ -65,59 +66,69 @@ public class TrustPOJOFactory {
 	}
 
 	private TrustAttribute createTrustAttribute(JsonNode element) {
-		
+
 		JsonNode importance = element.get("importance");
+		JsonNode weight = element.get("weight");
 		JsonNode value = element.get("value");
 		JsonNode minvalue = element.get("minValue");
 		JsonNode maxvalue = element.get("maxValue");
 		JsonNode type = element.get("type");
-		
-		TrustAttribute attr  = null;
+
+		TrustAttribute attr = null;
 		Double d_importance = obtainImportance(importance);
+		if (importance == null && obtainImportance(weight) != null) {
+			d_importance = obtainImportance(weight);
+		}
 		Object o_value = obtainValue(value);
 		Object o_valueMin = obtainValueMin(minvalue);
 		Object o_valueMax = obtainValueMax(maxvalue);
-			String sURI =type.asText();
-			if (sURI.contains(Trust.NS)==false){
-				sURI = Trust.NS+sURI;
-			}
-			URI uri = URI.create(sURI);
-			
-			boolean isSecurity = TrustOntologyUtil.instance().isSubtype(sURI, Trust.SecurityAttribute.getURI());
-			boolean isCertificate = sURI.equals(Trust.CertificateAuthorityAttribute.getURI());
-			
-			if (isSecurity  && isCertificate == false){
-				attr = createPopulateSecurityAttribute(element);
-				attr.setValueDatatype(USDLSecExpression.TYPE);
-			}
-			else if (isCertificate) {
-				attr = createAndPopulateCertificateAuthorityAttribute(element);
-			}
-			
-			else {
-				attr = factory.createTrustAttibute();
-				if (isNumeric(o_value)){
+
+		JsonNode expression = element.get("expression");
+		if (obtainValue(expression) != null) {
+			nimble.trust.engine.domain.TrustAttribute a = new nimble.trust.engine.domain.TrustAttribute();
+			a = DtoUtil.resolveExpression(a, obtainValue(expression).toString());
+			o_value = a.getValue();
+			o_valueMin = a.getMinValue();
+			o_valueMax = a.getMaxValue();
+		}
+
+		String sURI = type.asText();
+		if (sURI.contains(Trust.NS) == false) {
+			sURI = Trust.NS + sURI;
+		}
+		URI uri = URI.create(sURI);
+
+		boolean isSecurity = TrustOntologyUtil.instance().isSubtype(sURI, Trust.SecurityAttribute.getURI());
+		boolean isCertificate = sURI.equals(Trust.CertificateAuthorityAttribute.getURI());
+
+		if (isSecurity && isCertificate == false) {
+			attr = createPopulateSecurityAttribute(element);
+			attr.setValueDatatype(USDLSecExpression.TYPE);
+		} else if (isCertificate) {
+			attr = createAndPopulateCertificateAuthorityAttribute(element);
+		}
+		else {
+			attr = factory.createTrustAttibute();
+			if (isNumeric(o_value)) {
+				attr.setValueDatatype(XSDDouble.XSDdouble);
+			} else {
+				// FIXME Scale - Attribute link should be defined in a model /
+				// kb
+				if (uri.toASCIIString().equals(Trust.Reputation.getURI())) {
+					attr.setValueDatatype(new BaseDatatype(Trust.ReputationScale.getURI()));
+				} else if (uri.toASCIIString().equals(Trust.UserRating.getURI())) {
+					attr.setValueDatatype(new BaseDatatype(Trust.RatingScale.getURI()));
+				} else {
 					attr.setValueDatatype(XSDDouble.XSDdouble);
 				}
-				else{
-					//FIXME Scale - Attribute link should be defined in a model / kb
-					if (uri.toASCIIString().equals(Trust.Reputation.getURI())){
-						attr.setValueDatatype(new BaseDatatype(Trust.ReputationScale.getURI()));
-					}
-					else if (uri.toASCIIString().equals(Trust.UserRating.getURI())){
-						attr.setValueDatatype(new BaseDatatype(Trust.RatingScale.getURI()));
-					}
-					else {
-						attr.setValueDatatype(XSDDouble.XSDdouble);
-					}
-				}
 			}
-			attr.addType(uri);
-			attr.setImportance(d_importance);
-			attr.setValue(o_value);
-			attr.setMinValue(o_valueMin);
-			attr.setMaxValue(o_valueMax);
-		//System.out.println(attr);
+		}
+		attr.addType(uri);
+		attr.setImportance(d_importance);
+		attr.setValue(o_value);
+		attr.setMinValue(o_valueMin);
+		attr.setMaxValue(o_valueMax);
+		// System.out.println(attr);
 		return attr;
 	}
 
@@ -179,6 +190,7 @@ public class TrustPOJOFactory {
 	}
 
 	private boolean isNumeric(Object o_value) {
+		if (o_value ==null) return false;
 		try {
 			new Double(o_value.toString());
 		} catch (NumberFormatException e) {

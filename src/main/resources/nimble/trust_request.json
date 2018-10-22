@@ -12,25 +12,23 @@
         "attributes": [
             {
                 "type": "OverallProfileCompletness",
-                "value": "0",
-                "importance": 1
+                "expression": "0",
+                "weight": 1
             },
             {
                 "type": "OverallCompanyRating",
-                "value": "0",
-                "importance": 1
+                "expression": "0",
+                "weight": 1
             },
 			{
                 "type": "AverageTimeToRespond",
-                "maxValue": "42000",
-				"value": "0",
-                "importance": 1
+                "expression": "less or equal 42000",
+                "weight": 1
             },
 			{
                 "type": "AverageNegotiationTime",
-                "maxValue": "42000",
-				"value": "0",
-                "importance": 1
+                "expression": "less or equal 42000",
+                "weight": 1
             }
         ]
     }

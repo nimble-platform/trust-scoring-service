@@ -101,6 +101,36 @@ public class DtoUtil {
 		if (StringUtils.isBlank(s)) return null;
 		return s;
 	}
+
+
+	public static TrustAttribute resolveExpression(TrustAttribute attr, String expression) {
+		if (StringUtils.isBlank(expression)) {
+			attr.setMinValue(null);
+			attr.setValue(null);
+			attr.setMaxValue(null);
+		} else {
+			if (expression.contains("between ")) {
+				expression = expression.replaceAll("between ", "");
+				String[] parts = StringUtils.split(expression, " ");
+				attr.setMinValue(parts[0]);
+				attr.setValue(null);
+				attr.setMaxValue(parts[1]);
+			}
+			if (expression.contains("greater or equal ")) {
+				expression = expression.replaceAll("greater or equal ", "");
+				attr.setMinValue(expression);
+				attr.setValue(null);
+				attr.setMaxValue(null);
+			}
+			if (expression.contains("less or equal ")) {
+				expression = expression.replaceAll("less or equal ", "");
+				attr.setMinValue(null);
+				attr.setValue(null);
+				attr.setMaxValue(expression);
+			}
+		}
+		return attr;
+	}
 	
 	
 
