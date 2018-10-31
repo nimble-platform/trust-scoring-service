@@ -15,8 +15,11 @@ Base configuration can be found at src/main/resources/application.properties and
 [Spring Cloud Config](https://cloud.spring.io/spring-cloud-config/) is used for central configuration management. A central configuration is hosted on [https://github.com/nimble-platform/cloud-config](https://github.com/nimble-platform/cloud-config)
 and injected during startup.
 
-For database configuration, you will need to set your username and password directly in the BridgeDB java class.
-However, we plan to refactor this part very soon and to provide database configuration in the  bootstrap.yml, application.properties as suggested by Spring Boot framework. Currently, service uses mySQL but we will migrate it to Postgres.
+For database configuration, Hibernate will create the database schema using JPA settings from bootstrap.yml and application.properties.
+However, before Hibernate creates the schema, the database (Postgres) must be installed and  bootstrap.yml configured with the database connection details.
+
+After trust-service is started and database schema created please execute the /sql/initialConfig.sql 
+
 
 ## Swagger
 
