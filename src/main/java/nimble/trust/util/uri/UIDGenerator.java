@@ -13,10 +13,10 @@ import nimble.trust.common.Const;
 
 public class UIDGenerator {
 	
-	public static UIDGenerator  instanceRequest = new UIDGenerator("http://localhost/requests#");
-	public static UIDGenerator instanceTrust = new UIDGenerator("http://localhost/trustdata#");
+	public static UIDGenerator  instanceRequest = new UIDGenerator("http://nimble-eu/requests#");
+	public static UIDGenerator instanceTrust = new UIDGenerator("http://nimble-eu/trustdata#");
 	
-	private String baseURI = "http://localhost/triples#" ;
+	private String baseURI = "http://nimble-eu/triples#" ;
 	
 	@SuppressWarnings("unused")
 	private  Map<Class<?>, Long> map = Maps.newHashMap();

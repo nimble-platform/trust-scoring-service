@@ -15,8 +15,6 @@ spring:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
     hibernate:
       ddl-auto: update
-      naming:
-        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
     properties:
       hibernate:
         temp:
@@ -24,13 +22,44 @@ spring:
     generate-ddl: true
   datasource:
     driverClassName: org.postgresql.Driver
-    url: jdbc:postgresql://${POSTGRES_HOST:localhost}:${POSTGRES_PORT:5432}/${POSTGRES_DB:trustdb}
-    username: ${POSTGRES_USER:postgres}
-    password: ${POSTGRES_PASSWORD:admin123}
+    url: jdbc:postgresql://${TRUST_DB_HOST:localhost}:${TRUST_DB_HOST_PORT:5432}/${TRUST_DB_NAME:trustdb}
+    username: ${TRUST_DB_USERNAME:root}
+    password: ${TRUST_DB_PASSWORD:changeme}
     maxActive: 5
     maxIdle: 5
   jackson:
     default-property-inclusion: NON_NULL
+  kafka:
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS}
+    consumer:
+      group-id: trust-service${KAFKA_CONSUMER_GROUP_ID_SUFFIX:}
+    properties:
+      sasl:
+        jaas:
+          config: ${KAFKA_JAAS_CONFIG}
 
 logstash:
   uri: ${LOGSTASH_URI:localhost:5000}
+  
+nimble:
+ identity:
+   url: ${IDENTITY_SERVICE_URL:http://nimble-staging.salzburgresearch.at/identity-v2}
+ trust:
+   url: ${TRUST_SERVICE_URL:http://nimble-staging.salzburgresearch.at/trust}
+ catalog:
+   url: ${CATALOG_SERVICE_URL:http://nimble-staging.salzburgresearch.at/catalog}
+ business-process:
+   url: ${BUSINESS_PROCESS_SERVICE_URL:http://nimble-staging.salzburgresearch.at/business-process}
+ kafka:
+   topics:
+     companyUpdates: ${KAFKA_TOPIC_COMPANY_UPDATES:company-updates}
+     trustScoreUpdates: ${KAFKA_TOPIC_TRUST_SCORE_UPDATES:trust-score-updates}
+     ratingsUpdates: ${KAFKA_TOPIC_BUSINESS_PROCESS_UPDATES:business-process-updates}
+     
+#   
+#feign:
+#  client:
+#    config:
+#      default:
+#        connectTimeout: 10000
+#        readTimeout: 10000

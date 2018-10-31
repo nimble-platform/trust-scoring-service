@@ -131,7 +131,7 @@ public class BasicTrustManager implements TrustSimpleManager {
 	 * @return ontModel as a Jena model that contains statements about the resource
 	 */
 	private OntModel loadSemanticMetadata(URI uri, boolean fetchFromExternalRegistries, boolean useMappedLocations, boolean fetchFromInternalRegirsty) {
-		return new SemanticMetaDataFetcher(graphStoreManager, externalGraphStoreMgrs).apply(uri, fetchFromExternalRegistries, useMappedLocations, fetchFromInternalRegirsty);
+		return new SemanticMetaDataFetcher().apply(uri, fetchFromExternalRegistries, useMappedLocations, fetchFromInternalRegirsty);
 	}
 
 	@Override
@@ -207,11 +207,11 @@ public class BasicTrustManager implements TrustSimpleManager {
 	}
 
 	private void printList(List<Tuple2<URI, Double>> set, String note) {
-		log.info("******** <" + note + "> ************");
+		log.debug("******** <" + note + "> ************");
 		for (Tuple2<URI, Double> t : set) {
 			log.info(t.getT1() + " score " + t.getT2());
 		}
-		log.info("******** </" + note + "> ************");
+		log.debug("******** </" + note + "> ************");
 	}
 
 	@Override
@@ -273,16 +273,6 @@ public class BasicTrustManager implements TrustSimpleManager {
 			collector.collectInformation(resources, map);	 
 		}
 		
-		//TODO not all models have Trust.NS+"inputUID"
-		
-//		for (URI uri : resources) {
-//			fillTrustProfilForResource(model, uri, (List<Model>) list.get(uri));
-//			listModels.add(new Tuple2<URI, Model>(uri, model));
-//		}
-		
-		
-		//FIXME  - is this the best place for shuting down
-//		CollectorEnum.InternalCollector.getCollector().shutDown();
 		if (logRequest) {
 			storeModelsIntoStore(listModels);
 		}
@@ -301,7 +291,7 @@ public class BasicTrustManager implements TrustSimpleManager {
 		List<Tuple2<URI, Model>> listModels = obtainModelsListTuple(resources, logRequest);
 		List<Model> models = castListModels(listModels);
 		timer.stop();
-		log.info("loading models  total time: "+timer.elapsed(TimeUnit.MILLISECONDS));
+		log.debug("loading models  total time: "+timer.elapsed(TimeUnit.MILLISECONDS));
 		return models;
 	}
 	

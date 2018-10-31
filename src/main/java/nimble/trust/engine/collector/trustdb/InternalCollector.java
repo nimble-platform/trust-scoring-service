@@ -9,7 +9,7 @@ import java.util.Map;
 import com.hp.hpl.jena.rdf.model.Model;
 
 import nimble.trust.engine.bdg.ABridge;
-import nimble.trust.engine.bdg.BridgeDB;
+import nimble.trust.engine.bdg.BridgePostgres;
 import nimble.trust.engine.collector.AbstractCollector;
 
 
@@ -23,7 +23,7 @@ public class InternalCollector extends AbstractCollector {
 	}
 
 	private void initBridge() {
-		b = new BridgeDB(null);
+		b = new BridgePostgres();
 	}
 
 	@Override

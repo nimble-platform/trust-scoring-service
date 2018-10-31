@@ -20,7 +20,7 @@ public class NSPrefixes {
     	map = new HashMap<String, String>();
     	map.put("rdf", RDF.getURI());
     	map.put("rdfs", RDFS.getURI());
-        map.put("compose-trust", Trust.getURI());
+        map.put("trust", Trust.getURI());
         map.put("compose-sec", ModelEnum.SecurityOntology.getURI().toString()+"#");
     	map.put("dc", DC.getURI());
     	map.put("xsd", XSD.getURI());

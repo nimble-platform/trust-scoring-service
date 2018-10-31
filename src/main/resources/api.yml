@@ -28,19 +28,22 @@ paths:
             $ref: '#/definitions/Version'
             
    # This is the trust scoring and ranking path endpoint.
-  /trust/score:
+  /calculate/custom:
     post:
-      description: get trust score and rank
+      description: Get trust score and rank using custom trust policy
+      consumes:
+        - application/json
       produces:
       - application/json
-      operationId: "scoring"
+      operationId: "calculateCustom"
       parameters:
         - in: "body"
           name: "body"
-          description: "trust request in a json format"
+          description: " Trust request in a json format"
           required: true
           schema:
                 type: string
+ 
       responses:
         # Response code
         200:
@@ -48,29 +51,12 @@ paths:
           schema:
                 type: string
                 
-  /trust/compositions/score:
-    post:
-      description: get trust score and rank compositions
-      produces:
-      - application/json
-      operationId: "scoringCompositions"
-      parameters:
-        - in: "body"
-          name: "body"
-          description: "trust request in a json format"
-          required: true
-          schema:
-                type: string
-      responses:
-        # Response code
-        200:
-          description: Successful response
-          schema:
-                type: string
 
-  /trust/filter/threshold:            
+  /filter/threshold:            
       post:
             description: trust filtering
+            consumes:
+                - application/json
             produces:
             - application/json
             operationId: "filteringByThreshold"
@@ -88,9 +74,11 @@ paths:
                 schema:
                       type: string
 
-  /trust/filter/exclusion:            
+  /filter/exclusion:            
       post:
             description: trust filtering by missing properties
+            consumes:
+              - application/json
             produces:
             - application/json
             operationId: "filterByCriteriaNotMeet"

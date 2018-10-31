@@ -11,7 +11,7 @@ public class USDLSecExpression extends BaseDatatype{
 		super(uri);
 	}
 	
-	public static final String theTypeURI = "http://www.compose-project.eu/ns/web-of-things/security/profiles#USDLSecType";
+	public static final String theTypeURI = "http://www.nimble-project.org/ns/security/profiles#USDLSecType";
     public static final RDFDatatype TYPE = new USDLSecExpression(theTypeURI);
     
     @Override

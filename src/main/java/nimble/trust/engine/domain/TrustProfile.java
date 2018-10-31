@@ -11,6 +11,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.springframework.data.annotation.Transient;
+import org.springframework.util.CollectionUtils;
+
 import com.google.common.collect.Lists;
 
 import lombok.AllArgsConstructor;
@@ -36,12 +39,25 @@ public class TrustProfile extends BaseEntity{
 	private Agent owner;
 	
 	@OneToMany(mappedBy = "trustProfile", 
-			fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+			fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<TrustAttribute> trustAttributes = Lists.newArrayList();
 	
 	@Override
 	public String toString() {
 		return "TrustProfile [id=" + getId() + ", owner=" + getOwner() + "]";
+	}
+	
+	@Transient
+	public TrustAttribute findAttribute(String attribueTypeName){
+		List<TrustAttribute> trustAttributes =  getTrustAttributes();
+		if (CollectionUtils.isEmpty(trustAttributes) == false){
+			for (TrustAttribute trustAttribute : trustAttributes) {
+				if (trustAttribute.getTrustAttributeType().getName().equals(attribueTypeName)){
+					return trustAttribute;
+				}
+			}
+		}
+		return null;
 	}
 	
 

@@ -1,5 +1,6 @@
 package nimble.trust.application;
 
+import org.springframework.beans.factory.config.MethodInvokingFactoryBean;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.ExitCodeGenerator;
 import org.springframework.boot.SpringApplication;
@@ -15,24 +16,28 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.data.domain.AuditorAware;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.scheduling.annotation.EnableAsync;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.RestController;
 
+import feign.Logger;
 import nimble.trust.config.AuditorAwarer;
 
 @Configuration
 @EnableCircuitBreaker
 @EnableAutoConfiguration
 @EnableEurekaClient
-@EnableFeignClients
+@EnableFeignClients(basePackages="nimble.trust.engine.restclient")
 @RestController
 @EnableJpaAuditing(auditorAwareRef="auditorProvider")
 @EnableJpaRepositories(basePackages = "nimble.trust.engine.repository")
 @EntityScan(basePackages = "nimble.trust.engine.domain")
 @SpringBootApplication
 @ComponentScan(basePackages = "nimble.trust")
+@EnableAsync
 public class TrustApplication implements CommandLineRunner {
-	
-	
+
+   
 	// initialize (auditorAwareRef="auditorProvider")
 	@Bean
     public AuditorAware<String> auditorProvider() {
@@ -58,5 +63,19 @@ public class TrustApplication implements CommandLineRunner {
             return 10;
         }
 
+    }
+    
+    @Bean
+    Logger.Level feignLoggerLevel() {
+        return Logger.Level.FULL;
+    }
+    
+    @Bean
+    public MethodInvokingFactoryBean methodInvokingFactoryBean() {
+        MethodInvokingFactoryBean methodInvokingFactoryBean = new MethodInvokingFactoryBean();
+        methodInvokingFactoryBean.setTargetClass(SecurityContextHolder.class);
+        methodInvokingFactoryBean.setTargetMethod("setStrategyName");
+        methodInvokingFactoryBean.setArguments(new String[]{SecurityContextHolder.MODE_INHERITABLETHREADLOCAL});
+        return methodInvokingFactoryBean;
     }
 }

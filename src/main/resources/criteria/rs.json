@@ -9,15 +9,15 @@
     "label" : null,
     "comment" : null,
     "importance" : 1.0,
-    "value" : "http://www.compose-project.eu/ns/web-of-things/trust#high",
+    "value" : "http://www.nimble-project.org/ns/trust#high",
     "minValue" : "null",
     "maxValue" : "null",
     "valueDatatype" : {
-      "uri" : "http://www.compose-project.eu/ns/web-of-things/trust#ReputationScale",
+      "uri" : "http://www.nimble-project.org/ns/trust#ReputationScale",
       "javaClass" : null
     },
     "typesAll" : [ {
-      "uri" : "http://www.compose-project.eu/ns/web-of-things/trust#Reputation",
+      "uri" : "http://www.nimble-project.org/ns/trust#Reputation",
       "label" : null,
       "comment" : null,
       "typesAll" : [ ]
@@ -35,7 +35,7 @@
       "javaClass" : "java.lang.Double"
     },
     "typesAll" : [ {
-      "uri" : "http://www.compose-project.eu/ns/web-of-things/trust#QoSAttribute",
+      "uri" : "http://www.nimble-project.org/ns/trust#QoSAttribute",
       "label" : null,
       "comment" : null,
       "typesAll" : [ ]
@@ -49,7 +49,7 @@
     "minValue" : null,
     "maxValue" : null,
     "valueDatatype" : {
-      "uri" : "http://www.compose-project.eu/ns/web-of-things/security/profiles#USDLSecType",
+      "uri" : "http://www.nimble-project.org/ns/security/profiles#USDLSecType",
       "javaClass" : null
     },
     "implementedBy" : [ {
@@ -57,7 +57,7 @@
       "label" : null,
       "comment" : null,
       "realizedByTechnology" : [ {
-        "uri" : "http://www.compose-project.eu/ns/web-of-things/security/profiles#OAuth",
+        "uri" : "http://www.nimble-project.org/ns/security/profiles#OAuth",
         "label" : null,
         "comment" : null,
         "typesAll" : [ ]
@@ -76,7 +76,7 @@
       "typesAll" : [ ]
     } ],
     "typesAll" : [ {
-      "uri" : "http://www.compose-project.eu/ns/web-of-things/trust#SecurityGuarantee",
+      "uri" : "http://www.nimble-project.org/ns/trust#SecurityGuarantee",
       "label" : null,
       "comment" : null,
       "typesAll" : [ ]
@@ -90,7 +90,7 @@
     "minValue" : null,
     "maxValue" : null,
     "valueDatatype" : {
-      "uri" : "http://www.compose-project.eu/ns/web-of-things/security/profiles#USDLSecType",
+      "uri" : "http://www.nimble-project.org/ns/security/profiles#USDLSecType",
       "javaClass" : null
     },
     "implementedBy" : [ {
@@ -98,7 +98,7 @@
       "label" : null,
       "comment" : null,
       "realizedByTechnology" : [ {
-        "uri" : "http://www.compose-project.eu/ns/web-of-things/security/profiles#HTTPBasicAuth",
+        "uri" : "http://www.nimble-project.org/ns/security/profiles#HTTPBasicAuth",
         "label" : null,
         "comment" : null,
         "typesAll" : [ ]
@@ -117,7 +117,7 @@
       "typesAll" : [ ]
     } ],
     "typesAll" : [ {
-      "uri" : "http://www.compose-project.eu/ns/web-of-things/trust#SecurityGuarantee",
+      "uri" : "http://www.nimble-project.org/ns/trust#SecurityGuarantee",
       "label" : null,
       "comment" : null,
       "typesAll" : [ ]

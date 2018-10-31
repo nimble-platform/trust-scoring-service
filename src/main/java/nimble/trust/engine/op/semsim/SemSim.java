@@ -100,8 +100,8 @@ public class SemSim {
 //		org.apache.log4j.Logger.getRootLogger().setLevel(org.apache.log4j.Level.OFF);
 		String ontoFile = LocationMapping.resolveLocation(
 				nimble.trust.engine.model.vocabulary.ModelEnum.SecurityOntology.getURI());
-		String concept1URI = "http://www.compose-project.eu/ns/web-of-things/security/profiles#SAML";
-		String concept2URI ="http://www.compose-project.eu/ns/web-of-things/security/profiles#OAuth";
+		String concept1URI = "http://www.nimble-project.org/ns/security/profiles#SAML";
+		String concept2URI ="http://www.nimble-project.org/ns/security/profiles#OAuth";
 		try {
 			double d = new SemSim(ontoFile).apply(concept1URI, concept2URI);
 			System.out.println(d);

@@ -5,23 +5,23 @@
         "importance": 1,
         "attributes": [
           {
-            "type": "http://www.compose-project.eu/ns/web-of-things/trust#CertificateAuthorityAttribute",
+            "type": "http://www.nimble-project.org/ns/trust#CertificateAuthorityAttribute",
             "importance": 0.5,
             "value": {
               "certificateauthority": [
                 {
-                  "type": "http://www.compose-project.eu/ns/web-of-things/security#US-Based"
+                  "type": "http://www.nimble-project.org/ns/security#US-Based"
                 }
               ]
             }
           },
           {
-            "type": "http://www.compose-project.eu/ns/web-of-things/trust#CertificateAuthorityAttribute",
+            "type": "http://www.nimble-project.org/ns/trust#CertificateAuthorityAttribute",
             "importance": 0.5,
             "value": {
               "certificateauthority": [
                 {
-                  "type": "http://www.compose-project.eu/ns/web-of-things/security#EU-Based"
+                  "type": "http://www.nimble-project.org/ns/security#EU-Based"
                 }
               ]
             }

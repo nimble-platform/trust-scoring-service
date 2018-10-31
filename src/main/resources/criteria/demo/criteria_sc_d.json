@@ -1,28 +1,28 @@
 {
     "attributes": [
         {
-            "type": "http://www.compose-project.eu/ns/web-of-things/trust#ProviderWebReputationBy3rdParty",
+            "type": "http://www.nimble-project.org/ns/trust#ProviderWebReputationBy3rdParty",
             "importance": 1,
             "value": "0"
         },
         {
-            "type": "http://www.compose-project.eu/ns/web-of-things/trust#NumberOfDevelopers",
+            "type": "http://www.nimble-project.org/ns/trust#NumberOfDevelopers",
             "importance": 1,
             "minvalue": "50"
         },
          {
-            "type": "http://www.compose-project.eu/ns/web-of-things/trust#NumberOfCompositions",
+            "type": "http://www.nimble-project.org/ns/trust#NumberOfCompositions",
             "importance": 1,
             "value": "0"
         },
         {
-            "type": "http://www.compose-project.eu/ns/web-of-things/trust#SecurityGuarantee",
+            "type": "http://www.nimble-project.org/ns/trust#SecurityGuarantee",
             "importance": 1,
             "value": 
                 {
                     "securitytechnology": [
                         {
-                            "type": "http://www.compose-project.eu/ns/web-of-things/security#OAuth"
+                            "type": "http://www.nimble-project.org/ns/security#OAuth"
                         }
                     ],
                     "securitymechanism": [
@@ -38,13 +38,13 @@
                 }
         },
          {
-            "type": "http://www.compose-project.eu/ns/web-of-things/trust#SecurityGuarantee",
+            "type": "http://www.nimble-project.org/ns/trust#SecurityGuarantee",
             "importance": 1,
             "value": 
                 {
                     "securitytechnology": [
                         {
-                            "type": "http://www.compose-project.eu/ns/web-of-things/security#TLS"
+                            "type": "http://www.nimble-project.org/ns/security#TLS"
                         }
                     ],
                     "securitygoal": [
@@ -55,12 +55,12 @@
                 }
         },
                 {
-            "type": "http://www.compose-project.eu/ns/web-of-things/trust#CertificateAuthorityAttribute",
+            "type": "http://www.nimble-project.org/ns/trust#CertificateAuthorityAttribute",
             "importance": 1,
              "value": {
               "certificateauthority": [
                 {
-                  "type": "http://www.compose-project.eu/ns/web-of-things/security#US-Based"
+                  "type": "http://www.nimble-project.org/ns/security#US-Based"
                 }
                 ]
              }

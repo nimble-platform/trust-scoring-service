@@ -1,4 +1,4 @@
-@prefix : <http://www.compose-project.eu/ns/web-of-things/security#> .
+@prefix : <http://www.nimble-project.org/ns/security#> .
 @prefix dc: <http://purl.org/dc/elements/1.1/> .
 @prefix dct: <http://purl.org/dc/terms/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
@@ -7,11 +7,10 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix usdl-sec: <http://www.linked-usdl.org/ns/usdl-sec#> .
-@base <http://www.compose-project.eu/ns/web-of-things/security> .
+@base <http://www.nimble-project.org/ns/security> .
 
-<http://www.compose-project.eu/ns/web-of-things/security> rdf:type owl:Ontology ;
+<http://www.nimble-project.org/ns/security> rdf:type owl:Ontology ;
                                                           
-                                                          dc:rights "Copyright...COMPOSE project.."^^xsd:string ;
                                                           
                                                           dc:creator "INNOVA S.p.A. ICT Group, Italy, Rome"^^xsd:string ;
                                                           
@@ -68,7 +67,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 #################################################################
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#certificateAuthorityPlace
+###  http://www.nimble-project.org/ns/security#certificateAuthorityPlace
 
 :certificateAuthorityPlace rdf:type owl:ObjectProperty ;
                            
@@ -78,7 +77,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#hasCertificateAuthority
+###  http://www.nimble-project.org/ns/security#hasCertificateAuthority
 
 :hasCertificateAuthority rdf:type owl:ObjectProperty ;
                          
@@ -90,7 +89,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#issuedInLocation 
+###  http://www.nimble-project.org/ns/security#issuedInLocation 
 
 :issuedInLocation  rdf:type owl:ObjectProperty ;
             
@@ -111,9 +110,9 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 #################################################################
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#000_Times_Per_Day
+###  http://www.nimble-project.org/ns/security#000_Times_Per_Day
 
-<http://www.compose-project.eu/ns/web-of-things/security#000_Times_Per_Day> rdf:type owl:Class ;
+<http://www.nimble-project.org/ns/security#000_Times_Per_Day> rdf:type owl:Class ;
                                                                             
                                                                             rdfs:label "000 Times Per Day"@en ;
                                                                             
@@ -121,9 +120,9 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#128bit_Random_Uuid_Account_Key
+###  http://www.nimble-project.org/ns/security#128bit_Random_Uuid_Account_Key
 
-<http://www.compose-project.eu/ns/web-of-things/security#128bit_Random_Uuid_Account_Key> rdf:type owl:Class ;
+<http://www.nimble-project.org/ns/security#128bit_Random_Uuid_Account_Key> rdf:type owl:Class ;
                                                                                          
                                                                                          rdfs:label "128bit Random Uuid Account Key"@en ;
                                                                                          
@@ -131,9 +130,9 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#2_legged_OAuth
+###  http://www.nimble-project.org/ns/security#2_legged_OAuth
 
-<http://www.compose-project.eu/ns/web-of-things/security#2_legged_OAuth> rdf:type owl:Class ;
+<http://www.nimble-project.org/ns/security#2_legged_OAuth> rdf:type owl:Class ;
                                                                          
                                                                          rdfs:label "2-legged OAuth"@en ;
                                                                          
@@ -141,15 +140,15 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#3DES
+###  http://www.nimble-project.org/ns/security#3DES
 
-<http://www.compose-project.eu/ns/web-of-things/security#3DES> rdf:type owl:Class ;
+<http://www.nimble-project.org/ns/security#3DES> rdf:type owl:Class ;
                                                                
                                                                rdfs:subClassOf :DES .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#AE
+###  http://www.nimble-project.org/ns/security#AE
 
 :AE rdf:type owl:Class ;
     
@@ -157,7 +156,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#AES
+###  http://www.nimble-project.org/ns/security#AES
 
 :AES rdf:type owl:Class ;
      
@@ -165,7 +164,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#AES128bit
+###  http://www.nimble-project.org/ns/security#AES128bit
 
 :AES128bit rdf:type owl:Class ;
            
@@ -173,7 +172,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#AES256bit
+###  http://www.nimble-project.org/ns/security#AES256bit
 
 :AES256bit rdf:type owl:Class ;
            
@@ -181,7 +180,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#APIKey
+###  http://www.nimble-project.org/ns/security#APIKey
 
 :APIKey rdf:type owl:Class ;
         
@@ -189,7 +188,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#API_Id
+###  http://www.nimble-project.org/ns/security#API_Id
 
 :API_Id rdf:type owl:Class ;
         
@@ -199,7 +198,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#API_Key
+###  http://www.nimble-project.org/ns/security#API_Key
 
 :API_Key rdf:type owl:Class ;
          
@@ -209,7 +208,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Access_Token
+###  http://www.nimble-project.org/ns/security#Access_Token
 
 :Access_Token rdf:type owl:Class ;
               
@@ -219,7 +218,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Account_Id
+###  http://www.nimble-project.org/ns/security#Account_Id
 
 :Account_Id rdf:type owl:Class ;
             
@@ -229,7 +228,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Activation_Key
+###  http://www.nimble-project.org/ns/security#Activation_Key
 
 :Activation_Key rdf:type owl:Class ;
                 
@@ -239,7 +238,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#AddTrust
+###  http://www.nimble-project.org/ns/security#AddTrust
 
 :AddTrust rdf:type owl:Class ;
           
@@ -249,7 +248,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Additional_Key
+###  http://www.nimble-project.org/ns/security#Additional_Key
 
 :Additional_Key rdf:type owl:Class ;
                 
@@ -259,7 +258,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#AdminCA
+###  http://www.nimble-project.org/ns/security#AdminCA
 
 :AdminCA rdf:type owl:Class ;
          
@@ -269,7 +268,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#AetnaInc
+###  http://www.nimble-project.org/ns/security#AetnaInc
 
 :AetnaInc rdf:type owl:Class ;
           
@@ -279,7 +278,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Affiliate_Id_Required
+###  http://www.nimble-project.org/ns/security#Affiliate_Id_Required
 
 :Affiliate_Id_Required rdf:type owl:Class ;
                        
@@ -289,7 +288,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Alpha
+###  http://www.nimble-project.org/ns/security#Alpha
 
 :Alpha rdf:type owl:Class ;
        
@@ -299,7 +298,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Anonymous_Session
+###  http://www.nimble-project.org/ns/security#Anonymous_Session
 
 :Anonymous_Session rdf:type owl:Class ;
                    
@@ -309,7 +308,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Arizona
+###  http://www.nimble-project.org/ns/security#Arizona
 
 :Arizona rdf:type owl:Class ;
          
@@ -317,7 +316,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Asp_net_Forms_Authentication_Service
+###  http://www.nimble-project.org/ns/security#Asp_net_Forms_Authentication_Service
 
 :Asp_net_Forms_Authentication_Service rdf:type owl:Class ;
                                       
@@ -327,7 +326,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Atom_X_wsse
+###  http://www.nimble-project.org/ns/security#Atom_X_wsse
 
 :Atom_X_wsse rdf:type owl:Class ;
              
@@ -337,7 +336,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Auth
+###  http://www.nimble-project.org/ns/security#Auth
 
 :Auth rdf:type owl:Class ;
       
@@ -347,7 +346,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Auth_Code
+###  http://www.nimble-project.org/ns/security#Auth_Code
 
 :Auth_Code rdf:type owl:Class ;
            
@@ -357,7 +356,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Auth_Id
+###  http://www.nimble-project.org/ns/security#Auth_Id
 
 :Auth_Id rdf:type owl:Class ;
          
@@ -367,7 +366,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#AuthenticationTechnology
+###  http://www.nimble-project.org/ns/security#AuthenticationTechnology
 
 :AuthenticationTechnology rdf:type owl:Class ;
                           
@@ -377,7 +376,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Authentication_Id
+###  http://www.nimble-project.org/ns/security#Authentication_Id
 
 :Authentication_Id rdf:type owl:Class ;
                    
@@ -387,7 +386,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Authentication_Method
+###  http://www.nimble-project.org/ns/security#Authentication_Method
 
 :Authentication_Method rdf:type owl:Class ;
                        
@@ -397,7 +396,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Authenticationguid
+###  http://www.nimble-project.org/ns/security#Authenticationguid
 
 :Authenticationguid rdf:type owl:Class ;
                     
@@ -407,7 +406,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Authorization_By_Client_Ip
+###  http://www.nimble-project.org/ns/security#Authorization_By_Client_Ip
 
 :Authorization_By_Client_Ip rdf:type owl:Class ;
                             
@@ -417,7 +416,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Authsub
+###  http://www.nimble-project.org/ns/security#Authsub
 
 :Authsub rdf:type owl:Class ;
          
@@ -427,7 +426,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Available_By_Request
+###  http://www.nimble-project.org/ns/security#Available_By_Request
 
 :Available_By_Request rdf:type owl:Class ;
                       
@@ -437,7 +436,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Awsaccesskeyid
+###  http://www.nimble-project.org/ns/security#Awsaccesskeyid
 
 :Awsaccesskeyid rdf:type owl:Class ;
                 
@@ -447,7 +446,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#BBAW
+###  http://www.nimble-project.org/ns/security#BBAW
 
 :BBAW rdf:type owl:Class ;
       
@@ -457,7 +456,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#BE
+###  http://www.nimble-project.org/ns/security#BE
 
 :BE rdf:type owl:Class ;
     
@@ -465,7 +464,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#BM
+###  http://www.nimble-project.org/ns/security#BM
 
 :BM rdf:type owl:Class ;
     
@@ -473,7 +472,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#BadenWuerttemberg
+###  http://www.nimble-project.org/ns/security#BadenWuerttemberg
 
 :BadenWuerttemberg rdf:type owl:Class ;
                    
@@ -481,7 +480,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Beacon_Key
+###  http://www.nimble-project.org/ns/security#Beacon_Key
 
 :Beacon_Key rdf:type owl:Class ;
             
@@ -491,7 +490,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Bloomberg_Terminal_Authentication
+###  http://www.nimble-project.org/ns/security#Bloomberg_Terminal_Authentication
 
 :Bloomberg_Terminal_Authentication rdf:type owl:Class ;
                                    
@@ -501,7 +500,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Business_Id
+###  http://www.nimble-project.org/ns/security#Business_Id
 
 :Business_Id rdf:type owl:Class ;
              
@@ -511,7 +510,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#But_Not_Required_During_Beta_Phase
+###  http://www.nimble-project.org/ns/security#But_Not_Required_During_Beta_Phase
 
 :But_Not_Required_During_Beta_Phase rdf:type owl:Class ;
                                     
@@ -521,7 +520,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#CH
+###  http://www.nimble-project.org/ns/security#CH
 
 :CH rdf:type owl:Class ;
     
@@ -529,7 +528,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#COMODO
+###  http://www.nimble-project.org/ns/security#COMODO
 
 :COMODO rdf:type owl:Class ;
         
@@ -539,7 +538,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Calvados
+###  http://www.nimble-project.org/ns/security#Calvados
 
 :Calvados rdf:type owl:Class ;
           
@@ -547,7 +546,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Certificate
+###  http://www.nimble-project.org/ns/security#Certificate
 
 :Certificate rdf:type owl:Class ;
              
@@ -557,19 +556,19 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#CertificateAuthority
+###  http://www.nimble-project.org/ns/security#CertificateAuthority
 
 :CertificateAuthority rdf:type owl:Class .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#CertificateDetail
+###  http://www.nimble-project.org/ns/security#CertificateDetail
 
 :CertificateDetail rdf:type owl:Class .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Certum
+###  http://www.nimble-project.org/ns/security#Certum
 
 :Certum rdf:type owl:Class ;
         
@@ -580,7 +579,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Client_Account
+###  http://www.nimble-project.org/ns/security#Client_Account
 
 :Client_Account rdf:type owl:Class ;
                 
@@ -590,7 +589,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Client_Certificate
+###  http://www.nimble-project.org/ns/security#Client_Certificate
 
 :Client_Certificate rdf:type owl:Class ;
                     
@@ -600,7 +599,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Client_Id
+###  http://www.nimble-project.org/ns/security#Client_Id
 
 :Client_Id rdf:type owl:Class ;
            
@@ -610,7 +609,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Client_Key
+###  http://www.nimble-project.org/ns/security#Client_Key
 
 :Client_Key rdf:type owl:Class ;
             
@@ -620,7 +619,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Client_Login
+###  http://www.nimble-project.org/ns/security#Client_Login
 
 :Client_Login rdf:type owl:Class ;
               
@@ -630,7 +629,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Clientauth
+###  http://www.nimble-project.org/ns/security#Clientauth
 
 :Clientauth rdf:type owl:Class ;
             
@@ -640,7 +639,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Clientlogin
+###  http://www.nimble-project.org/ns/security#Clientlogin
 
 :Clientlogin rdf:type owl:Class ;
              
@@ -650,7 +649,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Company_Id
+###  http://www.nimble-project.org/ns/security#Company_Id
 
 :Company_Id rdf:type owl:Class ;
             
@@ -660,7 +659,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Configuration
+###  http://www.nimble-project.org/ns/security#Configuration
 
 :Configuration rdf:type owl:Class ;
                
@@ -670,7 +669,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Contact_Provider_For_Detailed_Information
+###  http://www.nimble-project.org/ns/security#Contact_Provider_For_Detailed_Information
 
 :Contact_Provider_For_Detailed_Information rdf:type owl:Class ;
                                            
@@ -680,7 +679,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Cookie
+###  http://www.nimble-project.org/ns/security#Cookie
 
 :Cookie rdf:type owl:Class ;
         
@@ -690,7 +689,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#CrazyDomains
+###  http://www.nimble-project.org/ns/security#CrazyDomains
 
 :CrazyDomains rdf:type owl:Class ;
               
@@ -700,7 +699,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#CryptographicProtocol
+###  http://www.nimble-project.org/ns/security#CryptographicProtocol
 
 :CryptographicProtocol rdf:type owl:Class ;
                        
@@ -708,7 +707,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Custom
+###  http://www.nimble-project.org/ns/security#Custom
 
 :Custom rdf:type owl:Class ;
         
@@ -718,7 +717,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Custom_Http_Authentication_Scheme
+###  http://www.nimble-project.org/ns/security#Custom_Http_Authentication_Scheme
 
 :Custom_Http_Authentication_Scheme rdf:type owl:Class ;
                                    
@@ -728,7 +727,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Cybertrust
+###  http://www.nimble-project.org/ns/security#Cybertrust
 
 :Cybertrust rdf:type owl:Class ;
             
@@ -738,7 +737,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#DE
+###  http://www.nimble-project.org/ns/security#DE
 
 :DE rdf:type owl:Class ;
     
@@ -746,7 +745,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#DES
+###  http://www.nimble-project.org/ns/security#DES
 
 :DES rdf:type owl:Class ;
      
@@ -754,7 +753,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#DFN
+###  http://www.nimble-project.org/ns/security#DFN
 
 :DFN rdf:type owl:Class ;
      
@@ -764,7 +763,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#DKFZ
+###  http://www.nimble-project.org/ns/security#DKFZ
 
 :DKFZ rdf:type owl:Class ;
       
@@ -774,7 +773,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#DSA-SHA1
+###  http://www.nimble-project.org/ns/security#DSA-SHA1
 
 :DSA-SHA1 rdf:type owl:Class ;
           
@@ -782,7 +781,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Dedicated_Url
+###  http://www.nimble-project.org/ns/security#Dedicated_Url
 
 :Dedicated_Url rdf:type owl:Class ;
                
@@ -792,7 +791,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Developer_Id
+###  http://www.nimble-project.org/ns/security#Developer_Id
 
 :Developer_Id rdf:type owl:Class ;
               
@@ -802,7 +801,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Developer_Key
+###  http://www.nimble-project.org/ns/security#Developer_Key
 
 :Developer_Key rdf:type owl:Class ;
                
@@ -812,7 +811,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Developer_Ticket
+###  http://www.nimble-project.org/ns/security#Developer_Ticket
 
 :Developer_Ticket rdf:type owl:Class ;
                   
@@ -822,7 +821,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Develper_Keyword
+###  http://www.nimble-project.org/ns/security#Develper_Keyword
 
 :Develper_Keyword rdf:type owl:Class ;
                   
@@ -832,7 +831,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#DigiCert
+###  http://www.nimble-project.org/ns/security#DigiCert
 
 :DigiCert rdf:type owl:Class ;
           
@@ -843,7 +842,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#DigiSign
+###  http://www.nimble-project.org/ns/security#DigiSign
 
 :DigiSign rdf:type owl:Class ;
           
@@ -854,7 +853,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Dreamhost
+###  http://www.nimble-project.org/ns/security#Dreamhost
 
 :Dreamhost rdf:type owl:Class ;
            
@@ -864,7 +863,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Dublin
+###  http://www.nimble-project.org/ns/security#Dublin
 
 :Dublin rdf:type owl:Class ;
         
@@ -872,7 +871,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#EU-Based
+###  http://www.nimble-project.org/ns/security#EU-Based
 
 :EU-Based rdf:type owl:Class ;
           
@@ -880,7 +879,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Email
+###  http://www.nimble-project.org/ns/security#Email
 
 :Email rdf:type owl:Class ;
        
@@ -890,7 +889,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Encrypted__Secure_Shell
+###  http://www.nimble-project.org/ns/security#Encrypted__Secure_Shell
 
 :Encrypted__Secure_Shell rdf:type owl:Class ;
                          
@@ -900,7 +899,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Entrust
+###  http://www.nimble-project.org/ns/security#Entrust
 
 :Entrust rdf:type owl:Class ;
          
@@ -910,7 +909,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Equifax
+###  http://www.nimble-project.org/ns/security#Equifax
 
 :Equifax rdf:type owl:Class ;
          
@@ -920,7 +919,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#EssentialSSL
+###  http://www.nimble-project.org/ns/security#EssentialSSL
 
 :EssentialSSL rdf:type owl:Class ;
               
@@ -930,7 +929,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#FR
+###  http://www.nimble-project.org/ns/security#FR
 
 :FR rdf:type owl:Class ;
     
@@ -938,7 +937,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Facebook
+###  http://www.nimble-project.org/ns/security#Facebook
 
 :Facebook rdf:type owl:Class ;
           
@@ -948,7 +947,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Fleet_Credentials
+###  http://www.nimble-project.org/ns/security#Fleet_Credentials
 
 :Fleet_Credentials rdf:type owl:Class ;
                    
@@ -958,7 +957,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Flexible
+###  http://www.nimble-project.org/ns/security#Flexible
 
 :Flexible rdf:type owl:Class ;
           
@@ -968,7 +967,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Form
+###  http://www.nimble-project.org/ns/security#Form
 
 :Form rdf:type owl:Class ;
       
@@ -978,7 +977,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#GB
+###  http://www.nimble-project.org/ns/security#GB
 
 :GB rdf:type owl:Class ;
     
@@ -986,7 +985,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Game_Key
+###  http://www.nimble-project.org/ns/security#Game_Key
 
 :Game_Key rdf:type owl:Class ;
           
@@ -996,7 +995,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Gandi
+###  http://www.nimble-project.org/ns/security#Gandi
 
 :Gandi rdf:type owl:Class ;
        
@@ -1006,7 +1005,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#GeoTrust
+###  http://www.nimble-project.org/ns/security#GeoTrust
 
 :GeoTrust rdf:type owl:Class ;
           
@@ -1016,7 +1015,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Get
+###  http://www.nimble-project.org/ns/security#Get
 
 :Get rdf:type owl:Class ;
      
@@ -1026,7 +1025,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Get_Query_String_Parameters
+###  http://www.nimble-project.org/ns/security#Get_Query_String_Parameters
 
 :Get_Query_String_Parameters rdf:type owl:Class ;
                              
@@ -1036,7 +1035,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#GlobalSign
+###  http://www.nimble-project.org/ns/security#GlobalSign
 
 :GlobalSign rdf:type owl:Class ;
             
@@ -1047,7 +1046,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#GlobeSSL
+###  http://www.nimble-project.org/ns/security#GlobeSSL
 
 :GlobeSSL rdf:type owl:Class ;
           
@@ -1057,7 +1056,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#GoDaddy
+###  http://www.nimble-project.org/ns/security#GoDaddy
 
 :GoDaddy rdf:type owl:Class ;
          
@@ -1067,7 +1066,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Google
+###  http://www.nimble-project.org/ns/security#Google
 
 :Google rdf:type owl:Class ;
         
@@ -1078,7 +1077,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Google_Web_Auth
+###  http://www.nimble-project.org/ns/security#Google_Web_Auth
 
 :Google_Web_Auth rdf:type owl:Class ;
                  
@@ -1088,7 +1087,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#GreaterManchester
+###  http://www.nimble-project.org/ns/security#GreaterManchester
 
 :GreaterManchester rdf:type owl:Class ;
                    
@@ -1096,7 +1095,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Gridauth_Gasession_Id
+###  http://www.nimble-project.org/ns/security#Gridauth_Gasession_Id
 
 :Gridauth_Gasession_Id rdf:type owl:Class ;
                        
@@ -1106,7 +1105,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#HMAC-SHA1
+###  http://www.nimble-project.org/ns/security#HMAC-SHA1
 
 :HMAC-SHA1 rdf:type owl:Class ;
            
@@ -1114,7 +1113,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#HTTPBasicAuth
+###  http://www.nimble-project.org/ns/security#HTTPBasicAuth
 
 :HTTPBasicAuth rdf:type owl:Class ;
                
@@ -1122,7 +1121,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#HTTPDigestAuth
+###  http://www.nimble-project.org/ns/security#HTTPDigestAuth
 
 :HTTPDigestAuth rdf:type owl:Class ;
                 
@@ -1130,7 +1129,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#HTTP_Basic_Authentication
+###  http://www.nimble-project.org/ns/security#HTTP_Basic_Authentication
 
 :HTTP_Basic_Authentication rdf:type owl:Class ;
                            
@@ -1140,7 +1139,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Hash
+###  http://www.nimble-project.org/ns/security#Hash
 
 :Hash rdf:type owl:Class ;
       
@@ -1150,7 +1149,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Hmac
+###  http://www.nimble-project.org/ns/security#Hmac
 
 :Hmac rdf:type owl:Class ;
       
@@ -1160,7 +1159,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Hmac_Signed_Requests
+###  http://www.nimble-project.org/ns/security#Hmac_Signed_Requests
 
 :Hmac_Signed_Requests rdf:type owl:Class ;
                       
@@ -1170,7 +1169,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Http_Authorization
+###  http://www.nimble-project.org/ns/security#Http_Authorization
 
 :Http_Authorization rdf:type owl:Class ;
                     
@@ -1180,7 +1179,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Http_Basic_Authentication_Over_Ssl
+###  http://www.nimble-project.org/ns/security#Http_Basic_Authentication_Over_Ssl
 
 :Http_Basic_Authentication_Over_Ssl rdf:type owl:Class ;
                                     
@@ -1190,7 +1189,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Http_Basic_Over_Ssl
+###  http://www.nimble-project.org/ns/security#Http_Basic_Over_Ssl
 
 :Http_Basic_Over_Ssl rdf:type owl:Class ;
                      
@@ -1200,7 +1199,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Http_Digest_Authentication
+###  http://www.nimble-project.org/ns/security#Http_Digest_Authentication
 
 :Http_Digest_Authentication rdf:type owl:Class ;
                             
@@ -1210,7 +1209,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Http_Get
+###  http://www.nimble-project.org/ns/security#Http_Get
 
 :Http_Get rdf:type owl:Class ;
           
@@ -1220,7 +1219,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Http_Header
+###  http://www.nimble-project.org/ns/security#Http_Header
 
 :Http_Header rdf:type owl:Class ;
              
@@ -1230,7 +1229,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Http_Over_Ssl
+###  http://www.nimble-project.org/ns/security#Http_Over_Ssl
 
 :Http_Over_Ssl rdf:type owl:Class ;
                
@@ -1240,7 +1239,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Http_Post
+###  http://www.nimble-project.org/ns/security#Http_Post
 
 :Http_Post rdf:type owl:Class ;
            
@@ -1250,7 +1249,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Http_auth
+###  http://www.nimble-project.org/ns/security#Http_auth
 
 :Http_auth rdf:type owl:Class ;
            
@@ -1260,7 +1259,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#IE
+###  http://www.nimble-project.org/ns/security#IE
 
 :IE rdf:type owl:Class ;
     
@@ -1268,7 +1267,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#IP_Whitelist
+###  http://www.nimble-project.org/ns/security#IP_Whitelist
 
 :IP_Whitelist rdf:type owl:Class ;
               
@@ -1278,7 +1277,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#IT
+###  http://www.nimble-project.org/ns/security#IT
 
 :IT rdf:type owl:Class ;
     
@@ -1286,7 +1285,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Identity_Verification
+###  http://www.nimble-project.org/ns/security#Identity_Verification
 
 :Identity_Verification rdf:type owl:Class ;
                        
@@ -1296,7 +1295,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#InCommon
+###  http://www.nimble-project.org/ns/security#InCommon
 
 :InCommon rdf:type owl:Class ;
           
@@ -1306,7 +1305,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Integration_Key
+###  http://www.nimble-project.org/ns/security#Integration_Key
 
 :Integration_Key rdf:type owl:Class ;
                  
@@ -1316,7 +1315,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Intermediate
+###  http://www.nimble-project.org/ns/security#Intermediate
 
 :Intermediate rdf:type owl:Class ;
               
@@ -1326,7 +1325,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Ip_Address_Check
+###  http://www.nimble-project.org/ns/security#Ip_Address_Check
 
 :Ip_Address_Check rdf:type owl:Class ;
                   
@@ -1336,7 +1335,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Ip_Address_Level_Security
+###  http://www.nimble-project.org/ns/security#Ip_Address_Level_Security
 
 :Ip_Address_Level_Security rdf:type owl:Class ;
                            
@@ -1346,7 +1345,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Ip_Authentication
+###  http://www.nimble-project.org/ns/security#Ip_Authentication
 
 :Ip_Authentication rdf:type owl:Class ;
                    
@@ -1356,7 +1355,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Ip_Based_Identification
+###  http://www.nimble-project.org/ns/security#Ip_Based_Identification
 
 :Ip_Based_Identification rdf:type owl:Class ;
                          
@@ -1366,7 +1365,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Ipsec
+###  http://www.nimble-project.org/ns/security#Ipsec
 
 :Ipsec rdf:type owl:Class ;
        
@@ -1376,7 +1375,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Istockphoto_Member_Authentication
+###  http://www.nimble-project.org/ns/security#Istockphoto_Member_Authentication
 
 :Istockphoto_Member_Authentication rdf:type owl:Class ;
                                    
@@ -1386,7 +1385,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#JP
+###  http://www.nimble-project.org/ns/security#JP
 
 :JP rdf:type owl:Class ;
     
@@ -1394,7 +1393,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#KEYNECTIS
+###  http://www.nimble-project.org/ns/security#KEYNECTIS
 
 :KEYNECTIS rdf:type owl:Class ;
            
@@ -1404,7 +1403,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#KR
+###  http://www.nimble-project.org/ns/security#KR
 
 :KR rdf:type owl:Class ;
     
@@ -1412,7 +1411,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Key
+###  http://www.nimble-project.org/ns/security#Key
 
 :Key rdf:type owl:Class ;
      
@@ -1422,7 +1421,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Key_based
+###  http://www.nimble-project.org/ns/security#Key_based
 
 :Key_based rdf:type owl:Class ;
            
@@ -1432,7 +1431,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Key_based_Authentication
+###  http://www.nimble-project.org/ns/security#Key_based_Authentication
 
 :Key_based_Authentication rdf:type owl:Class ;
                           
@@ -1442,7 +1441,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#License_Key
+###  http://www.nimble-project.org/ns/security#License_Key
 
 :License_Key rdf:type owl:Class ;
              
@@ -1452,7 +1451,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Login_Credentials
+###  http://www.nimble-project.org/ns/security#Login_Credentials
 
 :Login_Credentials rdf:type owl:Class ;
                    
@@ -1462,7 +1461,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Login_Id
+###  http://www.nimble-project.org/ns/security#Login_Id
 
 :Login_Id rdf:type owl:Class ;
           
@@ -1472,7 +1471,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Login__Facebook
+###  http://www.nimble-project.org/ns/security#Login__Facebook
 
 :Login__Facebook rdf:type owl:Class ;
                  
@@ -1482,7 +1481,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#MSITMachine
+###  http://www.nimble-project.org/ns/security#MSITMachine
 
 :MSITMachine rdf:type owl:Class ;
              
@@ -1492,7 +1491,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Mac
+###  http://www.nimble-project.org/ns/security#Mac
 
 :Mac rdf:type owl:Class ;
      
@@ -1502,7 +1501,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Md5
+###  http://www.nimble-project.org/ns/security#Md5
 
 :Md5 rdf:type owl:Class ;
      
@@ -1512,7 +1511,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Md5_Checksum
+###  http://www.nimble-project.org/ns/security#Md5_Checksum
 
 :Md5_Checksum rdf:type owl:Class ;
               
@@ -1522,7 +1521,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Md5_On_Parameters
+###  http://www.nimble-project.org/ns/security#Md5_On_Parameters
 
 :Md5_On_Parameters rdf:type owl:Class ;
                    
@@ -1532,7 +1531,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Md5_Signature
+###  http://www.nimble-project.org/ns/security#Md5_Signature
 
 :Md5_Signature rdf:type owl:Class ;
                
@@ -1542,7 +1541,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Meez_Account
+###  http://www.nimble-project.org/ns/security#Meez_Account
 
 :Meez_Account rdf:type owl:Class ;
               
@@ -1552,7 +1551,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Merchant_Account_Id_Only
+###  http://www.nimble-project.org/ns/security#Merchant_Account_Id_Only
 
 :Merchant_Account_Id_Only rdf:type owl:Class ;
                           
@@ -1562,7 +1561,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Microsoft
+###  http://www.nimble-project.org/ns/security#Microsoft
 
 :Microsoft rdf:type owl:Class ;
            
@@ -1573,7 +1572,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Microsoft_Passport
+###  http://www.nimble-project.org/ns/security#Microsoft_Passport
 
 :Microsoft_Passport rdf:type owl:Class ;
                     
@@ -1583,7 +1582,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Multiple_Developer_Keys_Required
+###  http://www.nimble-project.org/ns/security#Multiple_Developer_Keys_Required
 
 :Multiple_Developer_Keys_Required rdf:type owl:Class ;
                                   
@@ -1593,7 +1592,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Mysub_rest_askimet_com
+###  http://www.nimble-project.org/ns/security#Mysub_rest_askimet_com
 
 :Mysub_rest_askimet_com rdf:type owl:Class ;
                         
@@ -1603,7 +1602,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#NL
+###  http://www.nimble-project.org/ns/security#NL
 
 :NL rdf:type owl:Class ;
     
@@ -1611,7 +1610,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Nazwa
+###  http://www.nimble-project.org/ns/security#Nazwa
 
 :Nazwa rdf:type owl:Class ;
        
@@ -1621,7 +1620,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#NetworkSolutions
+###  http://www.nimble-project.org/ns/security#NetworkSolutions
 
 :NetworkSolutions rdf:type owl:Class ;
                   
@@ -1631,7 +1630,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#NewJersey
+###  http://www.nimble-project.org/ns/security#NewJersey
 
 :NewJersey rdf:type owl:Class ;
            
@@ -1639,7 +1638,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#None
+###  http://www.nimble-project.org/ns/security#None
 
 :None rdf:type owl:Class ;
       
@@ -1649,7 +1648,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Ntlm
+###  http://www.nimble-project.org/ns/security#Ntlm
 
 :Ntlm rdf:type owl:Class ;
       
@@ -1659,7 +1658,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#OAuth
+###  http://www.nimble-project.org/ns/security#OAuth
 
 :OAuth rdf:type owl:Class ;
        
@@ -1669,7 +1668,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#OAuth2
+###  http://www.nimble-project.org/ns/security#OAuth2
 
 :OAuth2 rdf:type owl:Class ;
         
@@ -1677,7 +1676,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#OAuth_2_0
+###  http://www.nimble-project.org/ns/security#OAuth_2_0
 
 :OAuth_2_0 rdf:type owl:Class ;
            
@@ -1687,7 +1686,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#OpenID
+###  http://www.nimble-project.org/ns/security#OpenID
 
 :OpenID rdf:type owl:Class ;
         
@@ -1695,7 +1694,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Openid
+###  http://www.nimble-project.org/ns/security#Openid
 
 :Openid rdf:type owl:Class ;
         
@@ -1705,7 +1704,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Optional_Ip_Authentication
+###  http://www.nimble-project.org/ns/security#Optional_Ip_Authentication
 
 :Optional_Ip_Authentication rdf:type owl:Class ;
                             
@@ -1715,7 +1714,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Oracle
+###  http://www.nimble-project.org/ns/security#Oracle
 
 :Oracle rdf:type owl:Class ;
         
@@ -1725,7 +1724,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Owner_Credentials
+###  http://www.nimble-project.org/ns/security#Owner_Credentials
 
 :Owner_Credentials rdf:type owl:Class ;
                    
@@ -1735,7 +1734,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#PL
+###  http://www.nimble-project.org/ns/security#PL
 
 :PL rdf:type owl:Class ;
     
@@ -1743,7 +1742,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Partner_Id
+###  http://www.nimble-project.org/ns/security#Partner_Id
 
 :Partner_Id rdf:type owl:Class ;
             
@@ -1753,7 +1752,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Pin
+###  http://www.nimble-project.org/ns/security#Pin
 
 :Pin rdf:type owl:Class ;
      
@@ -1763,13 +1762,13 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Place
+###  http://www.nimble-project.org/ns/security#Place
 
 :Place rdf:type owl:Class .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Positive
+###  http://www.nimble-project.org/ns/security#Positive
 
 :Positive rdf:type owl:Class ;
           
@@ -1779,7 +1778,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Pre_registered_Ip_Address
+###  http://www.nimble-project.org/ns/security#Pre_registered_Ip_Address
 
 :Pre_registered_Ip_Address rdf:type owl:Class ;
                            
@@ -1789,7 +1788,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Private_Key
+###  http://www.nimble-project.org/ns/security#Private_Key
 
 :Private_Key rdf:type owl:Class ;
              
@@ -1799,7 +1798,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Production_Environments
+###  http://www.nimble-project.org/ns/security#Production_Environments
 
 :Production_Environments rdf:type owl:Class ;
                          
@@ -1809,7 +1808,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Program_Id
+###  http://www.nimble-project.org/ns/security#Program_Id
 
 :Program_Id rdf:type owl:Class ;
             
@@ -1819,7 +1818,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Proprietary_Format
+###  http://www.nimble-project.org/ns/security#Proprietary_Format
 
 :Proprietary_Format rdf:type owl:Class ;
                     
@@ -1829,7 +1828,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Proprietary_Network_Authorizations
+###  http://www.nimble-project.org/ns/security#Proprietary_Network_Authorizations
 
 :Proprietary_Network_Authorizations rdf:type owl:Class ;
                                     
@@ -1839,7 +1838,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Queue_Level_Access_Control
+###  http://www.nimble-project.org/ns/security#Queue_Level_Access_Control
 
 :Queue_Level_Access_Control rdf:type owl:Class ;
                             
@@ -1849,7 +1848,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#QuoVadisGlobal
+###  http://www.nimble-project.org/ns/security#QuoVadisGlobal
 
 :QuoVadisGlobal rdf:type owl:Class ;
                 
@@ -1859,7 +1858,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#RSA
+###  http://www.nimble-project.org/ns/security#RSA
 
 :RSA rdf:type owl:Class ;
      
@@ -1867,7 +1866,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#RSA-MD5
+###  http://www.nimble-project.org/ns/security#RSA-MD5
 
 :RSA-MD5 rdf:type owl:Class ;
          
@@ -1875,7 +1874,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#RSA-SHA1
+###  http://www.nimble-project.org/ns/security#RSA-SHA1
 
 :RSA-SHA1 rdf:type owl:Class ;
           
@@ -1883,7 +1882,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Rapid
+###  http://www.nimble-project.org/ns/security#Rapid
 
 :Rapid rdf:type owl:Class ;
        
@@ -1893,7 +1892,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#RegisterDotCom
+###  http://www.nimble-project.org/ns/security#RegisterDotCom
 
 :RegisterDotCom rdf:type owl:Class ;
                 
@@ -1903,7 +1902,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Role_Based_Access_Control
+###  http://www.nimble-project.org/ns/security#Role_Based_Access_Control
 
 :Role_Based_Access_Control rdf:type owl:Class ;
                            
@@ -1913,7 +1912,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#SAML
+###  http://www.nimble-project.org/ns/security#SAML
 
 :SAML rdf:type owl:Class ;
       
@@ -1921,7 +1920,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#SE
+###  http://www.nimble-project.org/ns/security#SE
 
 :SE rdf:type owl:Class ;
     
@@ -1929,7 +1928,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#SSL
+###  http://www.nimble-project.org/ns/security#SSL
 
 :SSL rdf:type owl:Class ;
      
@@ -1937,7 +1936,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#SSLdotCom
+###  http://www.nimble-project.org/ns/security#SSLdotCom
 
 :SSLdotCom rdf:type owl:Class ;
            
@@ -1947,7 +1946,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#SSLv3
+###  http://www.nimble-project.org/ns/security#SSLv3
 
 :SSLv3 rdf:type owl:Class ;
        
@@ -1955,7 +1954,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Saml
+###  http://www.nimble-project.org/ns/security#Saml
 
 :Saml rdf:type owl:Class ;
       
@@ -1965,7 +1964,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Sandbox
+###  http://www.nimble-project.org/ns/security#Sandbox
 
 :Sandbox rdf:type owl:Class ;
          
@@ -1975,7 +1974,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Secret_Key
+###  http://www.nimble-project.org/ns/security#Secret_Key
 
 :Secret_Key rdf:type owl:Class ;
             
@@ -1985,7 +1984,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Secure_Asp_Script
+###  http://www.nimble-project.org/ns/security#Secure_Asp_Script
 
 :Secure_Asp_Script rdf:type owl:Class ;
                    
@@ -1995,13 +1994,13 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#SecurityTechnology
+###  http://www.nimble-project.org/ns/security#SecurityTechnology
 
 :SecurityTechnology rdf:type owl:Class .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Security_Code
+###  http://www.nimble-project.org/ns/security#Security_Code
 
 :Security_Code rdf:type owl:Class ;
                
@@ -2011,7 +2010,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Security_Key
+###  http://www.nimble-project.org/ns/security#Security_Key
 
 :Security_Key rdf:type owl:Class ;
               
@@ -2021,7 +2020,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#See_Windows_Live_Id
+###  http://www.nimble-project.org/ns/security#See_Windows_Live_Id
 
 :See_Windows_Live_Id rdf:type owl:Class ;
                      
@@ -2031,7 +2030,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Serial_Number
+###  http://www.nimble-project.org/ns/security#Serial_Number
 
 :Serial_Number rdf:type owl:Class ;
                
@@ -2041,7 +2040,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Session
+###  http://www.nimble-project.org/ns/security#Session
 
 :Session rdf:type owl:Class ;
          
@@ -2051,7 +2050,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#SessionID
+###  http://www.nimble-project.org/ns/security#SessionID
 
 :SessionID rdf:type owl:Class ;
            
@@ -2059,7 +2058,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Session_Authentication
+###  http://www.nimble-project.org/ns/security#Session_Authentication
 
 :Session_Authentication rdf:type owl:Class ;
                         
@@ -2069,7 +2068,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Session_Id
+###  http://www.nimble-project.org/ns/security#Session_Id
 
 :Session_Id rdf:type owl:Class ;
             
@@ -2079,7 +2078,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Session_Key_Over_Ssl
+###  http://www.nimble-project.org/ns/security#Session_Key_Over_Ssl
 
 :Session_Key_Over_Ssl rdf:type owl:Class ;
                       
@@ -2089,7 +2088,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Session_Sharing
+###  http://www.nimble-project.org/ns/security#Session_Sharing
 
 :Session_Sharing rdf:type owl:Class ;
                  
@@ -2099,7 +2098,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Signature
+###  http://www.nimble-project.org/ns/security#Signature
 
 :Signature rdf:type owl:Class ;
            
@@ -2109,7 +2108,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Site_Id
+###  http://www.nimble-project.org/ns/security#Site_Id
 
 :Site_Id rdf:type owl:Class ;
          
@@ -2119,7 +2118,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Site_Key
+###  http://www.nimble-project.org/ns/security#Site_Key
 
 :Site_Key rdf:type owl:Class ;
           
@@ -2129,7 +2128,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Soap_Login_Method
+###  http://www.nimble-project.org/ns/security#Soap_Login_Method
 
 :Soap_Login_Method rdf:type owl:Class ;
                    
@@ -2139,7 +2138,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Some_Authenticated
+###  http://www.nimble-project.org/ns/security#Some_Authenticated
 
 :Some_Authenticated rdf:type owl:Class ;
                     
@@ -2149,7 +2148,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Some_Proprietary_Authorization
+###  http://www.nimble-project.org/ns/security#Some_Proprietary_Authorization
 
 :Some_Proprietary_Authorization rdf:type owl:Class ;
                                 
@@ -2159,7 +2158,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Space_Id
+###  http://www.nimble-project.org/ns/security#Space_Id
 
 :Space_Id rdf:type owl:Class ;
           
@@ -2169,7 +2168,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Ssh
+###  http://www.nimble-project.org/ns/security#Ssh
 
 :Ssh rdf:type owl:Class ;
      
@@ -2179,7 +2178,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Ssh_Key
+###  http://www.nimble-project.org/ns/security#Ssh_Key
 
 :Ssh_Key rdf:type owl:Class ;
          
@@ -2189,7 +2188,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Ssl
+###  http://www.nimble-project.org/ns/security#Ssl
 
 :Ssl rdf:type owl:Class ;
      
@@ -2199,7 +2198,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Ssl_Based
+###  http://www.nimble-project.org/ns/security#Ssl_Based
 
 :Ssl_Based rdf:type owl:Class ;
            
@@ -2209,7 +2208,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Ssl_Client_Certificates
+###  http://www.nimble-project.org/ns/security#Ssl_Client_Certificates
 
 :Ssl_Client_Certificates rdf:type owl:Class ;
                          
@@ -2219,7 +2218,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Sso
+###  http://www.nimble-project.org/ns/security#Sso
 
 :Sso rdf:type owl:Class ;
      
@@ -2229,7 +2228,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Starfield
+###  http://www.nimble-project.org/ns/security#Starfield
 
 :Starfield rdf:type owl:Class ;
            
@@ -2239,7 +2238,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Static_Ip
+###  http://www.nimble-project.org/ns/security#Static_Ip
 
 :Static_Ip rdf:type owl:Class ;
            
@@ -2249,7 +2248,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Symantec
+###  http://www.nimble-project.org/ns/security#Symantec
 
 :Symantec rdf:type owl:Class ;
           
@@ -2259,7 +2258,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#TBS
+###  http://www.nimble-project.org/ns/security#TBS
 
 :TBS rdf:type owl:Class ;
      
@@ -2269,7 +2268,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#TITrustTechnologies
+###  http://www.nimble-project.org/ns/security#TITrustTechnologies
 
 :TITrustTechnologies rdf:type owl:Class ;
                      
@@ -2279,7 +2278,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#TLSv3
+###  http://www.nimble-project.org/ns/security#TLSv3
 
 :TLSv3 rdf:type owl:Class ;
        
@@ -2287,7 +2286,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#TSL
+###  http://www.nimble-project.org/ns/security#TSL
 
 :TSL rdf:type owl:Class ;
      
@@ -2295,7 +2294,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#TWCA
+###  http://www.nimble-project.org/ns/security#TWCA
 
 :TWCA rdf:type owl:Class ;
       
@@ -2305,7 +2304,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Terena
+###  http://www.nimble-project.org/ns/security#Terena
 
 :Terena rdf:type owl:Class ;
         
@@ -2315,7 +2314,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Thawte
+###  http://www.nimble-project.org/ns/security#Thawte
 
 :Thawte rdf:type owl:Class ;
         
@@ -2325,7 +2324,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Ticket_Id
+###  http://www.nimble-project.org/ns/security#Ticket_Id
 
 :Ticket_Id rdf:type owl:Class ;
            
@@ -2335,7 +2334,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Timestamp
+###  http://www.nimble-project.org/ns/security#Timestamp
 
 :Timestamp rdf:type owl:Class ;
            
@@ -2345,7 +2344,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Token
+###  http://www.nimble-project.org/ns/security#Token
 
 :Token rdf:type owl:Class ;
        
@@ -2355,7 +2354,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Transaction_Key
+###  http://www.nimble-project.org/ns/security#Transaction_Key
 
 :Transaction_Key rdf:type owl:Class ;
                  
@@ -2365,7 +2364,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#TrendMicro
+###  http://www.nimble-project.org/ns/security#TrendMicro
 
 :TrendMicro rdf:type owl:Class ;
             
@@ -2375,7 +2374,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#TrustSign
+###  http://www.nimble-project.org/ns/security#TrustSign
 
 :TrustSign rdf:type owl:Class ;
            
@@ -2385,7 +2384,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#TrustedSecure
+###  http://www.nimble-project.org/ns/security#TrustedSecure
 
 :TrustedSecure rdf:type owl:Class ;
                
@@ -2395,7 +2394,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Twitter_Account
+###  http://www.nimble-project.org/ns/security#Twitter_Account
 
 :Twitter_Account rdf:type owl:Class ;
                  
@@ -2405,7 +2404,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Twitter_Id
+###  http://www.nimble-project.org/ns/security#Twitter_Id
 
 :Twitter_Id rdf:type owl:Class ;
             
@@ -2415,7 +2414,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#UK
+###  http://www.nimble-project.org/ns/security#UK
 
 :UK rdf:type owl:Class ;
     
@@ -2423,7 +2422,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#US
+###  http://www.nimble-project.org/ns/security#US
 
 :US rdf:type owl:Class ;
     
@@ -2431,7 +2430,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#US-Based
+###  http://www.nimble-project.org/ns/security#US-Based
 
 :US-Based rdf:type owl:Class ;
           
@@ -2439,7 +2438,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#USERTrust
+###  http://www.nimble-project.org/ns/security#USERTrust
 
 :USERTrust rdf:type owl:Class ;
            
@@ -2449,7 +2448,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#UT
+###  http://www.nimble-project.org/ns/security#UT
 
 :UT rdf:type owl:Class ;
     
@@ -2457,7 +2456,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#UTNUSERFirstHardware
+###  http://www.nimble-project.org/ns/security#UTNUSERFirstHardware
 
 :UTNUSERFirstHardware rdf:type owl:Class ;
                       
@@ -2467,7 +2466,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Uri
+###  http://www.nimble-project.org/ns/security#Uri
 
 :Uri rdf:type owl:Class ;
      
@@ -2477,7 +2476,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Username_password
+###  http://www.nimble-project.org/ns/security#Username_password
 
 :Username_password rdf:type owl:Class ;
                    
@@ -2487,7 +2486,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Varies_By_Pricing_Option_Selected
+###  http://www.nimble-project.org/ns/security#Varies_By_Pricing_Option_Selected
 
 :Varies_By_Pricing_Option_Selected rdf:type owl:Class ;
                                    
@@ -2497,7 +2496,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#VeriSign
+###  http://www.nimble-project.org/ns/security#VeriSign
 
 :VeriSign rdf:type owl:Class ;
           
@@ -2508,7 +2507,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Vodafone
+###  http://www.nimble-project.org/ns/security#Vodafone
 
 :Vodafone rdf:type owl:Class ;
           
@@ -2518,7 +2517,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Waf
+###  http://www.nimble-project.org/ns/security#Waf
 
 :Waf rdf:type owl:Class ;
      
@@ -2528,7 +2527,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Washington
+###  http://www.nimble-project.org/ns/security#Washington
 
 :Washington rdf:type owl:Class ;
             
@@ -2536,9 +2535,9 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Web_Service_Security_(wss)
+###  http://www.nimble-project.org/ns/security#Web_Service_Security_(wss)
 
-<http://www.compose-project.eu/ns/web-of-things/security#Web_Service_Security_(wss)> rdf:type owl:Class ;
+<http://www.nimble-project.org/ns/security#Web_Service_Security_(wss)> rdf:type owl:Class ;
                                                                                      
                                                                                      rdfs:label "Web Service Security (wss)"@en ;
                                                                                      
@@ -2546,7 +2545,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Windows_Live_Id
+###  http://www.nimble-project.org/ns/security#Windows_Live_Id
 
 :Windows_Live_Id rdf:type owl:Class ;
                  
@@ -2556,7 +2555,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Ws_addressing
+###  http://www.nimble-project.org/ns/security#Ws_addressing
 
 :Ws_addressing rdf:type owl:Class ;
                
@@ -2566,7 +2565,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#Ws_security
+###  http://www.nimble-project.org/ns/security#Ws_security
 
 :Ws_security rdf:type owl:Class ;
              
@@ -2576,7 +2575,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#X509
+###  http://www.nimble-project.org/ns/security#X509
 
 :X509 rdf:type owl:Class ;
       
@@ -2584,7 +2583,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#XACML
+###  http://www.nimble-project.org/ns/security#XACML
 
 :XACML rdf:type owl:Class ;
        
@@ -2592,7 +2591,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#X_509
+###  http://www.nimble-project.org/ns/security#X_509
 
 :X_509 rdf:type owl:Class ;
        
@@ -2602,7 +2601,7 @@ usdl-sec:usesMechanism rdf:type owl:AnnotationProperty .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#X_wsse
+###  http://www.nimble-project.org/ns/security#X_wsse
 
 :X_wsse rdf:type owl:Class ;
         
@@ -2645,85 +2644,85 @@ usdl-sec:Token rdf:type owl:Class .
 #################################################################
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#AES
+###  http://www.nimble-project.org/ns/security#AES
 
 :AES rdf:type owl:NamedIndividual .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#AES128Bit
+###  http://www.nimble-project.org/ns/security#AES128Bit
 
 :AES128Bit rdf:type owl:NamedIndividual .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#APIKey
+###  http://www.nimble-project.org/ns/security#APIKey
 
 :APIKey rdf:type owl:NamedIndividual .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#HTTPBasicAuth
+###  http://www.nimble-project.org/ns/security#HTTPBasicAuth
 
 :HTTPBasicAuth rdf:type owl:NamedIndividual .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#HTTPDigestAuth
+###  http://www.nimble-project.org/ns/security#HTTPDigestAuth
 
 :HTTPDigestAuth rdf:type owl:NamedIndividual .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#OAuth
+###  http://www.nimble-project.org/ns/security#OAuth
 
 :OAuth rdf:type owl:NamedIndividual .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#OAuth2
+###  http://www.nimble-project.org/ns/security#OAuth2
 
 :OAuth2 rdf:type owl:NamedIndividual .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#OpenID
+###  http://www.nimble-project.org/ns/security#OpenID
 
 :OpenID rdf:type owl:NamedIndividual .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#RSA
+###  http://www.nimble-project.org/ns/security#RSA
 
 :RSA rdf:type owl:NamedIndividual .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#SSL
+###  http://www.nimble-project.org/ns/security#SSL
 
 :SSL rdf:type owl:NamedIndividual .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#SessionID
+###  http://www.nimble-project.org/ns/security#SessionID
 
 :SessionID rdf:type owl:NamedIndividual .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#TSL
+###  http://www.nimble-project.org/ns/security#TSL
 
 :TSL rdf:type owl:NamedIndividual .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#XACML
+###  http://www.nimble-project.org/ns/security#XACML
 
 :XACML rdf:type owl:NamedIndividual .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#_accesscontrolOAuth
+###  http://www.nimble-project.org/ns/security#_accesscontrolOAuth
 
 :_accesscontrolOAuth rdf:type usdl-sec:Access_Control ,
                               owl:NamedIndividual ;
@@ -2732,7 +2731,7 @@ usdl-sec:Token rdf:type owl:Class .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#_accesscontrolOAuth2
+###  http://www.nimble-project.org/ns/security#_accesscontrolOAuth2
 
 :_accesscontrolOAuth2 rdf:type usdl-sec:Access_Control ,
                                owl:NamedIndividual ;
@@ -2741,7 +2740,7 @@ usdl-sec:Token rdf:type owl:Class .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#_accesscontrolXACML
+###  http://www.nimble-project.org/ns/security#_accesscontrolXACML
 
 :_accesscontrolXACML rdf:type usdl-sec:Access_Control ,
                               owl:NamedIndividual ;
@@ -2750,7 +2749,7 @@ usdl-sec:Token rdf:type owl:Class .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#_authentication_password_HTTPBasicAuth
+###  http://www.nimble-project.org/ns/security#_authentication_password_HTTPBasicAuth
 
 :_authentication_password_HTTPBasicAuth rdf:type owl:NamedIndividual ;
                                         
@@ -2765,7 +2764,7 @@ usdl-sec:Token rdf:type owl:Class .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#_authentication_password_HTTPDigestAuth
+###  http://www.nimble-project.org/ns/security#_authentication_password_HTTPDigestAuth
 
 :_authentication_password_HTTPDigestAuth rdf:type owl:NamedIndividual ;
                                          
@@ -2780,7 +2779,7 @@ usdl-sec:Token rdf:type owl:Class .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#_authentication_token_apikey
+###  http://www.nimble-project.org/ns/security#_authentication_token_apikey
 
 :_authentication_token_apikey rdf:type owl:NamedIndividual ;
                               
@@ -2795,7 +2794,7 @@ usdl-sec:Token rdf:type owl:Class .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#_authentication_token_oauth
+###  http://www.nimble-project.org/ns/security#_authentication_token_oauth
 
 :_authentication_token_oauth rdf:type owl:NamedIndividual ;
                              
@@ -2810,7 +2809,7 @@ usdl-sec:Token rdf:type owl:Class .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#_authentication_token_oauth2
+###  http://www.nimble-project.org/ns/security#_authentication_token_oauth2
 
 :_authentication_token_oauth2 rdf:type owl:NamedIndividual ;
                               
@@ -2825,7 +2824,7 @@ usdl-sec:Token rdf:type owl:Class .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#_authentication_token_openid
+###  http://www.nimble-project.org/ns/security#_authentication_token_openid
 
 :_authentication_token_openid rdf:type owl:NamedIndividual ;
                               
@@ -2840,7 +2839,7 @@ usdl-sec:Token rdf:type owl:Class .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#_authentication_token_sessionid
+###  http://www.nimble-project.org/ns/security#_authentication_token_sessionid
 
 :_authentication_token_sessionid rdf:type owl:NamedIndividual ;
                                  
@@ -2855,7 +2854,7 @@ usdl-sec:Token rdf:type owl:Class .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#_authorization_accesscontrol_oauth
+###  http://www.nimble-project.org/ns/security#_authorization_accesscontrol_oauth
 
 :_authorization_accesscontrol_oauth rdf:type owl:NamedIndividual ;
                                     
@@ -2869,7 +2868,7 @@ usdl-sec:Token rdf:type owl:Class .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#_authorization_accesscontrol_oauth2
+###  http://www.nimble-project.org/ns/security#_authorization_accesscontrol_oauth2
 
 :_authorization_accesscontrol_oauth2 rdf:type owl:NamedIndividual ;
                                      
@@ -2883,7 +2882,7 @@ usdl-sec:Token rdf:type owl:Class .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#_authorization_accesscontrol_xacml
+###  http://www.nimble-project.org/ns/security#_authorization_accesscontrol_xacml
 
 :_authorization_accesscontrol_xacml rdf:type owl:NamedIndividual ;
                                     
@@ -2897,7 +2896,7 @@ usdl-sec:Token rdf:type owl:Class .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#_encryptionAES
+###  http://www.nimble-project.org/ns/security#_encryptionAES
 
 :_encryptionAES rdf:type usdl-sec:Cryptography ,
                          owl:NamedIndividual ;
@@ -2907,13 +2906,13 @@ usdl-sec:Token rdf:type owl:Class .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#_encryptionAES128Bit
+###  http://www.nimble-project.org/ns/security#_encryptionAES128Bit
 
 :_encryptionAES128Bit rdf:type owl:NamedIndividual .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#_encryptionRSA
+###  http://www.nimble-project.org/ns/security#_encryptionRSA
 
 :_encryptionRSA rdf:type usdl-sec:Cryptography ,
                          owl:NamedIndividual ;
@@ -2922,7 +2921,7 @@ usdl-sec:Token rdf:type owl:Class .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#_encryptionSSL
+###  http://www.nimble-project.org/ns/security#_encryptionSSL
 
 :_encryptionSSL rdf:type usdl-sec:Cryptography ,
                          owl:NamedIndividual ;
@@ -2931,7 +2930,7 @@ usdl-sec:Token rdf:type owl:Class .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#_encryptionTSL
+###  http://www.nimble-project.org/ns/security#_encryptionTSL
 
 :_encryptionTSL rdf:type usdl-sec:Cryptography ,
                          owl:NamedIndividual ;
@@ -2940,7 +2939,7 @@ usdl-sec:Token rdf:type owl:Class .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#_passwordExchangeHTTPBasicAuth
+###  http://www.nimble-project.org/ns/security#_passwordExchangeHTTPBasicAuth
 
 :_passwordExchangeHTTPBasicAuth rdf:type usdl-sec:PasswordExchange ,
                                          owl:NamedIndividual ;
@@ -2949,7 +2948,7 @@ usdl-sec:Token rdf:type owl:Class .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#_passwordExchangeHTTPDigestAuth
+###  http://www.nimble-project.org/ns/security#_passwordExchangeHTTPDigestAuth
 
 :_passwordExchangeHTTPDigestAuth rdf:type usdl-sec:PasswordExchange ,
                                           owl:NamedIndividual ;
@@ -2958,7 +2957,7 @@ usdl-sec:Token rdf:type owl:Class .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#_sa_confidentality_encryption_AES
+###  http://www.nimble-project.org/ns/security#_sa_confidentality_encryption_AES
 
 :_sa_confidentality_encryption_AES rdf:type owl:NamedIndividual ;
                                    
@@ -2972,7 +2971,7 @@ usdl-sec:Token rdf:type owl:Class .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#_sa_confidentality_encryption_AES128Bit
+###  http://www.nimble-project.org/ns/security#_sa_confidentality_encryption_AES128Bit
 
 :_sa_confidentality_encryption_AES128Bit rdf:type owl:NamedIndividual ;
                                          
@@ -2986,7 +2985,7 @@ usdl-sec:Token rdf:type owl:Class .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#_sa_confidentality_encryption_RSA
+###  http://www.nimble-project.org/ns/security#_sa_confidentality_encryption_RSA
 
 :_sa_confidentality_encryption_RSA rdf:type owl:NamedIndividual ;
                                    
@@ -3000,7 +2999,7 @@ usdl-sec:Token rdf:type owl:Class .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#_sa_confidentality_encryption_TSL
+###  http://www.nimble-project.org/ns/security#_sa_confidentality_encryption_TSL
 
 :_sa_confidentality_encryption_TSL rdf:type owl:NamedIndividual ;
                                    
@@ -3014,7 +3013,7 @@ usdl-sec:Token rdf:type owl:Class .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#_sa_confidentiality_encryption_SSL
+###  http://www.nimble-project.org/ns/security#_sa_confidentiality_encryption_SSL
 
 :_sa_confidentiality_encryption_SSL rdf:type owl:NamedIndividual ;
                                     
@@ -3028,7 +3027,7 @@ usdl-sec:Token rdf:type owl:Class .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#_sa_privacy_accesscontrol_xacml
+###  http://www.nimble-project.org/ns/security#_sa_privacy_accesscontrol_xacml
 
 :_sa_privacy_accesscontrol_xacml rdf:type owl:NamedIndividual ;
                                  
@@ -3042,7 +3041,7 @@ usdl-sec:Token rdf:type owl:Class .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#_tokenAPIKEY
+###  http://www.nimble-project.org/ns/security#_tokenAPIKEY
 
 :_tokenAPIKEY rdf:type usdl-sec:Token ,
                        owl:NamedIndividual ;
@@ -3051,7 +3050,7 @@ usdl-sec:Token rdf:type owl:Class .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#_tokenOAuth
+###  http://www.nimble-project.org/ns/security#_tokenOAuth
 
 :_tokenOAuth rdf:type usdl-sec:Token ,
                       owl:NamedIndividual ;
@@ -3060,7 +3059,7 @@ usdl-sec:Token rdf:type owl:Class .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#_tokenOAuth2
+###  http://www.nimble-project.org/ns/security#_tokenOAuth2
 
 :_tokenOAuth2 rdf:type usdl-sec:Token ,
                        owl:NamedIndividual ;
@@ -3069,7 +3068,7 @@ usdl-sec:Token rdf:type owl:Class .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#_tokenOpenID
+###  http://www.nimble-project.org/ns/security#_tokenOpenID
 
 :_tokenOpenID rdf:type usdl-sec:Token ,
                        owl:NamedIndividual ;
@@ -3078,7 +3077,7 @@ usdl-sec:Token rdf:type owl:Class .
 
 
 
-###  http://www.compose-project.eu/ns/web-of-things/security#_tokenSessionID
+###  http://www.nimble-project.org/ns/security#_tokenSessionID
 
 :_tokenSessionID rdf:type usdl-sec:Token ,
                           owl:NamedIndividual ;
