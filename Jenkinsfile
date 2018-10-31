@@ -24,7 +24,7 @@ node('nimble-jenkins-slave') {
 
     if (env.BRANCH_NAME == 'master') {
         stage('Build Docker') {
-            sh '/bin/bash -xe deploy.sh docker-build'
+            sh 'mvn docker:build -P docker'
         }
 
         stage('Deploy') {
