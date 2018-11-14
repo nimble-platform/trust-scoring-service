@@ -7,7 +7,7 @@
 
     <groupId>eu.nimble.services</groupId>
     <artifactId>trust-service</artifactId>
-    <version>0.0.1</version>
+    <version>5.0.0-Staging</version>
     <name>Nimble Trust Scoring and Ranking Microservice</name>
     <packaging>jar</packaging>
 
@@ -167,7 +167,7 @@
             	</exclusion>
             </exclusions>
 	     </dependency>
-	
+
 		<dependency>
 			<groupId>eu.nimble.core.common</groupId>
 			<artifactId>ubl-data-model</artifactId>
@@ -185,7 +185,7 @@
 			<artifactId>lombok</artifactId>
 			<scope>compile</scope>
 		</dependency>
-    
+
 
         <!-- BEFORE -->
 
@@ -410,8 +410,9 @@
         <profile>
             <id>docker</id>
             <properties>
-                <docker.plugin.version>0.4.13</docker.plugin.version>
+                <docker.plugin.version>1.2.0</docker.plugin.version>
                 <docker.image.prefix>nimbleplatform</docker.image.prefix>
+                <dockerImageTag>${project.version}</dockerImageTag>
             </properties>
             <build>
                 <plugins>

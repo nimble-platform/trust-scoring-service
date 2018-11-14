@@ -27,6 +27,11 @@ node('nimble-jenkins-slave') {
             sh 'mvn docker:build -P docker'
         }
 
+        stage('Push Docker') {
+            sh 'mvn docker:build -P docker -DdockerImageTag=latest'
+            sh 'mvn docker:build -P docker'
+        }
+
         stage('Deploy') {
             sh 'ssh nimble "cd /data/deployment_setup/prod/ && sudo ./run-prod.sh restart-single trust-service"'
         }
