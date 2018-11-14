@@ -28,8 +28,8 @@ node('nimble-jenkins-slave') {
         }
 
         stage('Push Docker') {
-            sh 'mvn docker:push -P docker -DdockerImageTag=latest'
-            sh 'mvn docker:push -P docker'
+            sh 'mvn docker:build docker:push -P docker -DdockerImageTag=latest'
+            sh 'mvn docker:build docker:push -P docker'
         }
 
         stage('Deploy') {
