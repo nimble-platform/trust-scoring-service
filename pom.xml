@@ -7,7 +7,7 @@
 
     <groupId>eu.nimble.services</groupId>
     <artifactId>trust-service</artifactId>
-    <version>5.0.0-Staging</version>
+    <version>5.0.0</version>
     <name>Nimble Trust Scoring and Ranking Microservice</name>
     <packaging>jar</packaging>
 
