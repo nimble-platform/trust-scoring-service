@@ -28,7 +28,8 @@ node('nimble-jenkins-slave') {
         }
 
         stage('Push Docker') {
-            sh 'docker push nimbleplatform/trust-service:latest'
+            sh 'mvn docker:build -P docker -DdockerImageTag=latest'
+            sh 'mvn docker:build -P docker'
         }
 
         stage('Deploy') {
