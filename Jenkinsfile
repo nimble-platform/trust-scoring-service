@@ -29,7 +29,7 @@ node('nimble-jenkins-slave') {
 
         stage('Push Docker') {
             sh 'mvn docker:build -P docker -DpushImage -DdockerImageTag=latest'
-            sh 'mvn docker:build -P docker -DpushImage'
+//            sh 'mvn docker:build -P docker -DpushImage'
         }
 
         stage('Deploy MVP') {
