@@ -28,8 +28,9 @@ node('nimble-jenkins-slave') {
         }
 
         stage('Push Docker') {
-            sh 'mvn org.apache.maven.plugins:maven-help-plugin:2.1.1:evaluate -Dexpression=project.version | grep -v \'\\[\'' // fetch dependencies
+            sh 'mvn org.apache.maven.plugins:maven-help-plugin:2.1.1:evaluate -Dexpression=project.version' // fetch dependencies
             sh 'docker push nimbleplatform/trust-service:$(mvn org.apache.maven.plugins:maven-help-plugin:2.1.1:evaluate -Dexpression=project.version | grep -v \'\\[\')'
+            sh 'docker push nimbleplatform/trust-service:latest'
         }
 
         stage('Deploy MVP') {
