@@ -28,7 +28,19 @@ node('nimble-jenkins-slave') {
         }
 
         stage('Push Docker') {
-            sh 'mvn docker:build -P docker -DpushImage -DdockerImageTag=latest'
+
+            environment {
+                // Using returnStdout
+                VERSION = """${
+                    sh(
+                            returnStdout: true,
+                            script: 'mvn org.apache.maven.plugins:maven-help-plugin:2.1.1:evaluate -Dexpression=project.version | grep -v \'\\[\''
+                    )
+                }"""
+            }
+
+            sh 'docker push nimbleplatform/trust-service:$VERSION'
+//            sh 'mvn docker:build -P docker -DpushImage'
 //            sh 'mvn docker:build -P docker -DpushImage'
         }
 
