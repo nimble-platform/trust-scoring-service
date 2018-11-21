@@ -28,23 +28,7 @@ node('nimble-jenkins-slave') {
         }
 
         stage('Push Docker') {
-
-            environment {
-                // Using returnStdout
-                VERSION = """${
-                    sh(
-                            returnStdout: true,
-                            script: 'mvn org.apache.maven.plugins:maven-help-plugin:2.1.1:evaluate -Dexpression=project.version | grep -v \'\\[\''
-                    )
-                }"""
-            }
-
-            steps {
-                sh 'printenv'
-                sh 'docker push nimbleplatform/trust-service:$env.VERSION'
-            }
-//            sh 'mvn docker:build -P docker -DpushImage'
-//            sh 'mvn docker:build -P docker -DpushImage'
+            sh ' docker push nimbleplatform/trust-service:$(mvn org.apache.maven.plugins:maven-help-plugin:2.1.1:evaluate -Dexpression=project.version | grep -v \'\\[\')'
         }
 
         stage('Deploy MVP') {
