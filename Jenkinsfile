@@ -39,7 +39,10 @@ node('nimble-jenkins-slave') {
                 }"""
             }
 
-            sh 'docker push nimbleplatform/trust-service:$env.VERSION'
+            steps {
+                sh 'printenv'
+                sh 'docker push nimbleplatform/trust-service:$env.VERSION'
+            }
 //            sh 'mvn docker:build -P docker -DpushImage'
 //            sh 'mvn docker:build -P docker -DpushImage'
         }
