@@ -9,6 +9,15 @@ node('nimble-jenkins-slave') {
             git(url: 'https://github.com/nimble-platform/trust-scoring-service', branch: env.BRANCH_NAME)
         }
 
+        stage('Build Dependencies') {
+            sh 'rm -rf common'
+            sh 'git clone https://github.com/nimble-platform/common'
+            dir('common') {
+                sh 'git checkout ' + env.BRANCH_NAME
+                sh 'mvn clean install'
+            }
+        }
+
         stage('Build Java') {
             sh 'mvn clean package -DskipTests'
         }
@@ -35,6 +44,15 @@ node('nimble-jenkins-slave') {
             git(url: 'https://github.com/nimble-platform/trust-scoring-service', branch: env.BRANCH_NAME)
         }
 
+        stage('Build Dependencies') {
+            sh 'rm -rf common'
+            sh 'git clone https://github.com/nimble-platform/common'
+            dir('common') {
+                sh 'git checkout ' + env.BRANCH_NAME
+                sh 'mvn clean install'
+            }
+        }
+
         stage('Build Java') {
             sh 'mvn clean package -DskipTests'
         }
@@ -47,6 +65,15 @@ node('nimble-jenkins-slave') {
 
         stage('Clone and Update') {
             git(url: 'https://github.com/nimble-platform/trust-scoring-service', branch: 'master')
+        }
+
+        stage('Build Dependencies') {
+            sh 'rm -rf common'
+            sh 'git clone https://github.com/nimble-platform/common'
+            dir('common') {
+                sh 'git checkout master'
+                sh 'mvn clean install'
+            }
         }
 
         stage('Set version') {
