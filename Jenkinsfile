@@ -1,14 +1,18 @@
 node('nimble-jenkins-slave') {
 
-    stage('Clone and Update') {
-        git(url: 'https://github.com/nimble-platform/trust-scoring-service', branch: env.BRANCH_NAME)
-    }
-
-    stage('Build Java') {
-        sh 'mvn clean package -DskipTests'
-    }
-
+    // -----------------------------------------------
+    // --------------- Staging Branch ----------------
+    // -----------------------------------------------
     if (env.BRANCH_NAME == 'staging') {
+
+        stage('Clone and Update') {
+            git(url: 'https://github.com/nimble-platform/trust-scoring-service', branch: env.BRANCH_NAME)
+        }
+
+        stage('Build Java') {
+            sh 'mvn clean package -DskipTests'
+        }
+
         stage('Build Docker') {
             sh 'mvn docker:build -P docker -DdockerImageTag=staging'
         }
@@ -22,14 +26,43 @@ node('nimble-jenkins-slave') {
         }
     }
 
+    // -----------------------------------------------
+    // ---------------- Master Branch ----------------
+    // -----------------------------------------------
     if (env.BRANCH_NAME == 'master') {
+
+        stage('Clone and Update') {
+            git(url: 'https://github.com/nimble-platform/trust-scoring-service', branch: env.BRANCH_NAME)
+        }
+
+        stage('Build Java') {
+            sh 'mvn clean package -DskipTests'
+        }
+    }
+
+    // -----------------------------------------------
+    // ---------------- Release Tags -----------------
+    // -----------------------------------------------
+    if( env.TAG_NAME ==~ /^\d+.\d+.\d+$/) {
+
+        stage('Clone and Update') {
+            git(url: 'https://github.com/nimble-platform/trust-scoring-service', branch: 'master')
+        }
+
+        stage('Set version') {
+            sh 'mvn versions:set -DnewVersion=' + env.TAG_NAME
+        }
+
+        stage('Build Java') {
+            sh 'mvn clean package -DskipTests'
+        }
+
         stage('Build Docker') {
             sh 'mvn docker:build -P docker'
         }
 
         stage('Push Docker') {
-            sh 'mvn org.apache.maven.plugins:maven-help-plugin:2.1.1:evaluate -Dexpression=project.version' // fetch dependencies
-            sh 'docker push nimbleplatform/trust-service:$(mvn org.apache.maven.plugins:maven-help-plugin:2.1.1:evaluate -Dexpression=project.version | grep -v \'\\[\')'
+            sh 'docker push nimbleplatform/trust-service:' + env.TAG_NAME
             sh 'docker push nimbleplatform/trust-service:latest'
         }
 
