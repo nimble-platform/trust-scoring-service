@@ -88,6 +88,18 @@ public class TrustProfileService {
 		profile.getTrustAttributes().add(result);
 		return result;
 	}
+	
+	
+	public List<PartyType> listPartiesWithTrustData(){
+
+		List<PartyType> partyTypes = Lists.newArrayList();
+		List<Agent> list = agentService.findAll();
+		if (CollectionUtils.isEmpty(list)) return partyTypes;
+		for (Agent agent : list) {
+			partyTypes.add(createPartyType(agent.getAltId()));
+		}
+		return partyTypes;
+	}
 
 	public PartyType createPartyType(String partyId) {
 		TrustProfile profile = findByAgentAltId(partyId);

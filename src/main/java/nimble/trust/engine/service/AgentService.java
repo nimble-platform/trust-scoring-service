@@ -1,6 +1,7 @@
 package nimble.trust.engine.service;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -47,6 +48,10 @@ public class AgentService {
 	
 	public Page<Agent> findAll(Pageable pageable){
 		return agentRepository.findAll(pageable);
+	}
+	
+	public List<Agent> findAll(){
+		return agentRepository.findAll();
 	}
 	
 }

@@ -21,6 +21,8 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.google.common.collect.Lists;
+
 import eu.nimble.service.model.ubl.commonaggregatecomponents.PartyType;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -108,6 +110,27 @@ public class TrustScoreController implements FilterApi, CalculateApi {
         	}
 		} catch (Exception e) {
 			log.error("GetPartyTrustData failed for partyId"+partyId, e);
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+    }
+    
+    
+    @ApiOperation(value = "Obtain list of parties with their trust score", notes = "Obtain list of parties with their trust score",
+    		response = PartyType.class, tags={  }, responseContainer = "List")
+    @ApiResponses(value = { 
+            @ApiResponse(code = 200, message = "Request succesfull processed", response = String.class),
+            @ApiResponse(code = 404, message = "No data found", response = String.class),
+            @ApiResponse(code = 500, message = "Internal Server Error", response = String.class)})
+    @RequestMapping(value = "/party/list/trust",produces = MediaType.APPLICATION_JSON_VALUE,method = RequestMethod.GET)
+    public ResponseEntity<?> getListPartyTrustData(@ApiParam(value = "Authorization header to be obtained via login to the NIMBLE platform") @RequestHeader(value = "Authorization") String bearerToken) {
+    	
+    	List<PartyType> partyTypes = Lists.newArrayList();
+    	try {
+    		partyTypes = trustProfileService.listPartiesWithTrustData();
+    		log.info("getListPartyTrustData successfully executed. List size+"+partyTypes.size());
+    		return new ResponseEntity<>(partyTypes, HttpStatus.OK);
+		} catch (Exception e) {
+			log.error("getListPartyTrustData failed", e);
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
     }
