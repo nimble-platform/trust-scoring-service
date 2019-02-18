@@ -10,6 +10,7 @@ import org.springframework.util.CollectionUtils;
 
 import com.google.common.collect.Lists;
 
+import eu.nimble.service.model.ubl.commonaggregatecomponents.PartyIdentificationType;
 import eu.nimble.service.model.ubl.commonaggregatecomponents.PartyType;
 import eu.nimble.service.model.ubl.commonaggregatecomponents.QualityIndicatorType;
 import eu.nimble.service.model.ubl.commonbasiccomponents.QuantityType;
@@ -109,7 +110,11 @@ public class TrustProfileService {
 
 		// create UBL Party populated with a trust-related data
 		PartyType party = new PartyType();
-		party.setID(partyId);
+		PartyIdentificationType partyIdentification = new PartyIdentificationType();
+		partyIdentification.setID(partyId);
+		List<PartyIdentificationType> identificationTypes = Lists.newArrayList();
+		identificationTypes.add(partyIdentification);
+		party.setPartyIdentification(identificationTypes);
 		List<TrustAttribute> trustAttributes = profile.getTrustAttributes();
 		List<QualityIndicatorType> qualityIndicatorTypes = Lists.newArrayList();
 		for (TrustAttribute trustAttribute : trustAttributes) {
