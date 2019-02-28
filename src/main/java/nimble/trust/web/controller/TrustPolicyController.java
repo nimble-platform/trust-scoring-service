@@ -94,7 +94,7 @@ public class TrustPolicyController {
 		if (policy == null){
 		    String msg = "Failed to find trust policy";
 		    log.warn(msg);
-		    return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		    return new ResponseEntity<>(HttpStatus.OK); //return OK and empty response
 		}
 		TrustPolicyDto dto = DtoUtil.toDto(policy);
 		return new ResponseEntity<>(dto, HttpStatus.OK);
@@ -137,14 +137,25 @@ public class TrustPolicyController {
 			response = TrustPolicy.class, responseContainer = "")
 	@ApiResponses(value = { 
 			@ApiResponse(code = 200, message = "Policy sucessfully initialized",response=TrustPolicyDto.class),
-			@ApiResponse(code = 500, message = "Internal error",response=String.class)
+			@ApiResponse(code = 500, message = "Internal error",response=String.class),
+			@ApiResponse(code = 409, message = "Conflict - policy already exists",response=String.class)
 			})
 	@RequestMapping(value = "/policy/global/initialize", produces = { "application/json" }, method = RequestMethod.POST)
 	public ResponseEntity<TrustPolicyDto> createNewTrustPolicy(@RequestHeader(value = "Authorization") String bearerToken) {
 		
 		try {
-			TrustPolicy policy = trustPolicyService.createTrustPolicy();
-			return new ResponseEntity<TrustPolicyDto>(DtoUtil.toDto(policy), HttpStatus.OK);
+			
+			TrustPolicy policy = trustPolicyService.findGlobalTRustPolicy();
+			
+			if (policy != null){
+			    String msg = "Global policy already existis ";
+			    log.warn(msg);
+			    return new ResponseEntity<>(HttpStatus.CONFLICT);
+			}
+			else{
+				policy = trustPolicyService.createTrustPolicy();
+				return new ResponseEntity<TrustPolicyDto>(DtoUtil.toDto(policy), HttpStatus.OK);
+			}
 		} catch (Exception e) {
 			 log.error("Internal error", e);
 			 return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);

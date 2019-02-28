@@ -111,12 +111,43 @@ public class TrustPolicyService {
 		for (TrustAttributeType trustAttributeType : list) {
 			TrustAttribute attr = new TrustAttribute();
 			attr.setTrustAttributeType(trustAttributeType);
-			attr.setImportance(0);
+			attr = setAttributeDefaultConfig(attr);
 			attr.setTrustPolicy(policy);
 			policy.getTrustAttributes().add(attr);
 		}
 		policy = save(policy);
 		return policy;
+	}
+
+	private TrustAttribute setAttributeDefaultConfig(TrustAttribute attr) {
+		String type = attr.getTrustAttributeType().getName();
+		
+		if (type.equalsIgnoreCase("OverallCompanyRating")){
+			attr.setImportance(1);
+		}
+		if (type.equalsIgnoreCase("TradingVolume")){
+			attr.setImportance(1);		
+		}
+		if (type.equalsIgnoreCase("OverallProfileCompletness")){
+			attr.setImportance(1);
+		}
+		if (type.equalsIgnoreCase("NumberOfUncompletedTransactions")){
+			attr.setImportance(0);
+		}
+		if (type.equalsIgnoreCase("NumberOfCompletedTransactions")){
+			attr.setImportance(1);
+		}
+		if (type.equalsIgnoreCase("AverageTimeToRespond")){
+			attr.setImportance(1);
+			attr.setMaxValue("43200");
+			attr.setMinValue("0");
+		}
+		if (type.equalsIgnoreCase("AverageNegotiationTime")){
+			attr.setImportance(1D);
+			attr.setMaxValue("43200");
+			attr.setMinValue("0");
+		}
+		return attr;
 	}
 
 	public TrustPolicy findById(Long id) {

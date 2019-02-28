@@ -10,6 +10,7 @@ import org.springframework.util.CollectionUtils;
 
 import com.google.common.collect.Lists;
 
+import eu.nimble.service.model.ubl.commonaggregatecomponents.PartyIdentificationType;
 import eu.nimble.service.model.ubl.commonaggregatecomponents.PartyType;
 import eu.nimble.service.model.ubl.commonaggregatecomponents.QualityIndicatorType;
 import eu.nimble.service.model.ubl.commonbasiccomponents.QuantityType;
@@ -88,6 +89,18 @@ public class TrustProfileService {
 		profile.getTrustAttributes().add(result);
 		return result;
 	}
+	
+	
+	public List<PartyType> listPartiesWithTrustData(){
+
+		List<PartyType> partyTypes = Lists.newArrayList();
+		List<Agent> list = agentService.findAll();
+		if (CollectionUtils.isEmpty(list)) return partyTypes;
+		for (Agent agent : list) {
+			partyTypes.add(createPartyType(agent.getAltId()));
+		}
+		return partyTypes;
+	}
 
 	public PartyType createPartyType(String partyId) {
 		TrustProfile profile = findByAgentAltId(partyId);
@@ -97,7 +110,11 @@ public class TrustProfileService {
 
 		// create UBL Party populated with a trust-related data
 		PartyType party = new PartyType();
-		party.setID(partyId);
+		PartyIdentificationType partyIdentification = new PartyIdentificationType();
+		partyIdentification.setID(partyId);
+		List<PartyIdentificationType> identificationTypes = Lists.newArrayList();
+		identificationTypes.add(partyIdentification);
+		party.setPartyIdentification(identificationTypes);
 		List<TrustAttribute> trustAttributes = profile.getTrustAttributes();
 		List<QualityIndicatorType> qualityIndicatorTypes = Lists.newArrayList();
 		for (TrustAttribute trustAttribute : trustAttributes) {
