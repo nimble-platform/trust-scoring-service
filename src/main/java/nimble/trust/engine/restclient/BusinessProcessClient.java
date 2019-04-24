@@ -39,7 +39,7 @@ public interface BusinessProcessClient {
 	
 	@RequestMapping(value = "/ratingsSummary", produces = {"application/json"}, method = RequestMethod.GET)
 	Response getRatingsSummary(
-			@RequestParam(value = "partyID") String partyID,
+			@RequestParam(value = "partyId") String partyId,
             @ApiParam(value = "" ,required=true ) @RequestHeader(value="Authorization", required=true) String bearerToken);
 
 }
