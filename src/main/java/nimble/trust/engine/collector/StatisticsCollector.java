@@ -96,10 +96,10 @@ public class StatisticsCollector {
 	}
 	
 	public BigDecimal fetchTotalTransactions(String partyId) {
-//		final String bearerToken = SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString();
+		final String bearerToken = SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString();
 		try {
 
-			feign.Response response = businessProcessClient.getProcessCount(null, null, null, partyId, "SELLER", null);
+			feign.Response response = businessProcessClient.getProcessCount(null, null, null, partyId, "SELLER", null,bearerToken);
 
 			if (response.status() == HttpStatus.OK.value()) {
 				Object decoded =  new feign.codec.StringDecoder().decode(response, String.class);
@@ -116,10 +116,10 @@ public class StatisticsCollector {
 	}
 	
 	public BigDecimal fetchTotalTrading(String partyId) {
-//		final String bearerToken = SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString();
+		final String bearerToken = SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString();
 		try {
 
-			feign.Response response = businessProcessClient.getTradingVolume(null, null, partyId, "SELLER", null);
+			feign.Response response = businessProcessClient.getTradingVolume(null, null, partyId, "SELLER", null,bearerToken);
 
 			if (response.status() == HttpStatus.OK.value()) {
 				Object decoded =  new feign.codec.StringDecoder().decode(response, String.class);
