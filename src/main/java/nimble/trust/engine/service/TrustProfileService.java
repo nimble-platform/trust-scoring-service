@@ -3,7 +3,13 @@ package nimble.trust.engine.service;
 import java.math.BigDecimal;
 import java.util.List;
 
+import nimble.trust.engine.restclient.BusinessProcessClient;
+import org.json.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
@@ -32,6 +38,12 @@ public class TrustProfileService {
 
 	@Autowired
 	private TrustAttributeTypeService attributeTypeService;
+
+	@Autowired
+	private BusinessProcessClient businessProcessClient;
+
+	private static Logger log = LoggerFactory.getLogger(TrustProfileService.class);
+
 
 	@Transactional
 	public TrustProfile save(TrustProfile entity) {
@@ -137,6 +149,31 @@ public class TrustProfileService {
 		score.setValue((profileOwner.getTrustScore() != null) ? profileOwner.getTrustScore() : BigDecimal.ZERO);
 		trustScoreIndicator.setQuantity(score);
 		qualityIndicatorTypes.add(trustScoreIndicator);
+
+		QualityIndicatorType noOfEvaluationsIndicator = new QualityIndicatorType();
+		noOfEvaluationsIndicator.setQualityParameter(QualityIndicatorParameter.Number_OF_EVALUATIONS.toString());
+		QuantityType evaluations = new QuantityType();
+
+		final String bearerToken = SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString();
+		try {
+
+			feign.Response response = businessProcessClient.getRatingsSummary(partyId, bearerToken);
+
+			if (response.status() == HttpStatus.OK.value()) {
+
+				String body = new feign.codec.StringDecoder().decode(response, String.class).toString();
+				JSONObject json = new JSONObject(body);
+				Double totalNumberOfRatings = json.getDouble("totalNumberOfRatings");
+				evaluations.setValue((totalNumberOfRatings != null) ? new BigDecimal(totalNumberOfRatings) : BigDecimal.ZERO);
+				noOfEvaluationsIndicator.setQuantity(evaluations);
+				qualityIndicatorTypes.add(noOfEvaluationsIndicator);
+			} else {
+				log.info("Synchronization with business process ratingsSummary failed due: "
+						+ new feign.codec.StringDecoder().decode(response, String.class)+" Return status: "+response.status());
+			}
+		} catch (Exception e) {
+			log.error(" Synchronization with business process ratingsSummary internal error:", e);
+		}
 
 		party.setQualityIndicator(qualityIndicatorTypes);
 
