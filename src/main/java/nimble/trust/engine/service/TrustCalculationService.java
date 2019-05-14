@@ -46,8 +46,8 @@ public class TrustCalculationService {
 	@Autowired
 	private IdentityServiceClient identityServiceClient;
 	
-	@Autowired
-	private ProfileCompletnessCollector completnessCollector;
+//	@Autowired
+//	private ProfileCompletnessCollector completnessCollector;
 	
 
 	@Value("${app.trust.trustScore.syncWithCatalogService}")
@@ -100,13 +100,15 @@ public class TrustCalculationService {
 		final String bearerToken = SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString();
 
 		try {
-			feign.Response response = identityServiceClient.getAllPartyIds(bearerToken, Lists.newArrayList());
+			feign.Response response = identityServiceClient.getAllPartyIds();
 			if (response.status() == HttpStatus.OK.value()) {
 				List<IdentifierNameTuple> tuples = JsonSerializationUtility.deserializeContent(
 						response.body().asInputStream(), new TypeReference<List<IdentifierNameTuple>>() {
 						});
 				for (IdentifierNameTuple t : tuples) {
-					completnessCollector.fetchProfileCompletnessValues(t.getIdentifier(), true);
+//					completnessCollector.fetchProfileCompletnessValues(t.getIdentifier(), true);
+					trustScoreSync.syncWithCatalogService(t.getIdentifier());
+
 				}
 			} else {
 				log.info("GetAllPartyIds request to identity service failed due: "
