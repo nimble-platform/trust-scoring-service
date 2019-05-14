@@ -100,14 +100,14 @@ public class TrustCalculationService {
 		final String bearerToken = SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString();
 
 		try {
-			feign.Response response = identityServiceClient.getAllPartyIds();
+			feign.Response response = identityServiceClient.getAllPartyIds(bearerToken, Lists.newArrayList());
 			if (response.status() == HttpStatus.OK.value()) {
 				List<IdentifierNameTuple> tuples = JsonSerializationUtility.deserializeContent(
 						response.body().asInputStream(), new TypeReference<List<IdentifierNameTuple>>() {
 						});
 				for (IdentifierNameTuple t : tuples) {
 //					completnessCollector.fetchProfileCompletnessValues(t.getIdentifier(), true);
-					trustScoreSync.syncWithCatalogService(t.getIdentifier());
+//					trustScoreSync.syncWithCatalogService(t.getIdentifier());
 
 				}
 			} else {
