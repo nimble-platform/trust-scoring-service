@@ -3,6 +3,9 @@ package nimble.trust.engine.service;
 import java.net.URI;
 import java.util.List;
 
+import eu.nimble.service.model.ubl.commonaggregatecomponents.PartyType;
+import eu.nimble.service.model.ubl.extension.QualityIndicatorParameter;
+import nimble.trust.engine.restclient.IndexingClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,7 +48,12 @@ public class TrustCalculationService {
 	
 	@Autowired
 	private IdentityServiceClient identityServiceClient;
-	
+
+	@Autowired
+	private IndexingClient indexingClient;
+
+	@Autowired
+	private TrustProfileService trustProfileService;
 //	@Autowired
 //	private ProfileCompletnessCollector completnessCollector;
 	
@@ -65,7 +73,30 @@ public class TrustCalculationService {
 			agentService.updateTrustScore(partyId, trustScore);
 
 			if (syncWithCatalogService) {
-				trustScoreSync.syncWithCatalogService(partyId);
+				PartyType partyType = trustProfileService.createPartyType(partyId);
+				eu.nimble.service.model.solr.party.PartyType indexParty =  indexingClient.getParty(partyId);
+
+				// get trust scores
+				partyType.getQualityIndicator().forEach(qualityIndicator -> {
+					if(qualityIndicator.getQualityParameter() != null && qualityIndicator.getQuantity() != null) {
+						if(qualityIndicator.getQualityParameter().contentEquals(QualityIndicatorParameter.COMPANY_RATING.toString())) {
+							indexParty.setTrustRating(qualityIndicator.getQuantity().getValue().doubleValue());
+						} else if(qualityIndicator.getQualityParameter().contentEquals(QualityIndicatorParameter.TRUST_SCORE.toString())) {
+							indexParty.setTrustScore(qualityIndicator.getQuantity().getValue().doubleValue());
+						} else if(qualityIndicator.getQualityParameter().contentEquals(QualityIndicatorParameter.DELIVERY_PACKAGING.toString())) {
+							indexParty.setTrustDeliveryPackaging(qualityIndicator.getQuantity().getValue().doubleValue());
+						} else if(qualityIndicator.getQualityParameter().contentEquals(QualityIndicatorParameter.FULFILLMENT_OF_TERMS.toString())) {
+							indexParty.setTrustFullfillmentOfTerms(qualityIndicator.getQuantity().getValue().doubleValue());
+						} else if(qualityIndicator.getQualityParameter().contentEquals(QualityIndicatorParameter.SELLER_COMMUNICATION.toString())) {
+							indexParty.setTrustSellerCommunication(qualityIndicator.getQuantity().getValue().doubleValue());
+						} else if(qualityIndicator.getQualityParameter().contentEquals(QualityIndicatorParameter.NUMBER_OF_TRANSACTIONS.toString())) {
+							indexParty.setTrustNumberOfTransactions(qualityIndicator.getQuantity().getValue().doubleValue());
+						} else if(qualityIndicator.getQualityParameter().contentEquals(QualityIndicatorParameter.TRADING_VOLUME.toString())) {
+							indexParty.setTrustTradingVolume(qualityIndicator.getQuantity().getValue().doubleValue());
+						}
+					}
+				});
+				indexingClient.setParty(indexParty);
 			}
 			log.info("trust score of party with ID " + partyId + " is updated to " + trustScore);
 		} catch (Exception e) {
