@@ -91,7 +91,7 @@ node('nimble-jenkins-slave') {
         }
 
         stage('Deploy') {
-            sh 'ssh efac-prod "kubectl delete pod -l  io.kompose.service=business-process-service"'
+            sh 'ssh efac-prod "kubectl delete pod -l  io.kompose.service=trust-service"'
         }
     }
 
