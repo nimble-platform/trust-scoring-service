@@ -62,6 +62,8 @@ public class TrustCalculationService {
 	private Boolean syncWithCatalogService;
 
 	public void score(String partyId) {
+
+		final String bearerToken = SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString();
 		// get profile and policy and calculate;
 		final TrustSimpleManager trustManager = Factory.createInstance(TrustSimpleManager.class);
 		TrustPolicy trustPolicy = trustPolicyService.findGlobalTRustPolicy();
@@ -74,7 +76,7 @@ public class TrustCalculationService {
 
 			if (syncWithCatalogService) {
 				PartyType partyType = trustProfileService.createPartyType(partyId);
-				eu.nimble.service.model.solr.party.PartyType indexParty =  indexingClient.getParty(partyId);
+				eu.nimble.service.model.solr.party.PartyType indexParty =  indexingClient.getParty(partyId,bearerToken);
 
 				// get trust scores
 				partyType.getQualityIndicator().forEach(qualityIndicator -> {
@@ -96,7 +98,7 @@ public class TrustCalculationService {
 						}
 					}
 				});
-				indexingClient.setParty(indexParty);
+				indexingClient.setParty(indexParty,bearerToken);
 			}
 			log.info("trust score of party with ID " + partyId + " is updated to " + trustScore);
 		} catch (Exception e) {
