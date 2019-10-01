@@ -3,6 +3,10 @@ package nimble.trust.engine.service;
 import java.net.URI;
 import java.util.List;
 
+import eu.nimble.service.model.ubl.commonaggregatecomponents.PartyType;
+import eu.nimble.service.model.ubl.extension.QualityIndicatorParameter;
+//import nimble.trust.engine.restclient.IndexingClient;
+import nimble.trust.engine.restclient.IndexingClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,7 +49,12 @@ public class TrustCalculationService {
 	
 	@Autowired
 	private IdentityServiceClient identityServiceClient;
-	
+
+	@Autowired
+	private IndexingClient indexingClient;
+
+	@Autowired
+	private TrustProfileService trustProfileService;
 //	@Autowired
 //	private ProfileCompletnessCollector completnessCollector;
 	
@@ -54,6 +63,8 @@ public class TrustCalculationService {
 	private Boolean syncWithCatalogService;
 
 	public void score(String partyId) {
+
+		final String bearerToken = SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString();
 		// get profile and policy and calculate;
 		final TrustSimpleManager trustManager = Factory.createInstance(TrustSimpleManager.class);
 		TrustPolicy trustPolicy = trustPolicyService.findGlobalTRustPolicy();
@@ -65,7 +76,8 @@ public class TrustCalculationService {
 			agentService.updateTrustScore(partyId, trustScore);
 
 			if (syncWithCatalogService) {
-				trustScoreSync.syncWithCatalogService(partyId);
+				PartyType partyType = trustProfileService.createPartyType(partyId);
+				indexingClient.partyTrustUpdate(partyId,partyType,bearerToken);
 			}
 			log.info("trust score of party with ID " + partyId + " is updated to " + trustScore);
 		} catch (Exception e) {

@@ -43,20 +43,22 @@ logstash:
   
 nimble:
  identity:
-   url: ${IDENTITY_SERVICE_URL:http://nimble-staging.salzburgresearch.at/identity-v2}
+   url: ${IDENTITY_SERVICE_URL:http://nimble-staging.salzburgresearch.at/identity}
  trust:
    url: ${TRUST_SERVICE_URL:http://nimble-staging.salzburgresearch.at/trust}
  catalog:
    url: ${CATALOG_SERVICE_URL:http://nimble-staging.salzburgresearch.at/catalog}
  business-process:
    url: ${BUSINESS_PROCESS_SERVICE_URL:http://nimble-staging.salzburgresearch.at/business-process}
+ indexing:
+   url: ${INDEXING_SERVICE_URL:http://nimble-staging.salzburgresearch.at/index}
  kafka:
    topics:
-     companyUpdates: ${KAFKA_TOPIC_COMPANY_UPDATES:company-updates}
-     trustScoreUpdates: ${KAFKA_TOPIC_TRUST_SCORE_UPDATES:trust-score-updates}
-     ratingsUpdates: ${KAFKA_TOPIC_BUSINESS_PROCESS_UPDATES:business-process-updates}
+     companyUpdates: ${KAFKA_TOPIC_COMPANY_UPDATES:company-updates-staging}
+     trustScoreUpdates: ${KAFKA_TOPIC_TRUST_SCORE_UPDATES:trust-score-updates-staging}
+     ratingsUpdates: ${KAFKA_TOPIC_BUSINESS_PROCESS_UPDATES:business-process-updates-staging}
      
-#   
+
 #feign:
 #  client:
 #    config:
