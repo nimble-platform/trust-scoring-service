@@ -21,9 +21,9 @@ public class SwaggerConfig {
 
 	@Bean
     public Docket api() {
-
 		platformHost = platformHost.replace("https://", "");
 		platformHost = platformHost.replace("http://","");
+		platformHost = platformHost.replace("//","");
 
         return new Docket(DocumentationType.SWAGGER_2)
 		        .host(platformHost)
