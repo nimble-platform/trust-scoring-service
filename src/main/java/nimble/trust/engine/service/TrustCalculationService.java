@@ -55,8 +55,9 @@ public class TrustCalculationService {
 
 	@Autowired
 	private TrustProfileService trustProfileService;
-//	@Autowired
-//	private ProfileCompletnessCollector completnessCollector;
+
+	@Autowired
+	private ProfileCompletnessCollector completnessCollector;
 	
 
 	@Value("${app.trust.trustScore.syncWithCatalogService}")
@@ -112,14 +113,14 @@ public class TrustCalculationService {
 		final String bearerToken = SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString();
 
 		try {
-			feign.Response response = identityServiceClient.getAllPartyIds(bearerToken, Lists.newArrayList());
+			feign.Response response = identityServiceClient.getAllPartyIds();
 			if (response.status() == HttpStatus.OK.value()) {
 				List<IdentifierNameTuple> tuples = JsonSerializationUtility.deserializeContent(
 						response.body().asInputStream(), new TypeReference<List<IdentifierNameTuple>>() {
 						});
 				for (IdentifierNameTuple t : tuples) {
-//					completnessCollector.fetchProfileCompletnessValues(t.getIdentifier(), true);
-//					trustScoreSync.syncWithCatalogService(t.getIdentifier());
+					completnessCollector.fetchProfileCompletnessValues(t.getCompanyID(), true);
+					trustScoreSync.syncWithCatalogService(t.getCompanyID());
 
 				}
 			} else {
