@@ -56,8 +56,8 @@ public class TrustCalculationService {
 	@Autowired
 	private TrustProfileService trustProfileService;
 
-	@Autowired
-	private ProfileCompletnessCollector completnessCollector;
+//	@Autowired
+//	private ProfileCompletnessCollector completnessCollector;
 	
 
 	@Value("${app.trust.trustScore.syncWithCatalogService}")
@@ -118,11 +118,11 @@ public class TrustCalculationService {
 				List<IdentifierNameTuple> tuples = JsonSerializationUtility.deserializeContent(
 						response.body().asInputStream(), new TypeReference<List<IdentifierNameTuple>>() {
 						});
-				for (IdentifierNameTuple t : tuples) {
-					completnessCollector.fetchProfileCompletnessValues(t.getCompanyID(), true);
-					trustScoreSync.syncWithCatalogService(t.getCompanyID());
-
-				}
+//				for (IdentifierNameTuple t : tuples) {
+//					completnessCollector.fetchProfileCompletnessValues(t.getCompanyID(), true);
+//					trustScoreSync.syncWithCatalogService(t.getCompanyID());
+//
+//				}
 			} else {
 				log.info("GetAllPartyIds request to identity service failed due: "
 						+ new feign.codec.StringDecoder().decode(response, String.class));
