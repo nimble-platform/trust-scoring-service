@@ -1,6 +1,8 @@
 package nimble.trust.engine.collector;
 
 import java.math.BigDecimal;
+import java.util.Arrays;
+import java.util.List;
 
 import org.json.JSONObject;
 import org.slf4j.Logger;
@@ -76,38 +78,26 @@ public class RatingsCollector {
 	private void processBody(String partyId, String body) {
 		JSONObject json = new JSONObject(body);
 
-		Double totalNumberOfRatings = json.getDouble("totalNumberOfRatings");
-
-		boolean allZero = false;
-		if (isNullOrZero(totalNumberOfRatings)){
-			allZero = true;
-		}
-
+		// retrieve individual ratings
+		// each value represents the average value for that sub-rating
 		Double qualityOfNegotiationProcess = json.getDouble("qualityOfNegotiationProcess");
 		Double qualityOfOrderingProcess = json.getDouble("qualityOfOrderingProcess");
 		Double responseTimeRating = json.getDouble("responseTimeRating");
-
-		Double qualityOfNegotiationProcess_Average = (allZero)? 0:qualityOfNegotiationProcess / totalNumberOfRatings;
-		Double qualityOfOrderingProcess_Average = (allZero)? 0:qualityOfOrderingProcess / totalNumberOfRatings;
-		Double responseTimeRating_Average = (allZero)? 0:responseTimeRating / totalNumberOfRatings;
-
-		Double overallCommunicationRating = (allZero)? 0:(qualityOfNegotiationProcess_Average + qualityOfOrderingProcess_Average
-				+ responseTimeRating_Average) / 3;
-
 		Double listingAccuracy = json.getDouble("listingAccuracy");
 		Double conformanceToContractualTerms = json.getDouble("conformanceToContractualTerms");
-
-		Double listingAccuracy_Average = (allZero)? 0:listingAccuracy / totalNumberOfRatings;
-		Double conformanceToContractualTerms_Average = (allZero)? 0:conformanceToContractualTerms / totalNumberOfRatings;
-
-		Double overallFullfilmentOfTermsRating =(allZero)? 0:(listingAccuracy_Average + conformanceToContractualTerms_Average) / 2;
-
 		Double deliveryAndPackaging = json.getDouble("deliveryAndPackaging");
 
-		Double deliveryAndPackaging_Average = (allZero)? 0: deliveryAndPackaging / totalNumberOfRatings;
+		// calculate overall communication rating
+		List<Double> overallCommunicationRatings = Arrays.asList(qualityOfNegotiationProcess,qualityOfOrderingProcess,responseTimeRating);
+		Double overallCommunicationRating = overallCommunicationRatings.stream().filter(this::isNotNullOrZero).mapToDouble(Double::doubleValue).average().orElse(0);
 
-		Double overallCompanyRating = (allZero)? 0: (overallCommunicationRating + overallFullfilmentOfTermsRating
-				+ deliveryAndPackaging_Average) / 3;
+		// calculate overall fulfilment of terms rating
+		List<Double> listingAccuracyRatings = Arrays.asList(listingAccuracy,conformanceToContractualTerms);
+		Double overallFullfilmentOfTermsRating = listingAccuracyRatings.stream().filter(this::isNotNullOrZero).mapToDouble(Double::doubleValue).average().orElse(0);
+
+		// calculate overall company rating
+		List<Double> overallCompanyRatings = Arrays.asList(overallCommunicationRating,overallFullfilmentOfTermsRating,deliveryAndPackaging);
+		Double overallCompanyRating = overallCompanyRatings.stream().filter(this::isNotNullOrZero).mapToDouble(Double::doubleValue).average().orElse(0);
 
 		profileService.updateTrustAttributeValue(partyId,
 				QualityIndicatorConvert.OverallCommunicationRating.getTrustVocabulary(),new BigDecimal(overallCommunicationRating).toString());
@@ -116,15 +106,13 @@ public class RatingsCollector {
 				QualityIndicatorConvert.OverallFullfilmentOfTermsRating.getTrustVocabulary(), new BigDecimal(overallFullfilmentOfTermsRating).toString());
 		
 		profileService.updateTrustAttributeValue(partyId,
-				QualityIndicatorConvert.OverallDeliveryAndPackagingRating.getTrustVocabulary(), new BigDecimal(deliveryAndPackaging_Average).toString());
+				QualityIndicatorConvert.OverallDeliveryAndPackagingRating.getTrustVocabulary(), new BigDecimal(deliveryAndPackaging).toString());
 		profileService.updateTrustAttributeValue(partyId,
 				QualityIndicatorConvert.OverallCompanyRating.getTrustVocabulary(), new BigDecimal(overallCompanyRating).toString());
 		
 	}
 
-	private boolean isNullOrZero(Double d) {
-		if (d == null || d.compareTo(new Double("0"))==0)
-				return true;
-		return false;
+	private boolean isNotNullOrZero(Double d) {
+		return d != null && d.compareTo(new Double("0")) != 0;
 	}
 }
