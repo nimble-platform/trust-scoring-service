@@ -21,7 +21,7 @@
         </logback.version> <!-- Version was set back due to bug: http://jira.qos.ch/browse/LOGBACK-1158 -->
         <timestamp>${maven.build.timestamp}</timestamp>
         <maven.build.timestamp.format>yyyy-MM-dd HH:mm</maven.build.timestamp.format>
-        <springfox.version>2.5.0</springfox.version>
+        <springfox.version>2.10.0</springfox.version>
         <default.package>nimble.trust</default.package>
         <swagger.api.src>src/main/resources/api.yml</swagger.api.src>
         <dockerImageTag>${project.version}</dockerImageTag>
